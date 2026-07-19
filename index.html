@@ -263,6 +263,11 @@
             flex-wrap: wrap;
         }
 
+        .hero-cta .btn-primary {
+            min-width: 220px;
+            justify-content: center;
+        }
+
         @media (max-width: 600px) {
             .hero {
                 min-height: 65vh;
@@ -301,6 +306,48 @@
             .hero-cta {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+        }
+
+        /* Backflip bridge */
+        .video-section {
+            position: relative;
+            height: 50vh;
+            min-height: 300px;
+            max-height: 500px;
+            padding: 0;
+            overflow: hidden;
+            background: var(--slate);
+        }
+
+        .video-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 30% center;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(
+                to bottom,
+                var(--warm-paper) 0%,
+                rgba(248, 246, 243, 0) 15%,
+                rgba(32, 53, 43, 0.1) 50%,
+                rgba(248, 246, 243, 0) 85%,
+                var(--sand-surface) 100%
+            );
+        }
+
+        @media (max-width: 600px) {
+            .video-section {
+                height: 40vh;
+                min-height: 200px;
+                max-height: 350px;
             }
         }
 
@@ -523,6 +570,12 @@
             grid-template-columns: 1fr 1fr;
             gap: var(--space-4);
             margin-bottom: var(--space-5);
+        }
+
+        .fit-grid.single-path,
+        .next-step-options.single-path {
+            grid-template-columns: minmax(0, 680px);
+            max-width: 680px;
         }
 
         @media (max-width: 700px) {
@@ -762,6 +815,197 @@
                 font-size: 0.9375rem;
             }
         }
+
+        /* Featured reflection */
+        .reflection-featured {
+            max-width: 760px;
+            background: linear-gradient(160deg, var(--warm-paper) 0%, var(--sand-surface) 100%);
+            border: 1px solid var(--stone-border);
+            border-left: 3px solid var(--clay);
+            padding: var(--space-5);
+            position: relative;
+        }
+
+        .reflection-quote-mark {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            line-height: 0.6;
+            color: var(--clay);
+            opacity: 0.4;
+            display: block;
+            height: 1.6rem;
+        }
+
+        .reflection-featured blockquote {
+            font-size: 1.125rem;
+            line-height: 1.72;
+            font-style: normal;
+            color: var(--deep-forest);
+        }
+
+        .reflection-featured blockquote p {
+            margin: 0 0 var(--space-3);
+        }
+
+        .reflection-featured blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        .reflection-closer {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.375rem;
+            line-height: 1.5;
+            color: var(--deep-forest);
+            margin: var(--space-4) 0 0;
+            padding-left: var(--space-3);
+            border-left: 2px solid var(--clay);
+        }
+
+        .reflection-attribution {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--stone-border);
+            flex-wrap: wrap;
+        }
+
+        .reflection-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--deep-forest);
+            color: var(--warm-paper);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .reflection-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reflection-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-right: auto;
+        }
+
+        .reflection-name {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--ink);
+            font-size: 0.9375rem;
+            margin: 0;
+        }
+
+        .reflection-role {
+            font-size: 0.8125rem;
+            color: var(--blue-gray);
+            margin: 0;
+        }
+
+        .reflection-stat {
+            text-align: right;
+        }
+
+        .reflection-stat-value {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.0625rem;
+            color: var(--ember);
+            font-weight: 500;
+        }
+
+        .reflection-stat-unit {
+            font-size: 0.75rem;
+            margin-left: 3px;
+            opacity: 0.7;
+        }
+
+        .reflection-stat-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--blue-gray);
+        }
+
+        @media (max-width: 600px) {
+            .reflection-featured {
+                padding: var(--space-3);
+            }
+
+            .reflection-featured blockquote {
+                font-size: 1.0625rem;
+            }
+
+            .reflection-stat {
+                text-align: left;
+                width: 100%;
+                margin-top: var(--space-1);
+            }
+        }
+
+        /* Testimonial brief card + read-more */
+        .reflections-grid { align-items: center; }
+
+        .testimonial-brief {
+            display: block;
+            width: 100%;
+            max-width: 620px;
+            text-align: left;
+            background: var(--warm-paper);
+            border: 1px solid var(--stone-border);
+            border-left: 3px solid var(--clay);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            cursor: pointer;
+            font: inherit;
+            color: inherit;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+        .testimonial-brief:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(42,45,50,.09); border-color: var(--sand-tan); }
+        .tb-head { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); }
+        .tb-avatar { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--deep-forest); }
+        .tb-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 16%; }
+        .tb-name { font-family: var(--font-body); font-weight: 600; font-size: 1rem; margin: 0; color: var(--ink); }
+        .tb-role { font-size: 0.8125rem; color: var(--blue-gray); margin: 0; }
+        .tb-quote { font-family: var(--font-display); font-style: italic; font-size: 1.0625rem; line-height: 1.55; color: var(--deep-forest); margin: 0 0 var(--space-2); }
+        .tb-more { font-size: 0.85rem; font-weight: 600; color: var(--clay); letter-spacing: .3px; }
+        .tb-more .arw { display: inline-block; transition: transform .18s ease; }
+        .testimonial-brief:hover .tb-more .arw { transform: translateX(3px); }
+
+        .tm-scrim { position: fixed; inset: 0; background: rgba(32,53,43,.5); backdrop-filter: blur(3px); display: none; align-items: flex-start; justify-content: center; padding: 48px 20px; overflow-y: auto; z-index: 200; }
+        .tm-scrim.active { display: flex; }
+        .tm { background: var(--warm-paper); border: 1px solid var(--stone-border); border-radius: var(--radius-md); max-width: 720px; width: 100%; position: relative; overflow: hidden; box-shadow: 0 24px 60px rgba(32,53,43,.28); }
+        .tm-close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(248,246,243,.9); color: var(--ink); font-size: 1.2rem; cursor: pointer; z-index: 2; line-height: 1; }
+        .tm-close:hover { background: #fff; }
+        .tm-photos { display: grid; grid-template-columns: 1fr 1fr; }
+        .tm-photo { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--sand-surface); }
+        .tm-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .tm-photo.before img { object-position: center 20%; border-right: 1px solid var(--stone-border); }
+        .tm-photo.after img { object-position: center 6%; }
+        .tm-tag { position: absolute; left: 12px; top: 12px; background: rgba(32,53,43,.82); color: var(--warm-paper); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; }
+        .tm-body { padding: var(--space-4) var(--space-5) var(--space-5); }
+        .tm-attr { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); flex-wrap: wrap; }
+        .tm-name { font-family: var(--font-display); font-size: 1.25rem; color: var(--deep-forest); margin: 0; }
+        .tm-role { font-size: 0.82rem; color: var(--blue-gray); margin: 0; }
+        .tm-stat { margin-left: auto; text-align: right; }
+        .tm-stat b { font-family: var(--font-display); color: var(--ember); font-weight: 500; font-size: 1.05rem; display: block; }
+        .tm-stat span { font-size: 0.72rem; color: var(--blue-gray); }
+        .tm-body blockquote { margin: 0; border-top: 1px solid var(--stone-border); padding-top: var(--space-3); }
+        .tm-body blockquote p { font-size: 1.02rem; line-height: 1.7; color: var(--deep-forest); margin: 0 0 var(--space-3); }
+        .tm-closer { font-family: var(--font-display); font-style: italic; font-size: 1.2rem; line-height: 1.5; color: var(--deep-forest); margin: var(--space-3) 0 0; padding-left: var(--space-3); border-left: 2px solid var(--clay); }
+        @media (max-width: 560px) { .tm-body { padding: var(--space-3); } .tm-scrim { padding: 20px 12px; } }
 
         /* Next Step Section */
         .next-step-section {
@@ -1088,21 +1332,27 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1600&h=900&fit=crop&crop=center" alt="Pine tree canopy looking up">
+            <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1600&amp;h=900&amp;fit=crop&amp;crop=center" alt="Pine tree canopy looking up">
         </div>
         <div class="hero-content fade-up">
             <p class="hero-label">Justin the Practice</p>
             <h1>Strength is only part of the practice.</h1>
             <p class="hero-intro">I help people build strength, clarity, and physical readiness by teaching them how to adjust training, food, and rest based on what their system is actually telling them.</p>
             <div class="hero-cta">
-                <a href="hyrox-quiz.html" class="btn-primary">
-                    Take the Hyrox Readiness Quiz
+                <a href="https://justinthepractice.com/start" class="btn-primary">
+                    Let’s Get Started
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#clarity-quiz" class="btn-secondary">General Training Clarity</a>
-                <a href="https://calendly.com/justin-the-practice/clarity-call" target="_blank" class="btn-secondary">Book a Free Clarity Call</a>
             </div>
         </div>
+    </section>
+
+    <!-- Backflip Video -->
+    <section class="video-section" aria-label="Justin performing a backflip outdoors">
+        <video autoplay muted loop playsinline preload="metadata" class="video-bg" aria-hidden="true">
+            <source src="backflip.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
     </section>
 
     <!-- Core Principles -->
@@ -1248,27 +1498,19 @@
             <div class="fit-unsure">
                 <h3>If you're unsure</h3>
                 <p>You don't need to have everything figured out to begin.</p>
-                <p style="margin-top: var(--space-2);">One-on-one coaching is the deepest way to engage with this work, but it isn't the only way. Curiosity, honesty, and a willingness to participate matter far more than experience level or current fitness.</p>
+                <p style="margin-top: var(--space-2);">The Intro Call is a focused first session to understand where you are, what you need, and whether ongoing one-on-one coaching is the right fit. Curiosity, honesty, and a willingness to participate matter far more than experience level or current fitness.</p>
                 <p style="margin-top: var(--space-2);"><em>Clarity is built through engagement, not certainty.</em></p>
             </div>
 
             <div class="section-header" style="margin-top: var(--space-6);">
-                <h2>Two Ways to Begin</h2>
+                <h2>How to Begin</h2>
             </div>
-            <div class="fit-grid">
+            <div class="fit-grid single-path">
                 <div class="fit-col yes" style="background: linear-gradient(135deg, rgba(163, 128, 103, 0.12) 0%, rgba(163, 128, 103, 0.06) 100%); border-color: var(--clay);">
-                    <h3 style="color: var(--ember);">One-on-One Coaching</h3>
-                    <p style="color: var(--ink); opacity: 0.85; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">This is the most comprehensive way to work together.</p>
-                    <p style="color: var(--ink); opacity: 0.75; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">Training, recovery, and lifestyle decisions are adjusted continuously as your body and life change. This path is for those who want depth, responsiveness, and long-term development through an ongoing coaching relationship.</p>
-                    <p style="color: var(--ink); opacity: 0.65; font-size: 0.875rem; font-style: italic; margin-bottom: var(--space-3);">Best suited for people who want individualized guidance and are willing to actively participate in the process.</p>
-                    <a href="https://calendly.com/justin-the-practice/clarity-call" target="_blank" class="btn-primary">Book a Clarity Call</a>
-                </div>
-                <div class="fit-col" style="opacity: 1;">
-                    <h3 style="color: var(--deep-forest); opacity: 1;">Guided Practices & Resources</h3>
-                    <p style="color: var(--ink); opacity: 0.85; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">Guided practices and resources offer a structured way to engage with the work without the commitment of ongoing coaching.</p>
-                    <p style="color: var(--ink); opacity: 0.75; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">These are time-bound tools designed to help you build clarity, consistency, and better decision-making around training, food, rest, and daily rhythms.</p>
-                    <p style="color: var(--ink); opacity: 0.65; font-size: 0.875rem; font-style: italic; margin-bottom: var(--space-3);">They are intended to support progress, not replace coaching. Additional guided practices and resources will be added over time.</p>
-                    <a href="resources/index.html" class="btn-secondary">Explore Resources</a>
+                    <h3 style="color: var(--ember);">$79 Intro Call</h3>
+                    <p style="color: var(--ink); opacity: 0.85; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">A focused 45-minute session to understand your current position, clarify what is getting in the way, and identify the most useful next step.</p>
+                    <p style="color: var(--ink); opacity: 0.65; font-size: 0.875rem; font-style: italic; margin-bottom: var(--space-3);">This is the starting point for working with Justin.</p>
+                    <a href="https://justinthepractice.com/start" class="btn-primary">Let’s Get Started</a>
                 </div>
             </div>
         </div>
@@ -1312,20 +1554,55 @@
                 <p class="section-label">Client Reflections</p>
                 <h2>What People Say</h2>
             </div>
-            <p class="reflections-intro">Progress looks different for everyone. These reflections speak to the experience of the work — how people feel, think, and train as a result.</p>
+            <p class="reflections-intro">Progress looks different for everyone. These reflections speak to the experience of the work, how people feel, think, and train as a result.</p>
             <div class="reflections-grid">
-                <div class="reflection">
-                    <blockquote>"Working with Justin changed how I approach training entirely. I'm stronger, but more importantly, I understand my body better and feel more confident navigating fatigue and recovery."</blockquote>
-                </div>
-                <div class="reflection">
-                    <blockquote>"This was the first time training felt sustainable. The structure made sense, and adjustments were always thoughtful. I stopped feeling like I had to push all the time."</blockquote>
-                </div>
-                <div class="reflection">
-                    <blockquote>"I came in wanting better fitness. I left with clarity, consistency, and a healthier relationship with training."</blockquote>
-                </div>
+                <button type="button" class="testimonial-brief" id="testimonial-open" aria-haspopup="dialog">
+                    <div class="tb-head">
+                        <div class="tb-avatar"><img src="images/testimonials/heathrow-hyrox-skierg.jpg" alt="Heathrow at HYROX New York"></div>
+                        <div>
+                            <p class="tb-name">Heathrow Andrews</p>
+                            <p class="tb-role">Nearly a year of 1-on-1 coaching</p>
+                        </div>
+                    </div>
+                    <p class="tb-quote">Working with Justin has been one of the best investments I've made in my body. He coaches without judgment and finds the exact lever for the person in front of him.</p>
+                    <span class="tb-more">Read the full story <span class="arw">&rarr;</span></span>
+                </button>
             </div>
         </div>
     </section>
+
+    <!-- Testimonial read-more modal -->
+    <div class="tm-scrim" id="testimonial-modal" role="dialog" aria-modal="true" aria-label="Heathrow Andrews full testimonial">
+        <div class="tm">
+            <button class="tm-close" id="testimonial-close" aria-label="Close">&times;</button>
+            <div class="tm-photos">
+                <div class="tm-photo before">
+                    <span class="tm-tag">Before &middot; Aug 2025</span>
+                    <img src="images/testimonials/heathrow-before-2025-08.jpg" alt="Heathrow in August 2025, before coaching">
+                </div>
+                <div class="tm-photo after">
+                    <span class="tm-tag">With Justin &middot; 1:49:59</span>
+                    <img src="images/testimonials/heathrow-justin-hyrox-finish.jpg" alt="Heathrow and Justin finishing HYROX New York at 1:49:59">
+                </div>
+            </div>
+            <div class="tm-body">
+                <div class="tm-attr">
+                    <div>
+                        <p class="tm-name">Heathrow Andrews</p>
+                        <p class="tm-role">Nearly a year of 1-on-1 coaching</p>
+                    </div>
+                    <div class="tm-stat"><b>236 &rarr; 210&ndash;215 lbs</b><span>and still building</span></div>
+                </div>
+                <blockquote>
+                    <p>Working with Justin has been one of the best investments I've made in my body, honestly one of the best health decisions I've made period. At first I hesitated because I felt like I couldn't afford it (now I can't even remember the price). But there was a louder voice inside saying "You need help becoming the healthiest version of yourself, and whatever you spend on that comes back tenfold." So I took the plunge and signed up for weekly 1-on-1 coaching. That was almost a year ago.</p>
+                    <p>From the first call I knew it was a fit. Justin was patient and kind, which let me actually open up and give real answers to some pointed questions about my health. He helped me understand my relationship to food, not just what I was eating but how I felt about what I was eating. He really has a way of knowing the right questions to ask, and he gives you space to explore them without judgment.</p>
+                    <p>And it never felt like someone handing me a workout plan and telling me to try harder. It felt like real coaching. Movement, food, sleep, body composition, and the actual person I'm trying to become, not just a number on a scale.</p>
+                    <p>When this chapter started I was around 236. Now I'm hovering around 210 to 215, with a clear path to 200 (if I choose) that doesn't feel frantic or fake. I move better. I understand my body better. Justin finds the exact lever for the person in front of him, and he helps you keep going in a way that feels natural and not forced.</p>
+                </blockquote>
+                <p class="tm-closer">Justin gave me back my power and connectedness over my body and how I fuel it. I never lost the power, I just forgot that it belonged to me.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Take the Next Step -->
     <section class="next-step-section fade-up" id="next-step">
@@ -1339,19 +1616,13 @@
                 <p>Start by understanding where you are.</p>
                 <p>Whether you are returning to training, refining your current approach, or looking for a more sustainable path forward, we will begin by getting a clear picture of your current capacity, priorities, and needs.</p>
             </div>
-            <div class="next-step-options">
-                <div class="next-step-card primary" id="clarity-quiz">
-                    <h3>Get Training Clarity</h3>
-                    <p>A short assessment designed to help you better understand your current position and next best steps. This is a self guided way to bring structure and direction to your training and health decisions.</p>
-                    <a href="https://justinthepractice.involve.me/health-lifestyle-quiz" target="_blank" class="btn-primary">
-                        Get Training Clarity
+            <div class="next-step-options single-path">
+                <div class="next-step-card primary">
+                    <p>Start with a focused 45-minute session. Justin will help you understand where you are, what is getting in the way, and the clearest next step for your training.</p>
+                    <a href="https://justinthepractice.com/start" class="btn-primary">
+                        Start Here
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
-                </div>
-                <div class="next-step-card">
-                    <h3>Prefer to talk it through?</h3>
-                    <p>You are welcome to schedule a free clarity call. This conversation is an opportunity to explore fit, ask questions, and determine whether working together makes sense with no pressure either way.</p>
-                    <a href="https://calendly.com/justin-the-practice/clarity-call" target="_blank" class="btn-secondary">Book a Free Clarity Call</a>
                 </div>
             </div>
         </div>
@@ -1443,6 +1714,13 @@
             modal.classList.remove('active');
             e.target.reset();
         });
+
+        // Testimonial read-more modal
+        const tModal = document.getElementById('testimonial-modal');
+        document.getElementById('testimonial-open')?.addEventListener('click', () => tModal.classList.add('active'));
+        document.getElementById('testimonial-close')?.addEventListener('click', () => tModal.classList.remove('active'));
+        tModal?.addEventListener('click', e => { if (e.target === tModal) tModal.classList.remove('active'); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') tModal?.classList.remove('active'); });
 
         // Initial animation
         document.querySelector('.hero-content')?.classList.add('visible');
