@@ -74,3 +74,11 @@ Client: Justin the Practice
 - Client leak scan: the approved offer prices are the only public-copy findings; an internal absolute path was removed.
 - Public deployment remains blocked until Justin supplies a public Stripe Payment Link that redirects successful payment to his 60-minute booking calendar.
 - Reschedule/no-show language remains omitted until Justin confirms the policy.
+
+### Copy claims receipt - 2026-07-19
+
+- Verdict: approve for internal review; not yet approved for public deployment.
+- Supported: the revised principles and process language restates Justin's existing coaching approach without adding an outcome promise.
+- Softened: the closing line now says progress should fit real life rather than implying that results are guaranteed to last.
+- Unchanged: the 60-minute duration, $79 price, payment-before-booking sequence, written recap, testimonial facts, and no-free-path boundary.
+- No diagnosis, treatment, cure, prevention, guaranteed performance, urgency, or invented proof was introduced.

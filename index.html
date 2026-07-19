@@ -271,37 +271,44 @@
 
         @media (max-width: 600px) {
             .hero {
-                min-height: 65vh;
+                min-height: 58vh;
+                align-items: flex-start;
             }
 
             .hero-bg::after {
                 background: linear-gradient(
                     to bottom,
-                    rgba(32, 53, 43, 0.15) 0%,
-                    rgba(32, 53, 43, 0.3) 30%,
-                    rgba(248, 246, 243, 0.9) 65%,
+                    rgba(32, 53, 43, 0.32) 0%,
+                    rgba(32, 53, 43, 0.46) 20%,
+                    rgba(32, 53, 43, 0.3) 50%,
+                    rgba(248, 246, 243, 0.92) 72%,
                     var(--warm-paper) 100%
                 );
             }
 
             .hero-content {
-                padding: var(--space-8) var(--space-3) var(--space-6);
-            }
-
-            .hero h1 {
-                font-size: 1.75rem;
-                margin-bottom: var(--space-2);
-            }
-
-            .hero-intro {
-                font-size: 0.9375rem;
-                line-height: 1.6;
-                margin-bottom: var(--space-4);
+                padding: var(--space-7) var(--space-3) var(--space-6);
             }
 
             .hero-label {
+                color: rgba(248, 246, 243, 0.82);
                 font-size: 0.6875rem;
                 margin-bottom: var(--space-1);
+            }
+
+            .hero h1 {
+                color: var(--warm-paper);
+                font-size: 1.75rem;
+                margin-bottom: var(--space-2);
+                text-shadow: 0 2px 14px rgba(20, 34, 27, 0.45);
+            }
+
+            .hero-intro {
+                color: rgba(248, 246, 243, 0.88);
+                opacity: 1;
+                font-size: 0.9375rem;
+                line-height: 1.6;
+                margin-bottom: var(--space-4);
             }
 
             .hero-cta {
@@ -1383,7 +1390,7 @@
             </div>
             <div class="section-intro">
                 <p>These principles guide how we train, how decisions are made, and how progress is built — physically and mentally.</p>
-                <p>They are not ideals.<br>They are the filters behind every session, adjustment, and conversation.</p>
+                <p>They're not ideals.<br>They guide each session, adjustment, and conversation.</p>
             </div>
             <div class="principles-list">
                 <div class="principle-card">
@@ -1439,7 +1446,7 @@
             </div>
             <div class="process-intro">
                 <p>Training is not a fixed plan. It's an adaptive process guided by feedback.</p>
-                <p>Your body changes.<br>Your life changes.<br>Training adjusts accordingly.</p>
+                <p>Your body changes.<br>So does your life.<br>Training has to adjust with it.</p>
             </div>
             <div class="process-list">
                 <div class="process-card">
@@ -1455,7 +1462,7 @@
                     <div class="process-content">
                         <h3>Build</h3>
                         <p>From that assessment, we build a plan around your needs, not a template.</p>
-                        <p>Strength, movement quality, conditioning, and recovery are balanced based on your current capacity and goals. Load, volume, and frequency are chosen intentionally, taking recovery and stress into account. Nothing is random. Everything has a reason.</p>
+                        <p>Strength, movement quality, conditioning, and recovery are balanced based on your current capacity and goals. Load, volume, and frequency are chosen intentionally, taking recovery and stress into account. There's a reason behind each one.</p>
                     </div>
                 </div>
                 <div class="process-card">
@@ -1490,7 +1497,7 @@
                 <p class="section-label">Fit Check</p>
                 <h2>Is This Right For You?</h2>
             </div>
-            <p class="fit-intro">The following applies primarily to one-on-one coaching, where the work is most adaptive and collaborative.</p>
+            <p class="fit-intro">This mostly describes one-on-one coaching, since that's where the work adjusts the most.</p>
             <div class="fit-grid">
                 <div class="fit-col yes">
                     <h3>This is likely a good fit if you:</h3>
@@ -1518,7 +1525,7 @@
                 <h3>If you're unsure</h3>
                 <p>You don't need to have everything figured out to begin.</p>
                 <p style="margin-top: var(--space-2);">The Intro Call is a focused first session to understand where you are, what you need, and whether ongoing one-on-one coaching is the right fit. Curiosity, honesty, and a willingness to participate matter far more than experience level or current fitness.</p>
-                <p style="margin-top: var(--space-2);"><em>Clarity is built through engagement, not certainty.</em></p>
+                <p style="margin-top: var(--space-2);"><em>You build clarity by showing up, not by having it all figured out first.</em></p>
             </div>
 
             <div class="section-header" style="margin-top: var(--space-6);">
@@ -1649,7 +1656,7 @@
 
     <!-- Final Quote -->
     <section class="final-quote">
-        <blockquote>The goal isn't perfection or intensity.<br>It's progress built with intention.</blockquote>
+        <blockquote>This isn't about perfection or intensity.<br>It's about progress that fits real life.</blockquote>
     </section>
 
     <!-- Footer -->
