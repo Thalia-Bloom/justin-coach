@@ -6,7 +6,7 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 ## Current State
 - **Status**: Live, production
 - **Last worked on**: 2026-07-19
-- **Branch**: main (auto-deploys via GitHub Pages)
+- **Deploy branch**: main (auto-deploys via GitHub Pages)
 - **Live URL**: justinthepractice.com
 - **Repo**: heathrowandrews/justin-coach
 - **Local draft**: backflip bridge, Heathrow testimonial, paid-only $79 Intro Call path, and owned Health & Lifestyle quiz; not deployed
@@ -22,6 +22,7 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - `hyrox-quiz.html` — Interactive Hyrox Readiness Quiz (906 lines, built by Sprout bot)
 - `health-lifestyle-quiz.html` — Owned 12-question Health & Lifestyle quiz experience
 - `health-lifestyle-quiz.js` — Quiz content, source scoring map, and tie-breaking logic
+- `start.html` / `start/` — Paid Intro Call handoff; public Stripe Payment Link is configured in `start-config.js`
 - `submit-testimonial.html` — Testimonial capture form
 - `programs/` — 3 program pages (hyrox-prep, minimal-equipment, strength-structure)
 - `resources/` — 5 resource pages (5-day-reset, morning-recentering, pattern-quiz, etc.)
@@ -38,7 +39,6 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 ## Known Issues & Gotchas
 - **DO NOT push carelessly** — this is a live client site, changes go live immediately
 - Email/lead capture is not production-backed yet: Hyrox quiz stores leads in browser `localStorage`, and several resource/contact/program flows still show demo alerts
-- No .gitignore — repo includes a 6MB MP4 file
 - Justin manages his own site content — coordinate before making changes
 
 ## Error Log
@@ -53,16 +53,16 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 
 ## Next Steps
 - Verify email capture integration in quiz (may need webhook/Zapier)
-- Add .gitignore for large media files
 - Confirm with Justin before any future changes
 - Publish and verify `/start` with payment before deploying the paid-only homepage draft
 - Replace the public Involve.me quiz only when the owned quiz and `/start` are both deployed and verified
+- Launch brief and QA boundary: `docs/2026-07-19-paid-intro-launch-brief.md`
 
 ## Handoffs
 _Kyle (frontend) ↔ Atlas (backend) coordination. Add dated entries as work crosses domains. Thalia reads this for status._
 
 ### Atlas — 2026-05-26
-Packet: `/Users/heathrowandrews/Projects/bloom-bot/docs/goals/2026-05-26-sprout-beta-health-check.md`
+Packet: Bloom Bot health check, dated 2026-05-26.
 Status: Sprout repair shipped; WHOOP and core Google now pass from Sprout. Remaining gaps are NotebookLM browser auth, expanded Gmail inbox scope if needed, empty model-turn watch, and demo-only lead capture.
 
 <!-- Template:

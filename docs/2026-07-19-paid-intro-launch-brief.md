@@ -50,4 +50,27 @@ Client: Justin the Practice
 
 ## Wells verification
 
-The final pass must cover the Crampton Smith six checks and all eleven accessibility checks from the Wells skill. Any failure blocks public deployment or is recorded here as an explicit exception.
+### Crampton Smith checks
+
+- Mental model: pass. The page follows the expected pay, book, prepare, meet sequence.
+- Feedback: pass for the staged state. The disabled payment action explains exactly what is still being connected.
+- Navigability: pass. Homepage and quiz both reach `/start`, and every local link resolves.
+- Consistency: pass. Type, color, spacing, buttons, forest imagery, and motion match the approved site.
+- Intuitive use: pass. One offer, one price, one next action; no simulated calendar or checkout.
+- Responsive use: pass at 390px and desktop widths with no horizontal overflow.
+
+### Accessibility checks
+
+- Contrast, headings, landmarks, grouping, predictable order, link purpose, focus visibility, and non-color status cues: pass in browser review.
+- Input labels: not applicable on `/start`; it contains no form fields.
+- Motion: pass. The decorative video has pause/play control and honors reduced-motion preference.
+- Keyboard dialog behavior: pass. Focus enters the testimonial, stays on its only control, closes with Escape, and returns to the trigger.
+- Skip navigation: pass on `/start`.
+
+### Launch boundary
+
+- Automated tests: all three suites pass, including quiz behavior, the paid path, and every local HTML asset/link.
+- Browser proof: homepage, `/start`, and quiz pass desktop/mobile checks with zero console errors or warnings.
+- Client leak scan: the approved offer prices are the only public-copy findings; an internal absolute path was removed.
+- Public deployment remains blocked until Justin supplies a public Stripe Payment Link that redirects successful payment to his 60-minute booking calendar.
+- Reschedule/no-show language remains omitted until Justin confirms the policy.

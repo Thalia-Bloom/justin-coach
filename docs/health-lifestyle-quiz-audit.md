@@ -51,7 +51,7 @@ The replacement keeps answers in browser memory only. It sends no quiz response 
 
 Mobbin's live search tool was unavailable in this session. The shipped `hyrox-quiz.html` is the stronger project-specific reference: the rebuild reuses its 680-pixel reading column, paper/forest palette, Playfair and Source Sans typography, progress bar, question rhythm, focus treatment, result hierarchy, and reduced-motion behavior.
 
-The replacement removes decorative result images and lets the outcome copy do the work. It keeps answer randomization stable within a run, adds Back and Restart controls, shows the five-point distribution without relying on color, and changes every result CTA to the approved $79 Intro Call at `/start`.
+The replacement removes decorative result images and lets the outcome copy do the work. It keeps answer randomization stable within a run, adds Back and Restart controls, shows the five-point distribution without relying on color, and changes every result CTA to the approved paid Intro Call at `/start` without leading with price.
 
 ## Hidden-risk check
 
@@ -66,12 +66,12 @@ The replacement removes decorative result images and lets the outcome copy do th
 - Automated tests for all five outcomes, tie-breaking, Back, Restart, keyboard flow, and mobile overflow.
 - Desktop and mobile screenshots.
 - Clean browser console.
-- Client leak scan with only the explicitly approved `$79` price exception.
+- Client leak scan with the approved `$79` offer price disclosed on `/start`, not in button labels.
 
 ## Verification completed
 
 - Six automated checks pass for structure, scoring balance, all five outcomes, tie-breaking, answer randomization, and removal of the old hosted/free-call path.
 - Browser smoke test completes all 12 questions and returns the expected Lifestyle Explorer result with 12 points.
 - Back restores the selected answer, Restart clears the run, and Space/Enter keyboard input advances the form.
-- The 390 × 844 mobile view has no horizontal overflow; desktop and mobile screens were visually checked.
-- Production quiz files contain no old hosted-quiz or Calendly dependency. The client leak scan is clean except for the approved `$79` price shown to customers.
+- The original 390 × 844 mobile rebuild had no horizontal overflow; the launch branch receives a fresh browser pass before deployment.
+- Production quiz files contain no old hosted-quiz or Calendly dependency. The launch branch receives a fresh leak scan before deployment.

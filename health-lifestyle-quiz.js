@@ -133,7 +133,7 @@
             ],
         },
         {
-            question: "In a typical week, how many days are you active in any kind of movement?",
+            question: "In a typical week, how many days include intentional activity or exercise?",
             randomize: false,
             answers: [
                 { text: "0–1 days", outcome: "body-shaper" },

@@ -108,8 +108,9 @@ test("production quiz has an owned paid path and no old host or free-call path",
     assert.equal(productionSource.includes("involve.me"), false);
     assert.equal(productionSource.includes("calendly"), false);
     assert.equal(productionSource.includes("free discovery"), false);
-    assert.equal(productionSource.includes("href=\"/start\""), true);
-    assert.equal(productionSource.includes("book a $79 intro call"), true);
+    assert.equal(productionSource.includes("href=\"start/\""), true);
+    assert.equal(productionSource.includes("book a $79 intro call"), false);
+    assert.equal(productionSource.includes("intentional activity or exercise"), true);
 });
 
 process.stdout.write("\n" + passed + " quiz checks passed.\n");
