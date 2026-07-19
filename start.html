@@ -234,28 +234,58 @@
         }
         .included-list {
             margin-top: var(--s5);
-            border-top: 1px solid var(--border);
+            display: grid;
+            gap: 14px;
             list-style: none;
         }
         .included-list li {
+            position: relative;
+            isolation: isolate;
             display: grid;
-            grid-template-columns: 40px 1fr;
-            gap: 16px;
-            padding: 22px 0;
-            border-bottom: 1px solid var(--border);
+            grid-template-columns: 48px 1fr;
+            gap: 18px;
+            padding: 24px 24px 24px 20px;
+            overflow: hidden;
+            border: 1px solid rgba(163, 128, 103, 0.28);
+            border-radius: 18px;
+            background:
+                radial-gradient(circle at 100% 0%, rgba(163, 128, 103, 0.16), transparent 42%),
+                linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(238, 232, 225, 0.7));
+            box-shadow: 0 12px 30px rgba(32, 53, 43, 0.055);
         }
-        .included-list span {
-            color: var(--clay);
+        .included-list li::before {
+            content: "";
+            position: absolute;
+            inset: 18px auto 18px 0;
+            width: 3px;
+            border-radius: 999px;
+            background: var(--clay);
+            opacity: 0.72;
+        }
+        .included-list > li > span {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            border: 1px solid rgba(248, 246, 243, 0.34);
+            border-radius: 50%;
+            background: var(--forest);
+            color: var(--paper);
             font-family: var(--display);
-            font-size: 1.35rem;
+            font-size: 1.1rem;
+            box-shadow: 0 7px 18px rgba(32, 53, 43, 0.14);
         }
         .included-list strong {
             display: block;
-            margin-bottom: 4px;
+            margin: 1px 0 7px;
             color: var(--forest);
-            font-weight: 600;
+            font: 500 1.24rem/1.2 var(--display);
         }
-        .included-list p { color: rgba(42, 45, 50, 0.7); }
+        .included-list p { color: rgba(42, 45, 50, 0.7); line-height: 1.58; }
+        .included-list.motion-ready li { opacity: 0; transform: translateY(14px); }
+        .included-list.motion-ready.is-visible li { animation: step-reveal 520ms ease forwards; }
+        .included-list.motion-ready.is-visible li:nth-child(2) { animation-delay: 90ms; }
+        .included-list.motion-ready.is-visible li:nth-child(3) { animation-delay: 180ms; }
 
         .checkout-panel {
             position: sticky;
@@ -360,6 +390,9 @@
             from { opacity: 0; transform: translateY(18px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes step-reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
         @media (max-width: 850px) {
             .container { width: min(100% - 32px, 1120px); }
             .site-nav { padding: 20px; }
@@ -382,6 +415,14 @@
             .button { width: 100%; }
             .motion-control { top: auto; right: 16px; bottom: 16px; }
             .checkout-panel { padding: 24px; }
+            .included-list li {
+                grid-template-columns: 42px 1fr;
+                gap: 14px;
+                padding: 20px 18px 20px 16px;
+                border-radius: 16px;
+            }
+            .included-list > li > span { width: 38px; height: 38px; font-size: 1rem; }
+            .included-list strong { font-size: 1.14rem; }
             .path-grid { grid-template-columns: 1fr; }
             .path-step,
             .path-step:nth-child(2) { border-right: 0; }
@@ -523,6 +564,7 @@
         const motionControl = document.getElementById("motion-control");
         const motionControlIcon = document.getElementById("motion-control-icon");
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        const includedList = document.querySelector(".included-list");
 
         function pauseMotion() {
             heroVisual.pause();
@@ -547,6 +589,16 @@
             if (isMarkedPaused) playMotion();
             else pauseMotion();
         });
+
+        if (includedList && !reducedMotion.matches && "IntersectionObserver" in window) {
+            includedList.classList.add("motion-ready");
+            const stepObserver = new IntersectionObserver(entries => {
+                if (!entries[0].isIntersecting) return;
+                includedList.classList.add("is-visible");
+                stepObserver.disconnect();
+            }, { threshold: 0.22 });
+            stepObserver.observe(includedList);
+        }
     </script>
 </body>
 </html>
