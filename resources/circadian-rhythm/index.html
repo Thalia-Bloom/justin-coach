@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circadian Rhythm Check-in | Justin the Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --warm-paper: #F8F6F3;
+            --deep-forest: #20352B;
+            --clay: #A38067;
+            --ink: #2A2D32;
+            --stone-border: #D4CFC8;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+        }
+        body {
+            font-family: var(--font-body);
+            background: var(--warm-paper);
+            color: var(--ink);
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border: 1px solid var(--stone-border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            color: var(--deep-forest);
+            font-weight: 400;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { font-style: italic; opacity: 0.7; margin-bottom: 40px; }
+        .section { margin-bottom: 40px; }
+        .checklist { list-style: none; padding: 0; }
+        .checklist li { margin-bottom: 12px; display: flex; align-items: flex-start; }
+        .checklist li:before { content: '☐'; margin-right: 12px; color: var(--clay); font-weight: bold; }
+        .callout {
+            background: var(--warm-paper);
+            padding: 30px;
+            border-left: 4px solid var(--clay);
+            margin: 40px 0;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--clay);
+            color: white;
+            text-decoration: none;
+            border-radius: 2px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: #8B6B53; }
+        @media print {
+            body { padding: 0; background: white; }
+            .container { box-shadow: none; border: none; width: 100%; max-width: none; }
+            .btn { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Circadian Rhythm Check-in</h1>
+            <p class="subtitle">Align your day. Master your energy.</p>
+        </header>
+
+        <div class="section">
+            <h2>The Audit</h2>
+            <p>Check the habits you’ve locked in this week:</p>
+            <ul class="checklist">
+                <li><strong>Morning Light:</strong> 10+ mins of sunlight within 30 mins of waking.</li>
+                <li><strong>Consistency:</strong> Waking and sleeping within a 30-min window daily.</li>
+                <li><strong>Caffeine:</strong> Cutoff 10 hours before bed.</li>
+                <li><strong>Digital Sunset:</strong> Screens off 60 mins before bed.</li>
+                <li><strong>Cool Sleep:</strong> Room temp between 65–68°F.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Energy Landscape</h2>
+            <p><em>Where are you at your best?</em></p>
+            <p><strong>Peak:</strong> When is your focus highest? (Schedule your hardest work here).</p>
+            <p><strong>Dip:</strong> When does your energy drop? (Schedule movement or rest here).</p>
+            <p><strong>Reset:</strong> How are you using your evening to signal recovery?</p>
+        </div>
+
+        <div class="section">
+            <h2>The 3 Non-Negotiables</h2>
+            <p><strong>1. Morning Light:</strong> Get outside ASAP. It stops melatonin and starts cortisol. This is your biological reset button.</p>
+            <p><strong>2. Morning Movement:</strong> A 5-min walk or stretch. Lubricates joints and primes your system for the day.</p>
+            <p><strong>3. Evening Routine:</strong> Read, journal, or stretch. Shifts your body from "fight or flight" to "rest and digest."</p>
+        </div>
+
+        <div class="section">
+            <h2>5-Minute Calming Breathwork</h2>
+            <p><strong>Settle (1 min):</strong> Sit comfortably. Release tension in your shoulders and jaw.</p>
+            <p><strong>Belly Breath (2 mins):</strong> Inhale through the nose, feeling your belly rise. Exhale slowly.</p>
+            <p><strong>Extend (2 mins):</strong> Inhale for 4. Hold for 1. Exhale for 6. The long exhale signals safety to your brain.</p>
+        </div>
+
+        <div class="callout">
+            <h3>Ready for more?</h3>
+            <p>Building a high-performance life isn't about complexity—it's about consistency. If you're ready to tailor these foundations to your specific goals, let's talk.</p>
+            <a href="https://calendly.com/justin-the-practice/clarity-call" class="btn">Book a Free Clarity Call</a>
+        </div>
+        
+        <p style="text-align: center; opacity: 0.5; font-size: 0.8rem;">justinthepractice.com</p>
+    </div>
+</body>
+</html>
