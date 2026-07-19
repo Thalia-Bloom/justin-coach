@@ -19,6 +19,9 @@ assert.ok(start.includes("60-minute Intro Call"), "start page should state the 6
 assert.ok(start.includes("<strong>$79</strong>"), "start page should disclose the price before payment");
 assert.ok(start.includes("Pay, then book"), "start page should state the order of operations");
 assert.ok(start.includes("personalized written recap"), "start page should explain the post-call deliverable");
+assert.ok(start.includes('src="media/intro-call-river-mobile.mp4"'), "start page should use the mobile PNW river hero video");
+assert.equal(cleanStart.includes("heathrow"), false, "Heathrow's story should remain on the testimonials page, not /start");
+assert.equal(cleanStart.includes("backflip.mp4"), false, "the Intro Call page should not reuse the performance-focused backflip hero");
 assert.equal(cleanStart.includes("discovery session"), false, "old Discovery Session language must be removed");
 assert.equal(cleanStart.includes("baggage unpacking"), false, "old Baggage Unpacking language must be removed");
 assert.equal(cleanStart.includes("45-minute"), false, "old 45-minute duration must be removed");

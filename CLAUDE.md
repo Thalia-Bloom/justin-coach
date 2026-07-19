@@ -9,7 +9,7 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - **Deploy branch**: main (auto-deploys via GitHub Pages)
 - **Live URL**: justinthepractice.com
 - **Repo**: heathrowandrews/justin-coach
-- **Local draft**: backflip bridge, Heathrow testimonial, paid-only $79 Intro Call path, and owned Health & Lifestyle quiz; not deployed
+- **Local draft**: backflip homepage bridge, homepage-only Heathrow testimonial, mobile-first PNW river `/start` hero, paid-only $79 Intro Call path, and owned Health & Lifestyle quiz; not deployed
 
 ## Stack & Architecture
 - Pure static HTML/CSS/JavaScript — no build tools, no frameworks
@@ -34,6 +34,7 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - Programs priced at ~$67 range
 - Homepage conversion is one paid path: the $79 Intro Call
 - Quizzes remain available as background coaching tools but are not public homepage pathways
+- The `/start` page uses the PNW river loop; personal testimonial stories stay on the homepage testimonial section
 - Health & Lifestyle answers stay in browser memory only; no PII, analytics, or third-party quiz runtime
 
 ## Known Issues & Gotchas
