@@ -61,6 +61,11 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 ## Handoffs
 _Kyle (frontend) ↔ Atlas (backend) coordination. Add dated entries as work crosses domains. Thalia reads this for status._
 
+### Atlas -> Apollo - 2026-07-19
+Packet: `docs/handoffs/2026-07-19-atlas-to-apollo-justin-copy-hero.md`
+Closure: `~/.bloom/closure-ledger.jsonl` entry `7719c83585c8`
+Status: Apollo owns the bounded human-copy and mobile hero-spacing pass; no deploy or payment changes.
+
 ### Atlas — 2026-05-26
 Packet: Bloom Bot health check, dated 2026-05-26.
 Status: Sprout repair shipped; WHOOP and core Google now pass from Sprout. Remaining gaps are NotebookLM browser auth, expanded Gmail inbox scope if needed, empty model-turn watch, and demo-only lead capture.
