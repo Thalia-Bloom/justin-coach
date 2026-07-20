@@ -9,6 +9,8 @@ const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const quiz = fs.readFileSync(path.join(root, "health-lifestyle-quiz.html"), "utf8");
 const start = fs.readFileSync(path.join(root, "start.html"), "utf8");
 const config = fs.readFileSync(path.join(root, "start-config.js"), "utf8");
+const resources = fs.readFileSync(path.join(root, "resources", "index.html"), "utf8");
+const circadian = fs.readFileSync(path.join(root, "resources", "circadian-rhythm", "index.html"), "utf8");
 const cleanStart = start.toLowerCase();
 
 assert.ok(home.includes('href="start/"'), "homepage should route into the owned start path");
@@ -29,6 +31,12 @@ assert.equal(cleanStart.includes("free clarity"), false, "free-call language mus
 assert.ok(start.includes('href="resources/circadian-rhythm/circadian-rhythm-checkin.pdf"'), "start page should offer the working Circadian Rhythm PDF as a self-guided option");
 assert.ok(start.includes('href="hyrox-quiz.html"'), "start page should offer the owned Hyrox readiness tool");
 assert.ok(start.includes('href="health-lifestyle-quiz.html"'), "start page should offer the owned lifestyle tool");
+assert.ok(start.includes('href="resources/index.html"'), "start page should link to Justin's full resources page");
+assert.equal(start.includes("Review the Intro Call"), false, "the bottom of the page should not repeat the Intro Call CTA");
+assert.equal(resources.includes("calendly.com"), false, "the resources page should not restore the old free booking path");
+assert.ok(resources.includes('href="../start.html#intro-call"'), "the resources page should return personalized visitors to the paid Intro Call");
+assert.equal(circadian.toLowerCase().includes("free clarity"), false, "the Circadian resource should not offer a free call");
+assert.ok(circadian.includes('href="../../start.html#intro-call"'), "the Circadian resource should return personalized visitors to the paid Intro Call");
 assert.equal(config.includes('paymentUrl: ""'), true, "production payment link must remain visibly unconfigured until Justin supplies it");
 assert.ok(start.includes('candidate.hostname === "buy.stripe.com"'), "checkout should accept only Stripe-hosted Payment Links");
 assert.ok(fs.existsSync(path.join(root, "start", "index.html")), "the QR-compatible /start route should exist");
