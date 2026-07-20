@@ -26,6 +26,9 @@ assert.equal(cleanStart.includes("discovery session"), false, "old Discovery Ses
 assert.equal(cleanStart.includes("baggage unpacking"), false, "old Baggage Unpacking language must be removed");
 assert.equal(cleanStart.includes("45-minute"), false, "old 45-minute duration must be removed");
 assert.equal(cleanStart.includes("free clarity"), false, "free-call language must be removed");
+assert.ok(start.includes('href="resources/circadian-rhythm/circadian-rhythm-checkin.pdf"'), "start page should offer the working Circadian Rhythm PDF as a self-guided option");
+assert.ok(start.includes('href="hyrox-quiz.html"'), "start page should offer the owned Hyrox readiness tool");
+assert.ok(start.includes('href="health-lifestyle-quiz.html"'), "start page should offer the owned lifestyle tool");
 assert.equal(config.includes('paymentUrl: ""'), true, "production payment link must remain visibly unconfigured until Justin supplies it");
 assert.ok(start.includes('candidate.hostname === "buy.stripe.com"'), "checkout should accept only Stripe-hosted Payment Links");
 assert.ok(fs.existsSync(path.join(root, "start", "index.html")), "the QR-compatible /start route should exist");
