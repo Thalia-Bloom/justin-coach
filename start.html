@@ -233,47 +233,48 @@
             font-size: 1.08rem;
         }
         .included-list {
+            position: relative;
             margin-top: var(--s5);
             display: grid;
-            gap: 14px;
+            gap: var(--s4);
             list-style: none;
+        }
+        .included-list::before {
+            content: "";
+            position: absolute;
+            left: 13px;
+            top: 4px;
+            bottom: 4px;
+            width: 22px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDI0IDY0Ij48cGF0aCBkPSJNMTIgMCBDMTggOCA2IDggMTIgMTYgQzE4IDI0IDYgMjQgMTIgMzIgQzE4IDQwIDYgNDAgMTIgNDggQzE4IDU2IDYgNTYgMTIgNjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0EzODA2NyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNTUiLz48L3N2Zz4=");
+            background-repeat: repeat-y;
+            background-size: 22px 64px;
+            background-position: top center;
         }
         .included-list li {
             position: relative;
             isolation: isolate;
+            z-index: 1;
             display: grid;
             grid-template-columns: 48px 1fr;
             gap: 18px;
-            padding: 24px 24px 24px 20px;
-            overflow: hidden;
-            border: 1px solid rgba(163, 128, 103, 0.28);
-            border-radius: 18px;
-            background:
-                radial-gradient(circle at 100% 0%, rgba(163, 128, 103, 0.16), transparent 42%),
-                linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(238, 232, 225, 0.7));
-            box-shadow: 0 12px 30px rgba(32, 53, 43, 0.055);
+            padding-bottom: var(--s4);
         }
-        .included-list li::before {
-            content: "";
-            position: absolute;
-            inset: 18px auto 18px 0;
-            width: 3px;
-            border-radius: 999px;
-            background: var(--clay);
-            opacity: 0.72;
+        .included-list li:not(:last-child) {
+            border-bottom: 1px solid rgba(163, 128, 103, 0.18);
         }
         .included-list > li > span {
             display: grid;
             width: 42px;
             height: 42px;
             place-items: center;
-            border: 1px solid rgba(248, 246, 243, 0.34);
             border-radius: 50%;
             background: var(--forest);
             color: var(--paper);
             font-family: var(--display);
+            font-style: italic;
             font-size: 1.1rem;
-            box-shadow: 0 7px 18px rgba(32, 53, 43, 0.14);
+            box-shadow: 0 0 0 5px var(--paper), 0 8px 20px rgba(32, 53, 43, 0.16);
         }
         .included-list strong {
             display: block;
@@ -282,10 +283,15 @@
             font: 500 1.24rem/1.2 var(--display);
         }
         .included-list p { color: rgba(42, 45, 50, 0.7); line-height: 1.58; }
-        .included-list.motion-ready li { opacity: 0; transform: translateY(14px); }
-        .included-list.motion-ready.is-visible li { animation: step-reveal 520ms ease forwards; }
-        .included-list.motion-ready.is-visible li:nth-child(2) { animation-delay: 90ms; }
-        .included-list.motion-ready.is-visible li:nth-child(3) { animation-delay: 180ms; }
+        .included-list.motion-ready li,
+        .path-grid.motion-ready .path-step { opacity: 0; transform: translateY(14px); }
+        .included-list.motion-ready.is-visible li,
+        .path-grid.motion-ready.is-visible .path-step { animation: step-reveal 520ms ease forwards; }
+        .included-list.motion-ready.is-visible li:nth-child(2),
+        .path-grid.motion-ready.is-visible .path-step:nth-child(2) { animation-delay: 90ms; }
+        .included-list.motion-ready.is-visible li:nth-child(3),
+        .path-grid.motion-ready.is-visible .path-step:nth-child(3) { animation-delay: 180ms; }
+        .path-grid.motion-ready.is-visible .path-step:nth-child(4) { animation-delay: 270ms; }
 
         .checkout-panel {
             position: sticky;
@@ -337,26 +343,51 @@
             font-size: clamp(2.2rem, 5vw, 4rem);
         }
         .path-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
+            position: relative;
             margin-top: var(--s6);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            display: grid;
+            gap: var(--s5);
+            list-style: none;
+        }
+        .path-grid::before {
+            content: "";
+            position: absolute;
+            left: 14px;
+            top: 6px;
+            bottom: 6px;
+            width: 28px;
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDMyIDgwIj48cGF0aCBkPSJNMTYgMCBDMjQgMTAgOCAxMCAxNiAyMCBDMjQgMzAgOCAzMCAxNiA0MCBDMjQgNTAgOCA1MCAxNiA2MCBDMjQgNzAgOCA3MCAxNiA4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjAzNTJCIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjIiLz48L3N2Zz4=");
+            background-repeat: repeat-y;
+            background-size: 28px 80px;
+            background-position: top center;
         }
         .path-step {
-            min-height: 230px;
-            padding: 28px 24px;
-            border-right: 1px solid var(--border);
+            position: relative;
+            isolation: isolate;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 20px;
+            padding-bottom: var(--s5);
         }
-        .path-step:last-child { border-right: 0; }
+        .path-step:not(:last-child) {
+            border-bottom: 1px solid rgba(42, 45, 50, 0.1);
+        }
         .path-number {
-            display: block;
-            margin-bottom: 38px;
+            display: grid;
+            width: 52px;
+            height: 52px;
+            place-items: center;
+            border: 1px solid rgba(163, 128, 103, 0.4);
+            border-radius: 50%;
+            background: var(--cream);
             color: var(--clay);
-            font: 400 1.8rem/1 var(--display);
+            font: 400 1.5rem/1 var(--display);
+            font-style: italic;
+            box-shadow: 0 0 0 6px var(--surface), 0 10px 22px rgba(32, 53, 43, 0.1);
         }
-        .path-step h3 { margin-bottom: 10px; font-size: 1.18rem; }
-        .path-step p { color: rgba(42, 45, 50, 0.7); font-size: 0.94rem; }
+        .path-step h3 { margin-top: 4px; margin-bottom: 10px; font-size: 1.18rem; }
+        .path-step p { max-width: 460px; color: rgba(42, 45, 50, 0.7); font-size: 0.94rem; }
 
         .final-cta {
             background: var(--forest);
@@ -400,9 +431,6 @@
             .hero-content { padding: 130px 0 84px; }
             .offer-grid { grid-template-columns: 1fr; }
             .checkout-panel { position: static; }
-            .path-grid { grid-template-columns: 1fr 1fr; }
-            .path-step:nth-child(2) { border-right: 0; }
-            .path-step:nth-child(-n+2) { border-bottom: 1px solid var(--border); }
         }
         @media (max-width: 560px) {
             body { font-size: 16px; }
@@ -415,18 +443,21 @@
             .button { width: 100%; }
             .motion-control { top: auto; right: 16px; bottom: 16px; }
             .checkout-panel { padding: 24px; }
+            .included-list::before { left: 11px; width: 20px; background-size: 20px 64px; }
             .included-list li {
                 grid-template-columns: 42px 1fr;
                 gap: 14px;
-                padding: 20px 18px 20px 16px;
-                border-radius: 16px;
+                padding-bottom: var(--s3);
             }
             .included-list > li > span { width: 38px; height: 38px; font-size: 1rem; }
             .included-list strong { font-size: 1.14rem; }
-            .path-grid { grid-template-columns: 1fr; }
-            .path-step,
-            .path-step:nth-child(2) { border-right: 0; }
-            .path-step:nth-child(-n+3) { border-bottom: 1px solid var(--border); }
+            .path-grid::before { left: 12px; width: 22px; background-size: 22px 80px; }
+            .path-step {
+                grid-template-columns: 44px 1fr;
+                gap: 14px;
+                padding-bottom: var(--s4);
+            }
+            .path-number { width: 42px; height: 42px; font-size: 1.24rem; box-shadow: 0 0 0 5px var(--surface), 0 8px 18px rgba(32, 53, 43, 0.1); }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -508,12 +539,12 @@
                     <span class="section-label">What happens next</span>
                     <h2 id="path-title">A simple path from payment to clarity.</h2>
                 </div>
-                <div class="path-grid">
-                    <article class="path-step"><span class="path-number">1</span><h3>Pay securely</h3><p>Reserve the Intro Call through Justin's Stripe checkout.</p></article>
-                    <article class="path-step"><span class="path-number">2</span><h3>Choose your time</h3><p>Payment takes you directly to Justin's 60-minute calendar.</p></article>
-                    <article class="path-step"><span class="path-number">3</span><h3>Share the context</h3><p>Answer a few short questions so the conversation can start where you actually are.</p></article>
-                    <article class="path-step"><span class="path-number">4</span><h3>Meet and move</h3><p>Have the conversation, then receive your personalized written next step.</p></article>
-                </div>
+                <ol class="path-grid">
+                    <li class="path-step"><span class="path-number" aria-hidden="true">1</span><div><h3>Pay securely</h3><p>Reserve the Intro Call through Justin's Stripe checkout.</p></div></li>
+                    <li class="path-step"><span class="path-number" aria-hidden="true">2</span><div><h3>Choose your time</h3><p>Payment takes you directly to Justin's 60-minute calendar.</p></div></li>
+                    <li class="path-step"><span class="path-number" aria-hidden="true">3</span><div><h3>Share the context</h3><p>Answer a few short questions so the conversation can start where you actually are.</p></div></li>
+                    <li class="path-step"><span class="path-number" aria-hidden="true">4</span><div><h3>Meet and move</h3><p>Have the conversation, then receive your personalized written next step.</p></div></li>
+                </ol>
             </div>
         </section>
 
@@ -564,7 +595,7 @@
         const motionControl = document.getElementById("motion-control");
         const motionControlIcon = document.getElementById("motion-control-icon");
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-        const includedList = document.querySelector(".included-list");
+        const revealLists = document.querySelectorAll(".included-list, .path-grid");
 
         function pauseMotion() {
             heroVisual.pause();
@@ -590,14 +621,16 @@
             else pauseMotion();
         });
 
-        if (includedList && !reducedMotion.matches && "IntersectionObserver" in window) {
-            includedList.classList.add("motion-ready");
-            const stepObserver = new IntersectionObserver(entries => {
-                if (!entries[0].isIntersecting) return;
-                includedList.classList.add("is-visible");
-                stepObserver.disconnect();
-            }, { threshold: 0.22 });
-            stepObserver.observe(includedList);
+        if (revealLists.length && !reducedMotion.matches && "IntersectionObserver" in window) {
+            revealLists.forEach(list => {
+                list.classList.add("motion-ready");
+                const stepObserver = new IntersectionObserver(entries => {
+                    if (!entries[0].isIntersecting) return;
+                    list.classList.add("is-visible");
+                    stepObserver.disconnect();
+                }, { threshold: 0.22 });
+                stepObserver.observe(list);
+            });
         }
     </script>
 </body>
