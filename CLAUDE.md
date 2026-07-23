@@ -55,7 +55,17 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - Domain properly configured and serving
 
 ## Next Steps
-1. **Deploy on Heathrow's "push it": merge `codex/justin-jul19-launch` → `main`, push (GitHub Pages auto-deploys), verify justinthepractice.com live.** Justin approved going live 2026-07-23; Heathrow drove the flow and approved it, but the explicit deploy go was not given before session end — ask, don't assume.
+1. **Deploy on Heathrow's "push it" — PRUNED export, not a plain merge.** `main` is intentionally a pruned tree: no CLAUDE.md, README, .gitignore, docs/, or tests/ (a plain merge would put them live at justinthepractice.com/CLAUDE.md via Jekyll's md→html conversion). Every file on main also exists on the branch, so a checkout overlay is safe:
+   ```
+   git switch main
+   git checkout codex/justin-jul19-launch -- .
+   git rm -rq --cached CLAUDE.md README.md .gitignore docs tests
+   git commit -m "Launch: 2026-07-23 redesign + icon pack + two-step booking intake"
+   git push origin main
+   git switch codex/justin-jul19-launch && git checkout -- .
+   ```
+   (The `rm --cached` untracks without deleting, so the local working files survive.) Then verify live: /icons.svg loads, /intro renders icons, checkout two-step flow reaches Calendly, and /CLAUDE.md + /CLAUDE.html still 404.
+   Pre-flight done 2026-07-23: leak-scan clean on site HTML (only approved prices flagged); Calendly Clarity Call event confirmed to carry one free-text invitee question (id 207115606), which is where the a1 answers land.
 2. Swap `start-config.js bookingUrl` to Justin's 60-minute "Intro Call" Calendly event when he creates one (currently his 30-min Clarity Call — Heathrow chose ship-now-fix-later). Stripe email draft to Justin still pending send.
 3. When Justin's Stripe Payment Link arrives: paste into `paymentUrl` — it supersedes the booking flow automatically, restores "Pay, then book", and checkout.html retires itself.
 - Verify email capture integration in quiz (may need webhook/Zapier)
