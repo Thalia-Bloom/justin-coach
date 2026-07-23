@@ -220,7 +220,7 @@
         /* Hero - full-bleed forest */
         .hero {
             position: relative;
-            min-height: 88svh;
+            min-height: 78svh;
             display: flex;
             align-items: flex-end;
             padding: 0;
@@ -249,8 +249,8 @@
                 to bottom,
                 rgba(20, 34, 27, 0.42) 0%,
                 rgba(20, 34, 27, 0.18) 42%,
-                rgba(20, 34, 27, 0.55) 74%,
-                rgba(20, 34, 27, 0.82) 100%
+                rgba(20, 34, 27, 0.6) 76%,
+                var(--deep-forest) 100%
             );
         }
 
@@ -369,12 +369,12 @@
         /* Backflip bridge */
         .video-section {
             position: relative;
-            height: 50vh;
-            min-height: 300px;
-            max-height: 500px;
+            height: 56vh;
+            min-height: 320px;
+            max-height: 560px;
             padding: 0;
             overflow: hidden;
-            background: var(--slate);
+            background: var(--deep-forest);
         }
 
         .video-bg {
@@ -394,10 +394,10 @@
             pointer-events: none;
             background: linear-gradient(
                 to bottom,
-                var(--warm-paper) 0%,
-                rgba(248, 246, 243, 0) 15%,
-                rgba(32, 53, 43, 0.1) 50%,
-                rgba(248, 246, 243, 0) 85%,
+                var(--deep-forest) 0%,
+                rgba(20, 34, 27, 0.35) 22%,
+                rgba(20, 34, 27, 0.08) 45%,
+                rgba(248, 246, 243, 0) 75%,
                 var(--sand-surface) 100%
             );
         }
@@ -505,12 +505,13 @@
         .principle-icon {
             display: grid;
             place-items: center;
-            width: 52px;
-            height: 52px;
+            width: 56px;
+            height: 56px;
             margin-bottom: var(--space-3);
             border-radius: 50%;
-            background: var(--sand-surface);
+            background: linear-gradient(150deg, #FFFDF8 0%, var(--sand-surface) 100%);
             border: 1px solid var(--stone-border);
+            box-shadow: 0 4px 10px rgba(32, 53, 43, 0.07);
             color: var(--deep-forest);
         }
 
@@ -603,11 +604,17 @@
         .process-thread::before {
             content: "";
             position: absolute;
-            left: 26px;
+            left: 25px;
             top: 8px;
             bottom: 8px;
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, var(--sand-tan) 8%, var(--sand-tan) 92%, transparent);
+            width: 2px;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(163, 128, 103, 0.55) 0 5px,
+                transparent 5px 12px
+            );
+            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
         }
 
         .process-step {
@@ -676,7 +683,7 @@
 
         @media (max-width: 600px) {
             .process-thread::before {
-                left: 21px;
+                left: 20px;
             }
 
             .process-step {
@@ -1415,7 +1422,7 @@
             <div class="principles-grid">
                 <div class="principle-card">
                     <span class="principle-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2.5-6 4.5 12 2.5-6h3"/><circle cx="20.5" cy="12" r="1.7" fill="#A38067" stroke="none"/></svg>
                     </span>
                     <h3>The Body Is the Truth-Teller</h3>
                     <p class="principle-lead">Training begins with attention to real signals.</p>
@@ -1423,7 +1430,7 @@
                 </div>
                 <div class="principle-card">
                     <span class="principle-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19.5 9.5 8l4 7 2.5-4 5 8.5"/><path d="M2.5 19.5h19"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19.5 9.5 9l4 7 2.5-4 5 7.5"/><path d="M2.5 19.5h19"/><circle cx="18.5" cy="5.5" r="1.7" fill="#A38067" stroke="none"/></svg>
                     </span>
                     <h3>Reality Over Fantasy</h3>
                     <p class="principle-lead">Progress starts with honesty.</p>
@@ -1431,7 +1438,7 @@
                 </div>
                 <div class="principle-card">
                     <span class="principle-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 7.5h14M5 12h10M5 16.5h6"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M7.5 7.5H19M7.5 12h8M7.5 16.5h4.5"/><circle cx="4.5" cy="7.5" r="1.7" fill="#A38067" stroke="none"/></svg>
                     </span>
                     <h3>Simplicity Supports Consistency</h3>
                     <p class="principle-lead">Clear structure and repeatable actions compound over time.</p>
@@ -1439,7 +1446,7 @@
                 </div>
                 <div class="principle-card">
                     <span class="principle-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6.5v5c0 4.2-2.8 7.2-7 8.9-4.2-1.7-7-4.7-7-8.9v-5l7-3z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6.5v5c0 4.2-2.8 7.2-7 8.9-4.2-1.7-7-4.7-7-8.9v-5l7-3z"/><path d="M9.3 11.8l1.9 1.9 3.5-3.9" stroke="#A38067"/></svg>
                     </span>
                     <h3>Integrity Over Intensity</h3>
                     <p class="principle-lead">How you train matters more than how hard you train.</p>
@@ -1447,7 +1454,7 @@
                 </div>
                 <div class="principle-card">
                     <span class="principle-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9.5v5M20.5 9.5v5"/><path d="M6.5 12h11" stroke="#A38067"/></svg>
                     </span>
                     <div>
                         <h3>Strength Builds Capability</h3>
