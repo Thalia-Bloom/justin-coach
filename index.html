@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Justin the Practice | Coaching</title>
     <meta name="description" content="Coaching that blends movement quality, resilience, and awareness — so your body and mind support your life instead of limiting it.">
+    <meta property="og:title" content="Justin the Practice | Coaching">
+    <meta property="og:description" content="Strength is only part of the practice. Coaching built around what your system is actually telling you.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://justinthepractice.com/">
+    <link rel="icon" href="qr.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -69,6 +74,12 @@
             font-weight: 400;
             color: var(--deep-forest);
             line-height: 1.25;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--clay);
+            outline-offset: 3px;
         }
 
         /* Buttons */
@@ -157,20 +168,40 @@
         .nav-logo {
             font-family: var(--font-display);
             font-size: 1.375rem;
-            color: var(--deep-forest);
+            color: var(--warm-paper);
             text-decoration: none;
             letter-spacing: 0.01em;
+            transition: color 0.3s ease;
         }
+
+        nav.scrolled .nav-logo { color: var(--deep-forest); }
 
         .nav-link {
             font-size: 0.875rem;
-            color: var(--ink);
+            color: var(--warm-paper);
             text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.2s;
+            padding: 8px 18px;
+            border: 1px solid rgba(248, 246, 243, 0.5);
+            border-radius: var(--radius-sm);
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.3s ease;
         }
 
-        .nav-link:hover { opacity: 1; }
+        .nav-link:hover {
+            background: var(--warm-paper);
+            border-color: var(--warm-paper);
+            color: var(--deep-forest);
+        }
+
+        nav.scrolled .nav-link {
+            color: var(--deep-forest);
+            border-color: var(--deep-forest);
+        }
+
+        nav.scrolled .nav-link:hover {
+            background: var(--deep-forest);
+            border-color: var(--deep-forest);
+            color: var(--warm-paper);
+        }
 
         @media (max-width: 600px) {
             nav {
@@ -186,14 +217,15 @@
             }
         }
 
-        /* Hero - Image with overlay */
+        /* Hero - full-bleed forest */
         .hero {
             position: relative;
-            min-height: 55vh;
+            min-height: 78svh;
             display: flex;
             align-items: flex-end;
             padding: 0;
             overflow: hidden;
+            background: var(--deep-forest);
         }
 
         .hero-bg {
@@ -207,7 +239,6 @@
             height: 100%;
             object-fit: cover;
             object-position: center top;
-            filter: grayscale(10%) sepia(5%);
         }
 
         .hero-bg::after {
@@ -216,10 +247,10 @@
             inset: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(32, 53, 43, 0.15) 0%,
-                rgba(32, 53, 43, 0.2) 30%,
-                rgba(248, 246, 243, 0.92) 70%,
-                var(--warm-paper) 100%
+                rgba(20, 34, 27, 0.42) 0%,
+                rgba(20, 34, 27, 0.18) 42%,
+                rgba(20, 34, 27, 0.6) 76%,
+                var(--deep-forest) 100%
             );
         }
 
@@ -227,31 +258,28 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            padding: var(--space-10) var(--space-4) var(--space-8);
+            padding: var(--space-12) var(--space-4) var(--space-10);
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .hero-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--slate);
-            margin-bottom: var(--space-2);
+        .hero h1 {
+            font-size: clamp(2.5rem, 6.5vw, 4.75rem);
+            margin-bottom: var(--space-3);
+            max-width: 860px;
+            letter-spacing: -0.02em;
+            color: var(--warm-paper);
+            line-height: 1.12;
         }
 
-        .hero h1 {
-            font-size: clamp(2rem, 4.5vw, 2.75rem);
-            margin-bottom: var(--space-3);
-            max-width: 700px;
-            letter-spacing: -0.01em;
+        .hero h1 em {
+            font-style: italic;
+            font-weight: 400;
         }
 
         .hero-intro {
-            font-size: 1.0625rem;
-            color: var(--ink);
-            opacity: 0.8;
+            font-size: clamp(1rem, 1.6vw, 1.125rem);
+            color: rgba(248, 246, 243, 0.86);
             line-height: 1.7;
             max-width: 580px;
             margin-bottom: var(--space-5);
@@ -261,30 +289,61 @@
             display: flex;
             gap: var(--space-2);
             flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .hero-cta .btn-primary {
+            min-width: 220px;
+            justify-content: center;
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: calc(var(--space-2) - 1px) calc(var(--space-4) - 1px);
+            background: transparent;
+            color: var(--warm-paper);
+            border: 1px solid rgba(248, 246, 243, 0.55);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .btn-ghost:hover {
+            background: var(--warm-paper);
+            border-color: var(--warm-paper);
+            color: var(--deep-forest);
         }
 
         @media (max-width: 600px) {
             .hero {
-                min-height: 65vh;
+                min-height: 62svh;
+                align-items: center;
             }
 
             .hero-bg::after {
                 background: linear-gradient(
                     to bottom,
-                    rgba(32, 53, 43, 0.15) 0%,
-                    rgba(32, 53, 43, 0.3) 30%,
-                    rgba(248, 246, 243, 0.9) 65%,
-                    var(--warm-paper) 100%
+                    rgba(20, 34, 27, 0.55) 0%,
+                    rgba(20, 34, 27, 0.45) 45%,
+                    rgba(20, 34, 27, 0.62) 78%,
+                    var(--deep-forest) 100%
                 );
             }
 
             .hero-content {
-                padding: var(--space-8) var(--space-3) var(--space-6);
+                padding: calc(var(--space-8) + 20px) var(--space-3) var(--space-5);
             }
 
             .hero h1 {
-                font-size: 1.75rem;
+                font-size: 2.125rem;
                 margin-bottom: var(--space-2);
+                text-shadow: 0 2px 14px rgba(20, 34, 27, 0.45);
             }
 
             .hero-intro {
@@ -293,14 +352,58 @@
                 margin-bottom: var(--space-4);
             }
 
-            .hero-label {
-                font-size: 0.6875rem;
-                margin-bottom: var(--space-1);
-            }
-
             .hero-cta {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
+                margin-top: 12px;
+            }
+
+            .hero-cta .btn-ghost {
+                justify-content: center;
+            }
+        }
+
+        /* Backflip bridge */
+        .video-section {
+            position: relative;
+            height: 56vh;
+            min-height: 320px;
+            max-height: 560px;
+            padding: 0;
+            overflow: hidden;
+            background: var(--deep-forest);
+        }
+
+        .video-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 30% 54%;
+            transform: scale(1.06);
+            transform-origin: 30% 54%;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: linear-gradient(
+                to bottom,
+                var(--deep-forest) 0%,
+                rgba(20, 34, 27, 0.35) 22%,
+                rgba(20, 34, 27, 0.08) 45%,
+                rgba(248, 246, 243, 0) 75%,
+                var(--sand-surface) 100%
+            );
+        }
+
+        @media (max-width: 600px) {
+            .video-section {
+                height: 48vh;
+                min-height: 260px;
+                max-height: 440px;
             }
         }
 
@@ -330,6 +433,9 @@
         }
 
         .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 0.6875rem;
             font-weight: 600;
             text-transform: uppercase;
@@ -338,8 +444,15 @@
             margin-bottom: var(--space-1);
         }
 
+        .section-label::before {
+            content: "";
+            width: 28px;
+            height: 1px;
+            background: var(--clay);
+        }
+
         .section-header h2 {
-            font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+            font-size: clamp(2rem, 4.5vw, 3.25rem);
         }
 
         .section-intro {
@@ -358,72 +471,107 @@
             margin-bottom: 0;
         }
 
-        /* Principles - Vertical Cards */
-        .principles-list {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-4);
+        /* Principles - icon cards */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
         }
 
         .principle-card {
-            display: grid;
-            grid-template-columns: auto 1fr;
-            gap: var(--space-3);
             padding: var(--space-4);
             background: var(--warm-paper);
             border: 1px solid var(--stone-border);
             border-radius: var(--radius-md);
-            transition: all 0.2s ease;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
         }
 
         .principle-card:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 20px rgba(32, 53, 43, 0.08);
+            transform: translateY(-2px);
         }
 
-        .principle-number {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--clay);
-            opacity: 0.6;
-            line-height: 1;
-            min-width: 40px;
+        .principle-card:last-child {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-3) var(--space-4);
+            align-items: start;
         }
 
-        .principle-content h3 {
-            font-size: 1.125rem;
-            margin-bottom: var(--space-2);
+        .principle-icon {
+            display: grid;
+            place-items: center;
+            width: 56px;
+            height: 56px;
+            margin-bottom: var(--space-3);
+            border-radius: 50%;
+            background: linear-gradient(150deg, #FFFDF8 0%, var(--sand-surface) 100%);
+            border: 1px solid var(--stone-border);
+            box-shadow: 0 4px 10px rgba(32, 53, 43, 0.07);
             color: var(--deep-forest);
         }
 
-        .principle-content p {
-            color: var(--ink);
-            opacity: 0.7;
-            font-size: 0.9375rem;
-            line-height: 1.6;
+        .principle-card:last-child .principle-icon {
+            margin-bottom: 0;
+        }
+
+        .principle-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .principle-card h3 {
+            font-size: 1.25rem;
             margin-bottom: var(--space-1);
         }
 
-        .principle-content p:last-child {
-            margin-bottom: 0;
+        .principle-lead {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--ember);
+            margin-bottom: var(--space-2);
+        }
+
+        .principle-card p:not(.principle-lead) {
+            color: var(--ink);
+            opacity: 0.72;
+            font-size: 0.9375rem;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 700px) {
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .principle-card:last-child {
+                grid-column: auto;
+                display: block;
+            }
+
+            .principle-card:last-child .principle-icon {
+                margin-bottom: var(--space-3);
+            }
         }
 
         @media (max-width: 600px) {
             .principle-card {
                 padding: var(--space-3);
-                gap: var(--space-2);
             }
 
-            .principle-number {
-                font-size: 1.25rem;
-                min-width: 32px;
+            .principle-icon {
+                width: 46px;
+                height: 46px;
+                margin-bottom: var(--space-2);
             }
 
-            .principle-content h3 {
-                font-size: 1rem;
-                margin-bottom: var(--space-1);
+            .principle-card h3 {
+                font-size: 1.125rem;
             }
 
-            .principle-content p {
+            .principle-card p:not(.principle-lead) {
                 font-size: 0.875rem;
             }
         }
@@ -441,71 +589,118 @@
             margin-bottom: var(--space-1);
         }
 
-        .process-list {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-4);
-        }
-
-        .process-card {
+        .process-thread {
+            position: relative;
+            margin-top: var(--space-6);
             display: grid;
-            grid-template-columns: auto 1fr;
-            gap: var(--space-3);
-            padding: var(--space-4);
+            gap: var(--space-5);
+            list-style: none;
+            max-width: 760px;
+        }
+
+        .process-thread::before {
+            content: "";
+            position: absolute;
+            left: 25px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(163, 128, 103, 0.55) 0 5px,
+                transparent 5px 12px
+            );
+            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+        }
+
+        .process-step {
+            position: relative;
+            isolation: isolate;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 20px;
+            padding-bottom: var(--space-5);
+        }
+
+        .process-step:not(:last-child) {
+            border-bottom: 1px solid rgba(42, 45, 50, 0.1);
+        }
+
+        .process-num {
+            display: grid;
+            width: 52px;
+            height: 52px;
+            place-items: center;
+            border: 1px solid rgba(163, 128, 103, 0.4);
+            border-radius: 50%;
             background: var(--warm-paper);
-            border: 1px solid var(--stone-border);
-            border-radius: var(--radius-md);
-            transition: all 0.2s ease;
-        }
-
-        .process-card:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-        }
-
-        .process-number {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
             color: var(--clay);
-            opacity: 0.6;
-            line-height: 1;
-            min-width: 40px;
+            font: 400 1.5rem/1 var(--font-display);
+            font-style: italic;
+            box-shadow: 0 0 0 6px var(--warm-paper), 0 10px 22px rgba(32, 53, 43, 0.1);
         }
 
-        .process-content h3 {
-            font-size: 1.125rem;
-            margin-bottom: var(--space-2);
-            color: var(--deep-forest);
+        .process-step h3 {
+            margin-top: 4px;
+            margin-bottom: var(--space-1);
+            font-size: 1.25rem;
         }
 
-        .process-content p {
+        .process-step p {
+            max-width: 560px;
             color: var(--ink);
-            opacity: 0.7;
+            opacity: 0.72;
             font-size: 0.9375rem;
-            line-height: 1.6;
+            line-height: 1.65;
             margin-bottom: var(--space-1);
         }
 
-        .process-content p:last-child {
+        .process-step p:last-child {
             margin-bottom: 0;
         }
 
+        .process-thread.motion-ready .process-step {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+
+        .process-thread.motion-ready.is-visible .process-step {
+            animation: step-reveal 520ms ease forwards;
+        }
+
+        .process-thread.motion-ready.is-visible .process-step:nth-child(2) { animation-delay: 90ms; }
+        .process-thread.motion-ready.is-visible .process-step:nth-child(3) { animation-delay: 180ms; }
+        .process-thread.motion-ready.is-visible .process-step:nth-child(4) { animation-delay: 270ms; }
+
+        @keyframes step-reveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @media (max-width: 600px) {
-            .process-card {
-                padding: var(--space-3);
-                gap: var(--space-2);
+            .process-thread::before {
+                left: 20px;
             }
 
-            .process-number {
-                font-size: 1.25rem;
-                min-width: 32px;
+            .process-step {
+                grid-template-columns: 44px 1fr;
+                gap: 14px;
+                padding-bottom: var(--space-4);
             }
 
-            .process-content h3 {
-                font-size: 1rem;
-                margin-bottom: var(--space-1);
+            .process-num {
+                width: 42px;
+                height: 42px;
+                font-size: 1.24rem;
+                box-shadow: 0 0 0 5px var(--warm-paper), 0 8px 18px rgba(32, 53, 43, 0.1);
             }
 
-            .process-content p {
+            .process-step h3 {
+                font-size: 1.0625rem;
+            }
+
+            .process-step p {
                 font-size: 0.875rem;
             }
         }
@@ -523,6 +718,12 @@
             grid-template-columns: 1fr 1fr;
             gap: var(--space-4);
             margin-bottom: var(--space-5);
+        }
+
+        .fit-grid.single-path,
+        .next-step-options.single-path {
+            grid-template-columns: minmax(0, 680px);
+            max-width: 680px;
         }
 
         @media (max-width: 700px) {
@@ -763,6 +964,199 @@
             }
         }
 
+        /* Featured reflection */
+        .reflection-featured {
+            max-width: 760px;
+            background: linear-gradient(160deg, var(--warm-paper) 0%, var(--sand-surface) 100%);
+            border: 1px solid var(--stone-border);
+            padding: var(--space-5);
+            position: relative;
+        }
+
+        .reflection-quote-mark {
+            position: absolute;
+            top: 2px;
+            right: var(--space-3);
+            font-family: var(--font-display);
+            font-size: 8rem;
+            line-height: 1;
+            color: var(--clay);
+            opacity: 0.16;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        .reflection-featured blockquote {
+            font-size: 1.125rem;
+            line-height: 1.72;
+            font-style: normal;
+            color: var(--deep-forest);
+        }
+
+        .reflection-featured blockquote p {
+            margin: 0 0 var(--space-3);
+        }
+
+        .reflection-featured blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        .reflection-closer {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.375rem;
+            line-height: 1.5;
+            color: var(--deep-forest);
+            margin: var(--space-4) 0 0;
+            padding-left: var(--space-3);
+            border-left: 2px solid var(--clay);
+        }
+
+        .reflection-attribution {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--stone-border);
+            flex-wrap: wrap;
+        }
+
+        .reflection-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: var(--deep-forest);
+            color: var(--warm-paper);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .reflection-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .reflection-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-right: auto;
+        }
+
+        .reflection-name {
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--ink);
+            font-size: 0.9375rem;
+            margin: 0;
+        }
+
+        .reflection-role {
+            font-size: 0.8125rem;
+            color: var(--blue-gray);
+            margin: 0;
+        }
+
+        .reflection-stat {
+            text-align: right;
+        }
+
+        .reflection-stat-value {
+            display: block;
+            font-family: var(--font-display);
+            font-size: 1.0625rem;
+            color: var(--ember);
+            font-weight: 500;
+        }
+
+        .reflection-stat-unit {
+            font-size: 0.75rem;
+            margin-left: 3px;
+            opacity: 0.7;
+        }
+
+        .reflection-stat-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--blue-gray);
+        }
+
+        @media (max-width: 600px) {
+            .reflection-featured {
+                padding: var(--space-3);
+            }
+
+            .reflection-featured blockquote {
+                font-size: 1.0625rem;
+            }
+
+            .reflection-stat {
+                text-align: left;
+                width: 100%;
+                margin-top: var(--space-1);
+            }
+        }
+
+        /* Testimonial brief card + read-more */
+        .reflections-grid { align-items: center; }
+
+        .testimonial-brief {
+            display: block;
+            width: 100%;
+            max-width: 620px;
+            text-align: left;
+            background: var(--warm-paper);
+            border: 1px solid var(--stone-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            cursor: pointer;
+            font: inherit;
+            color: inherit;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+        .testimonial-brief:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(42,45,50,.09); border-color: var(--sand-tan); }
+        .tb-head { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); }
+        .tb-avatar { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--deep-forest); }
+        .tb-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 16%; }
+        .tb-name { font-family: var(--font-body); font-weight: 600; font-size: 1rem; margin: 0; color: var(--ink); }
+        .tb-role { font-size: 0.8125rem; color: var(--blue-gray); margin: 0; }
+        .tb-quote { font-family: var(--font-display); font-style: italic; font-size: 1.0625rem; line-height: 1.55; color: var(--deep-forest); margin: 0 0 var(--space-2); }
+        .tb-more { font-size: 0.85rem; font-weight: 600; color: var(--clay); letter-spacing: .3px; }
+        .tb-more .arw { display: inline-block; transition: transform .18s ease; }
+        .testimonial-brief:hover .tb-more .arw { transform: translateX(3px); }
+
+        body.modal-open { overflow: hidden; }
+        .tm-scrim { position: fixed; inset: 0; background: rgba(32,53,43,.5); backdrop-filter: blur(3px); display: none; align-items: flex-start; justify-content: center; padding: 48px 20px; overflow-y: auto; z-index: 200; }
+        .tm-scrim.active { display: flex; }
+        .tm { background: var(--warm-paper); border: 1px solid var(--stone-border); border-radius: var(--radius-md); max-width: 720px; width: 100%; position: relative; overflow: hidden; box-shadow: 0 24px 60px rgba(32,53,43,.28); }
+        .tm-close { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; border: none; background: rgba(248,246,243,.9); color: var(--ink); font-size: 1.2rem; cursor: pointer; z-index: 2; line-height: 1; }
+        .tm-close:hover { background: #fff; }
+        .tm-photos { display: grid; grid-template-columns: 1fr 1fr; }
+        .tm-photo { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--sand-surface); }
+        .tm-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .tm-photo.before img { object-position: center 20%; border-right: 1px solid var(--stone-border); }
+        .tm-photo.after img { object-position: center 6%; }
+        .tm-tag { position: absolute; left: 12px; top: 12px; background: rgba(32,53,43,.82); color: var(--warm-paper); font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; }
+        .tm-body { padding: var(--space-4) var(--space-5) var(--space-5); }
+        .tm-attr { display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-3); flex-wrap: wrap; }
+        .tm-name { font-family: var(--font-display); font-size: 1.25rem; color: var(--deep-forest); margin: 0; }
+        .tm-role { font-size: 0.82rem; color: var(--blue-gray); margin: 0; }
+        .tm-stat { margin-left: auto; text-align: right; }
+        .tm-stat b { font-family: var(--font-display); color: var(--ember); font-weight: 500; font-size: 1.05rem; display: block; }
+        .tm-stat span { font-size: 0.72rem; color: var(--blue-gray); }
+        .tm-body blockquote { margin: 0; border-top: 1px solid var(--stone-border); padding-top: var(--space-3); }
+        .tm-body blockquote p { font-size: 1.02rem; line-height: 1.7; color: var(--deep-forest); margin: 0 0 var(--space-3); }
+        .tm-closer { font-family: var(--font-display); font-style: italic; font-size: 1.2rem; line-height: 1.5; color: var(--deep-forest); margin: var(--space-3) 0 0; padding-left: var(--space-3); border-left: 2px solid var(--clay); }
+        @media (max-width: 560px) { .tm-body { padding: var(--space-3); } .tm-scrim { padding: 20px 12px; } }
+
         /* Next Step Section */
         .next-step-section {
             background: var(--warm-paper);
@@ -834,26 +1228,29 @@
             }
         }
 
-        /* Final Quote */
+        /* Final Quote - river band */
         .final-quote {
+            position: relative;
             text-align: center;
-            padding: var(--space-8) var(--space-4);
-            background: var(--deep-forest);
+            padding: var(--space-12) var(--space-4);
+            background:
+                linear-gradient(rgba(20, 34, 27, 0.72), rgba(20, 34, 27, 0.78)),
+                url('images/intro-call-river-poster.jpg') center 40% / cover no-repeat;
         }
 
         .final-quote blockquote {
             font-family: var(--font-display);
-            font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+            font-size: clamp(1.375rem, 3vw, 2rem);
             font-style: italic;
             color: var(--warm-paper);
-            max-width: 500px;
+            max-width: 640px;
             margin: 0 auto;
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
         @media (max-width: 600px) {
             .final-quote {
-                padding: var(--space-6) var(--space-3);
+                padding: var(--space-10) var(--space-3);
             }
         }
 
@@ -896,6 +1293,12 @@
             gap: var(--space-2);
             opacity: 0.45;
             transition: opacity 0.2s;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
         }
 
         .footer-qr:hover { opacity: 0.75; }
@@ -905,6 +1308,64 @@
             height: 52px;
             display: block;
         }
+
+        /* QR lightbox */
+        .qr-scrim {
+            position: fixed;
+            inset: 0;
+            background: rgba(32, 53, 43, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-3);
+            z-index: 300;
+        }
+
+        .qr-scrim.active { display: flex; }
+
+        .qr-card {
+            position: relative;
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-4) var(--space-3);
+            text-align: center;
+            box-shadow: 0 24px 60px rgba(32, 53, 43, 0.3);
+            animation: rise 260ms ease both;
+        }
+
+        .qr-card img {
+            display: block;
+            width: min(320px, 72vw);
+            height: auto;
+            image-rendering: pixelated;
+        }
+
+        .qr-card p {
+            margin-top: var(--space-2);
+            font-size: 0.9375rem;
+            color: var(--deep-forest);
+            letter-spacing: 0.02em;
+        }
+
+        .qr-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: var(--sand-surface);
+            color: var(--ink);
+            font-size: 1.2rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .qr-close:hover { background: var(--stone-border); }
+
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
         .footer-qr-label {
             font-size: 0.6875rem;
@@ -939,126 +1400,7 @@
             }
         }
 
-        /* Modal */
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(32, 53, 43, 0.85);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            padding: var(--space-4);
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal {
-            background: var(--warm-paper);
-            padding: var(--space-5);
-            max-width: 440px;
-            width: 100%;
-            position: relative;
-            border-radius: var(--radius-md);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: var(--space-2);
-            right: var(--space-2);
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--ink);
-            opacity: 0.4;
-            line-height: 1;
-            padding: var(--space-1);
-        }
-
-        .modal-close:hover { opacity: 1; }
-
-        .modal h3 {
-            font-size: 1.5rem;
-            margin-bottom: var(--space-4);
-        }
-
-        .form-group {
-            margin-bottom: var(--space-3);
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: var(--space-1);
-            color: var(--ink);
-            opacity: 0.6;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: var(--space-2);
-            border: 1px solid var(--stone-border);
-            border-radius: var(--radius-sm);
-            font-family: var(--font-body);
-            font-size: 0.9375rem;
-            background: var(--warm-paper);
-            color: var(--ink);
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--clay);
-        }
-
-        .form-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .form-submit {
-            width: 100%;
-            padding: var(--space-2);
-            background: var(--clay);
-            color: var(--warm-paper);
-            border: none;
-            border-radius: var(--radius-sm);
-            font-family: var(--font-body);
-            font-size: 0.9375rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .form-submit:hover { background: #9A6A4D; }
-
         @media (max-width: 600px) {
-            .modal {
-                padding: var(--space-4);
-                margin: var(--space-2);
-            }
-
-            .modal h3 {
-                font-size: 1.25rem;
-                margin-bottom: var(--space-3);
-            }
-
-            .form-group {
-                margin-bottom: var(--space-2);
-            }
-
             .btn-primary,
             .btn-secondary {
                 padding: var(--space-2) var(--space-3);
@@ -1077,6 +1419,21 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            .fade-up {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1088,25 +1445,31 @@
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1600&h=900&fit=crop&crop=center" alt="Pine tree canopy looking up">
+            <img src="https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1600&amp;h=900&amp;fit=crop&amp;crop=center" alt="Pine tree canopy looking up">
         </div>
         <div class="hero-content fade-up">
-            <p class="hero-label">Justin the Practice</p>
-            <h1>Strength is only part of the practice.</h1>
+            <h1>Strength is only part of <em>the practice.</em></h1>
             <p class="hero-intro">I help people build strength, clarity, and physical readiness by teaching them how to adjust training, food, and rest based on what their system is actually telling them.</p>
             <div class="hero-cta">
-                <a href="hyrox-quiz.html" class="btn-primary">
-                    Take the Hyrox Readiness Quiz
+                <a href="intro/" class="btn-primary">
+                    Let’s Get Started
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#clarity-quiz" class="btn-secondary">General Training Clarity</a>
-                <a href="https://calendly.com/justin-the-practice/clarity-call" target="_blank" class="btn-secondary">Book a Free Clarity Call</a>
+                <a href="#process" class="btn-ghost">See how I train</a>
             </div>
         </div>
     </section>
 
+    <!-- Backflip Video -->
+    <section class="video-section" aria-label="Justin performing a backflip outdoors">
+        <video autoplay muted loop playsinline preload="metadata" class="video-bg" id="backflip-video" aria-hidden="true">
+            <source src="backflip.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+    </section>
+
     <!-- Core Principles -->
-    <section class="principles-section section-alt fade-up" id="principles">
+    <section class="principles-section section-alt" id="principles">
         <div class="container">
             <div class="section-header">
                 <p class="section-label">Foundation</p>
@@ -1114,46 +1477,48 @@
             </div>
             <div class="section-intro">
                 <p>These principles guide how we train, how decisions are made, and how progress is built — physically and mentally.</p>
-                <p>They are not ideals.<br>They are the filters behind every session, adjustment, and conversation.</p>
+                <p>They're not ideals.<br>They guide each session, adjustment, and conversation.</p>
             </div>
-            <div class="principles-list">
+            <div class="principles-grid">
                 <div class="principle-card">
-                    <span class="principle-number">1</span>
-                    <div class="principle-content">
-                        <h3>The Body Is the Truth-Teller</h3>
-                        <p>Training begins with attention to real signals.</p>
-                        <p>Pain, tension, fatigue, energy, and recovery are feedback, not flaws. Learning how your body responds to load and stress allows decisions to be made with clarity instead of guesswork.</p>
-                    </div>
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h3.5l2.5-6 4.5 12 2.5-6h3"/><circle cx="20.5" cy="12" r="1.7" fill="#A38067" stroke="none"/></svg>
+                    </span>
+                    <h3>The Body Is the Truth-Teller</h3>
+                    <p class="principle-lead">Training begins with attention to real signals.</p>
+                    <p>Pain, tension, fatigue, energy, and recovery are feedback, not flaws. Learning how your body responds to load and stress allows decisions to be made with clarity instead of guesswork.</p>
                 </div>
                 <div class="principle-card">
-                    <span class="principle-number">2</span>
-                    <div class="principle-content">
-                        <h3>Reality Over Fantasy</h3>
-                        <p>Progress starts with honesty.</p>
-                        <p>Training must reflect your current capacity, history, lifestyle, and responsibilities, not ideals driven by comparison, ego, or urgency.</p>
-                    </div>
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19.5 9.5 9l4 7 2.5-4 5 7.5"/><path d="M2.5 19.5h19"/><circle cx="18.5" cy="5.5" r="1.7" fill="#A38067" stroke="none"/></svg>
+                    </span>
+                    <h3>Reality Over Fantasy</h3>
+                    <p class="principle-lead">Progress starts with honesty.</p>
+                    <p>Training must reflect your current capacity, history, lifestyle, and responsibilities, not ideals driven by comparison, ego, or urgency.</p>
                 </div>
                 <div class="principle-card">
-                    <span class="principle-number">3</span>
-                    <div class="principle-content">
-                        <h3>Simplicity Supports Consistency</h3>
-                        <p>Clear structure and repeatable actions compound over time.</p>
-                        <p>If something can't be repeated week after week without force, it isn't sustainable, and it won't last.</p>
-                    </div>
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M7.5 7.5H19M7.5 12h8M7.5 16.5h4.5"/><circle cx="4.5" cy="7.5" r="1.7" fill="#A38067" stroke="none"/></svg>
+                    </span>
+                    <h3>Simplicity Supports Consistency</h3>
+                    <p class="principle-lead">Clear structure and repeatable actions compound over time.</p>
+                    <p>If something can't be repeated week after week without force, it isn't sustainable, and it won't last.</p>
                 </div>
                 <div class="principle-card">
-                    <span class="principle-number">4</span>
-                    <div class="principle-content">
-                        <h3>Integrity Over Intensity</h3>
-                        <p>How you train matters more than how hard you train.</p>
-                        <p>Quality movement, appropriate loading, and intelligent pacing build more progress than forcing effort. Intensity has value, but only when applied with intention.</p>
-                    </div>
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6.5v5c0 4.2-2.8 7.2-7 8.9-4.2-1.7-7-4.7-7-8.9v-5l7-3z"/><path d="M9.3 11.8l1.9 1.9 3.5-3.9" stroke="#A38067"/></svg>
+                    </span>
+                    <h3>Integrity Over Intensity</h3>
+                    <p class="principle-lead">How you train matters more than how hard you train.</p>
+                    <p>Quality movement, appropriate loading, and intelligent pacing build more progress than forcing effort. Intensity has value, but only when applied with intention.</p>
                 </div>
                 <div class="principle-card">
-                    <span class="principle-number">5</span>
-                    <div class="principle-content">
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9.5v5M20.5 9.5v5"/><path d="M6.5 12h11" stroke="#A38067"/></svg>
+                    </span>
+                    <div>
                         <h3>Strength Builds Capability</h3>
-                        <p>Strength expands tolerance and preserves independence.</p>
+                        <p class="principle-lead">Strength expands tolerance and preserves independence.</p>
                         <p>A stronger body absorbs stress more effectively, moves with confidence, and remains capable as demands increase. Strength is developed to support durability, longevity, and real life, not numbers alone.</p>
                     </div>
                 </div>
@@ -1162,7 +1527,7 @@
     </section>
 
     <!-- How I Train -->
-    <section class="process-section fade-up" id="process">
+    <section class="process-section" id="process">
         <div class="container">
             <div class="section-header">
                 <p class="section-label">The Process</p>
@@ -1170,42 +1535,42 @@
             </div>
             <div class="process-intro">
                 <p>Training is not a fixed plan. It's an adaptive process guided by feedback.</p>
-                <p>Your body changes.<br>Your life changes.<br>Training adjusts accordingly.</p>
+                <p>Your body changes.<br>So does your life.<br>Training has to adjust with it.</p>
             </div>
-            <div class="process-list">
-                <div class="process-card">
-                    <span class="process-number">1</span>
-                    <div class="process-content">
+            <ol class="process-thread">
+                <li class="process-step">
+                    <span class="process-num" aria-hidden="true">1</span>
+                    <div>
                         <h3>Assess</h3>
                         <p>We start by understanding where you are, physically and contextually.</p>
                         <p>Movement patterns, strength levels, injury history, training background, recovery, stress, and lifestyle demands all matter. The goal is not to label you or fit you into a category. It is to establish a clear baseline so training decisions are accurate from the start.</p>
                     </div>
-                </div>
-                <div class="process-card">
-                    <span class="process-number">2</span>
-                    <div class="process-content">
+                </li>
+                <li class="process-step">
+                    <span class="process-num" aria-hidden="true">2</span>
+                    <div>
                         <h3>Build</h3>
                         <p>From that assessment, we build a plan around your needs, not a template.</p>
-                        <p>Strength, movement quality, conditioning, and recovery are balanced based on your current capacity and goals. Load, volume, and frequency are chosen intentionally, taking recovery and stress into account. Nothing is random. Everything has a reason.</p>
+                        <p>Strength, movement quality, conditioning, and recovery are balanced based on your current capacity and goals. Load, volume, and frequency are chosen intentionally, taking recovery and stress into account. There's a reason behind each one.</p>
                     </div>
-                </div>
-                <div class="process-card">
-                    <span class="process-number">3</span>
-                    <div class="process-content">
+                </li>
+                <li class="process-step">
+                    <span class="process-num" aria-hidden="true">3</span>
+                    <div>
                         <h3>Execute</h3>
                         <p>Execution is where structure meets real-world feedback.</p>
                         <p>Sessions are designed to build strength and physical readiness while improving your ability to recognize effort, tension, fatigue, and recovery. The goal is to apply effort in a way that builds capability while sharpening judgment, knowing when to push, when to hold, and when to pull back.</p>
                     </div>
-                </div>
-                <div class="process-card">
-                    <span class="process-number">4</span>
-                    <div class="process-content">
+                </li>
+                <li class="process-step">
+                    <span class="process-num" aria-hidden="true">4</span>
+                    <div>
                         <h3>Adjust</h3>
                         <p>Progress requires response, not rigidity.</p>
                         <p>As your body adapts and life demands change, the plan evolves. Load, volume, intensity, and focus shift as needed. Rest is treated as feedback about load, not a setback and not a judgment of discipline. Adjustment is how progress is protected and consistency is maintained over time.</p>
                     </div>
-                </div>
-            </div>
+                </li>
+            </ol>
             <div class="fit-unsure" style="margin-top: var(--space-5);">
                 <h3>The Goal</h3>
                 <p>The goal is not to follow a plan forever.</p>
@@ -1215,13 +1580,13 @@
     </section>
 
     <!-- Fit Check -->
-    <section class="fit-section section-alt fade-up" id="fit">
+    <section class="fit-section section-alt" id="fit">
         <div class="container">
             <div class="section-header">
                 <p class="section-label">Fit Check</p>
                 <h2>Is This Right For You?</h2>
             </div>
-            <p class="fit-intro">The following applies primarily to one-on-one coaching, where the work is most adaptive and collaborative.</p>
+            <p class="fit-intro">This mostly describes one-on-one coaching, since that's where the work adjusts the most.</p>
             <div class="fit-grid">
                 <div class="fit-col yes">
                     <h3>This is likely a good fit if you:</h3>
@@ -1248,34 +1613,26 @@
             <div class="fit-unsure">
                 <h3>If you're unsure</h3>
                 <p>You don't need to have everything figured out to begin.</p>
-                <p style="margin-top: var(--space-2);">One-on-one coaching is the deepest way to engage with this work, but it isn't the only way. Curiosity, honesty, and a willingness to participate matter far more than experience level or current fitness.</p>
-                <p style="margin-top: var(--space-2);"><em>Clarity is built through engagement, not certainty.</em></p>
+                <p style="margin-top: var(--space-2);">The Intro Call is a focused first session to understand where you are, what you need, and whether ongoing one-on-one coaching is the right fit. Curiosity, honesty, and a willingness to participate matter far more than experience level or current fitness.</p>
+                <p style="margin-top: var(--space-2);"><em>You build clarity by showing up, not by having it all figured out first.</em></p>
             </div>
 
             <div class="section-header" style="margin-top: var(--space-6);">
-                <h2>Two Ways to Begin</h2>
+                <h2>How to Begin</h2>
             </div>
-            <div class="fit-grid">
+            <div class="fit-grid single-path">
                 <div class="fit-col yes" style="background: linear-gradient(135deg, rgba(163, 128, 103, 0.12) 0%, rgba(163, 128, 103, 0.06) 100%); border-color: var(--clay);">
-                    <h3 style="color: var(--ember);">One-on-One Coaching</h3>
-                    <p style="color: var(--ink); opacity: 0.85; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">This is the most comprehensive way to work together.</p>
-                    <p style="color: var(--ink); opacity: 0.75; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">Training, recovery, and lifestyle decisions are adjusted continuously as your body and life change. This path is for those who want depth, responsiveness, and long-term development through an ongoing coaching relationship.</p>
-                    <p style="color: var(--ink); opacity: 0.65; font-size: 0.875rem; font-style: italic; margin-bottom: var(--space-3);">Best suited for people who want individualized guidance and are willing to actively participate in the process.</p>
-                    <a href="https://calendly.com/justin-the-practice/clarity-call" target="_blank" class="btn-primary">Book a Clarity Call</a>
-                </div>
-                <div class="fit-col" style="opacity: 1;">
-                    <h3 style="color: var(--deep-forest); opacity: 1;">Guided Practices & Resources</h3>
-                    <p style="color: var(--ink); opacity: 0.85; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">Guided practices and resources offer a structured way to engage with the work without the commitment of ongoing coaching.</p>
-                    <p style="color: var(--ink); opacity: 0.75; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">These are time-bound tools designed to help you build clarity, consistency, and better decision-making around training, food, rest, and daily rhythms.</p>
-                    <p style="color: var(--ink); opacity: 0.65; font-size: 0.875rem; font-style: italic; margin-bottom: var(--space-3);">They are intended to support progress, not replace coaching. Additional guided practices and resources will be added over time.</p>
-                    <a href="resources/index.html" class="btn-secondary">Explore Resources</a>
+                    <h3 style="color: var(--ember);">Intro Call</h3>
+                    <p style="color: var(--ink); opacity: 0.85; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">A focused 60-minute session to understand your current position, clarify what is getting in the way, and identify the most useful next step.</p>
+                    <p style="color: var(--ink); opacity: 0.65; font-size: 0.875rem; font-style: italic; margin-bottom: var(--space-3);">This is the starting point for working with Justin.</p>
+                    <a href="intro/" class="btn-primary">Let’s Get Started</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Coaching Tools -->
-    <section class="tools-section fade-up" id="tools">
+    <section class="tools-section" id="tools">
         <div class="container">
             <div class="section-header">
                 <p class="section-label">What's Included</p>
@@ -1306,29 +1663,73 @@
     </section>
 
     <!-- Client Reflections -->
-    <section class="reflections-section section-alt fade-up" id="reflections">
+    <section class="reflections-section section-alt" id="reflections">
         <div class="container">
             <div class="section-header">
                 <p class="section-label">Client Reflections</p>
                 <h2>What People Say</h2>
             </div>
-            <p class="reflections-intro">Progress looks different for everyone. These reflections speak to the experience of the work — how people feel, think, and train as a result.</p>
+            <p class="reflections-intro">Progress looks different for everyone. These reflections speak to the experience of the work, how people feel, think, and train as a result.</p>
             <div class="reflections-grid">
-                <div class="reflection">
-                    <blockquote>"Working with Justin changed how I approach training entirely. I'm stronger, but more importantly, I understand my body better and feel more confident navigating fatigue and recovery."</blockquote>
-                </div>
-                <div class="reflection">
-                    <blockquote>"This was the first time training felt sustainable. The structure made sense, and adjustments were always thoughtful. I stopped feeling like I had to push all the time."</blockquote>
-                </div>
-                <div class="reflection">
-                    <blockquote>"I came in wanting better fitness. I left with clarity, consistency, and a healthier relationship with training."</blockquote>
-                </div>
+                <button type="button" class="testimonial-brief" id="testimonial-open" aria-haspopup="dialog" aria-controls="testimonial-modal" aria-expanded="false">
+                    <div class="tb-head">
+                        <div class="tb-avatar"><img src="images/testimonials/heathrow-hyrox-skierg.jpg" alt="Heathrow at HYROX New York"></div>
+                        <div>
+                            <p class="tb-name">Heathrow Andrews</p>
+                            <p class="tb-role">Nearly a year of 1-on-1 coaching</p>
+                        </div>
+                    </div>
+                    <p class="tb-quote">Working with Justin has been one of the best investments I've made in my body. He coaches without judgment and finds the exact lever for the person in front of him.</p>
+                    <span class="tb-more">Read the full story <span class="arw">&rarr;</span></span>
+                </button>
             </div>
         </div>
     </section>
 
+    <!-- QR lightbox -->
+    <div class="qr-scrim" id="qr-modal" role="dialog" aria-modal="true" aria-label="QR code for justinthepractice.com" aria-hidden="true">
+        <div class="qr-card">
+            <button class="qr-close" id="qr-close" aria-label="Close">&times;</button>
+            <img src="qr.png" alt="QR code for justinthepractice.com">
+            <p>justinthepractice.com</p>
+        </div>
+    </div>
+
+    <!-- Testimonial read-more modal -->
+    <div class="tm-scrim" id="testimonial-modal" role="dialog" aria-modal="true" aria-labelledby="testimonial-title" aria-hidden="true">
+        <div class="tm" tabindex="-1">
+            <button class="tm-close" id="testimonial-close" aria-label="Close">&times;</button>
+            <div class="tm-photos">
+                <div class="tm-photo before">
+                    <span class="tm-tag">Before &middot; Aug 2025</span>
+                    <img src="images/testimonials/heathrow-before-2025-08.jpg" alt="Heathrow in August 2025, before coaching">
+                </div>
+                <div class="tm-photo after">
+                    <span class="tm-tag">With Justin &middot; 1:49:59</span>
+                    <img src="images/testimonials/heathrow-justin-hyrox-finish.jpg" alt="Heathrow and Justin finishing HYROX New York at 1:49:59">
+                </div>
+            </div>
+            <div class="tm-body">
+                <div class="tm-attr">
+                    <div>
+                        <p class="tm-name" id="testimonial-title">Heathrow Andrews</p>
+                        <p class="tm-role">Nearly a year of 1-on-1 coaching</p>
+                    </div>
+                    <div class="tm-stat"><b>236 &rarr; 210&ndash;215 lbs</b><span>and still building</span></div>
+                </div>
+                <blockquote>
+                    <p>Working with Justin has been one of the best investments I've made in my body, honestly one of the best health decisions I've made period. At first I hesitated because I felt like I couldn't afford it (now I can't even remember the price). But there was a louder voice inside saying "You need help becoming the healthiest version of yourself, and whatever you spend on that comes back tenfold." So I took the plunge and signed up for weekly 1-on-1 coaching. That was almost a year ago.</p>
+                    <p>From the first call I knew it was a fit. Justin was patient and kind, which let me actually open up and give real answers to some pointed questions about my health. He helped me understand my relationship to food, not just what I was eating but how I felt about what I was eating. He really has a way of knowing the right questions to ask, and he gives you space to explore them without judgment.</p>
+                    <p>And it never felt like someone handing me a workout plan and telling me to try harder. It felt like real coaching. Movement, food, sleep, body composition, and the actual person I'm trying to become, not just a number on a scale.</p>
+                    <p>When this chapter started I was around 236. Now I'm hovering around 210 to 215, with a clear path to 200 (if I choose) that doesn't feel frantic or fake. I move better. I understand my body better. Justin finds the exact lever for the person in front of him, and he helps you keep going in a way that feels natural and not forced.</p>
+                </blockquote>
+                <p class="tm-closer">Justin gave me back my power and connectedness over my body and how I fuel it. I never lost the power, I just forgot that it belonged to me.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Take the Next Step -->
-    <section class="next-step-section fade-up" id="next-step">
+    <section class="next-step-section" id="next-step">
         <div class="container">
             <div class="section-header">
                 <p class="section-label">Get Started</p>
@@ -1339,19 +1740,13 @@
                 <p>Start by understanding where you are.</p>
                 <p>Whether you are returning to training, refining your current approach, or looking for a more sustainable path forward, we will begin by getting a clear picture of your current capacity, priorities, and needs.</p>
             </div>
-            <div class="next-step-options">
-                <div class="next-step-card primary" id="clarity-quiz">
-                    <h3>Get Training Clarity</h3>
-                    <p>A short assessment designed to help you better understand your current position and next best steps. This is a self guided way to bring structure and direction to your training and health decisions.</p>
-                    <a href="https://justinthepractice.involve.me/health-lifestyle-quiz" target="_blank" class="btn-primary">
-                        Get Training Clarity
+            <div class="next-step-options single-path">
+                <div class="next-step-card primary">
+                    <p>Start with a focused 60-minute session. Justin will help you understand where you are, what is getting in the way, and the clearest next step for your training.</p>
+                    <a href="intro/" class="btn-primary">
+                        Start Here
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
-                </div>
-                <div class="next-step-card">
-                    <h3>Prefer to talk it through?</h3>
-                    <p>You are welcome to schedule a free clarity call. This conversation is an opportunity to explore fit, ask questions, and determine whether working together makes sense with no pressure either way.</p>
-                    <a href="https://calendly.com/justin-the-practice/clarity-call" target="_blank" class="btn-secondary">Book a Free Clarity Call</a>
                 </div>
             </div>
         </div>
@@ -1359,7 +1754,7 @@
 
     <!-- Final Quote -->
     <section class="final-quote">
-        <blockquote>The goal isn't perfection or intensity.<br>It's progress built with intention.</blockquote>
+        <blockquote>This isn't about perfection or intensity.<br>It's about progress that fits real life.</blockquote>
     </section>
 
     <!-- Footer -->
@@ -1368,39 +1763,17 @@
         <div class="footer-links">
             <a href="#principles">Principles</a>
             <a href="#process">Process</a>
+            <a href="resources/index.html">Resources</a>
             <a href="#next-step">Get Started</a>
         </div>
-        <a href="https://justinthepractice.com" class="footer-qr" title="Scan to visit justinthepractice.com">
+        <button type="button" class="footer-qr" id="qr-open" aria-haspopup="dialog" aria-controls="qr-modal" title="Show the QR code full size">
             <img src="qr.png" alt="QR code for justinthepractice.com" />
-            <span class="footer-qr-label">Scan<br>to visit</span>
-        </a>
+            <span class="footer-qr-label">Tap to<br>enlarge</span>
+        </button>
         <div style="text-align: center; padding: var(--space-2) 0 0; width: 100%;">
             <span style="font-size: 0.75rem; color: var(--ink); opacity: 0.35; letter-spacing: 0.05em;">Powered by Sprout 🌱</span>
         </div>
     </footer>
-
-    <!-- Contact Modal -->
-    <div class="modal-overlay" id="contact-modal">
-        <div class="modal">
-            <button class="modal-close" id="modal-close">&times;</button>
-            <h3>Send a message</h3>
-            <form id="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="form-submit">Send</button>
-            </form>
-        </div>
-    </div>
 
     <script>
         // Scroll animations
@@ -1412,6 +1785,18 @@
 
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+        // Staggered reveal for the training thread
+        const thread = document.querySelector('.process-thread');
+        if (thread && !window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+            thread.classList.add('motion-ready');
+            const threadObserver = new IntersectionObserver(entries => {
+                if (!entries[0].isIntersecting) return;
+                thread.classList.add('is-visible');
+                threadObserver.disconnect();
+            }, { threshold: 0.15 });
+            threadObserver.observe(thread);
+        }
+
         // Nav scroll
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
@@ -1422,26 +1807,76 @@
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', e => {
                 if (a.getAttribute('href') === '#') return;
-                if (a.id === 'contact-link') return;
                 e.preventDefault();
                 document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
             });
         });
 
-        // Modal
-        const modal = document.getElementById('contact-modal');
-        document.getElementById('contact-link')?.addEventListener('click', e => {
-            e.preventDefault();
-            modal.classList.add('active');
-        });
-        document.getElementById('modal-close')?.addEventListener('click', () => modal.classList.remove('active'));
-        modal?.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+        // Backflip video: always playing; pause only for OS-level reduced motion
+        const backflipVideo = document.getElementById('backflip-video');
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            backflipVideo?.pause();
+        } else {
+            backflipVideo?.play().catch(() => {});
+        }
 
-        document.getElementById('contact-form')?.addEventListener('submit', e => {
-            e.preventDefault();
-            alert('Message sent! (Demo - connect to email service)');
-            modal.classList.remove('active');
-            e.target.reset();
+        // Testimonial read-more modal
+        const tModal = document.getElementById('testimonial-modal');
+        const tOpen = document.getElementById('testimonial-open');
+        const tClose = document.getElementById('testimonial-close');
+
+        function openTestimonial() {
+            tModal.classList.add('active');
+            tModal.setAttribute('aria-hidden', 'false');
+            tOpen.setAttribute('aria-expanded', 'true');
+            document.body.classList.add('modal-open');
+            tClose.focus();
+        }
+
+        function closeTestimonial() {
+            tModal.classList.remove('active');
+            tModal.setAttribute('aria-hidden', 'true');
+            tOpen.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('modal-open');
+            tOpen.focus();
+        }
+
+        tOpen?.addEventListener('click', openTestimonial);
+        tClose?.addEventListener('click', closeTestimonial);
+        tModal?.addEventListener('click', e => { if (e.target === tModal) closeTestimonial(); });
+        document.addEventListener('keydown', e => {
+            if (!tModal?.classList.contains('active')) return;
+            if (e.key === 'Escape') closeTestimonial();
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                tClose.focus();
+            }
+        });
+
+        // QR lightbox
+        const qrModal = document.getElementById('qr-modal');
+        const qrOpen = document.getElementById('qr-open');
+        const qrClose = document.getElementById('qr-close');
+
+        function openQr() {
+            qrModal.classList.add('active');
+            qrModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            qrClose.focus();
+        }
+
+        function closeQr() {
+            qrModal.classList.remove('active');
+            qrModal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            qrOpen.focus();
+        }
+
+        qrOpen?.addEventListener('click', openQr);
+        qrClose?.addEventListener('click', closeQr);
+        qrModal?.addEventListener('click', e => { if (e.target === qrModal) closeQr(); });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && qrModal?.classList.contains('active')) closeQr();
         });
 
         // Initial animation
