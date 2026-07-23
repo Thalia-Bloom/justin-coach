@@ -9,8 +9,7 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - **Deploy branch**: main (auto-deploys via GitHub Pages)
 - **Live URL**: justinthepractice.com
 - **Repo**: Thalia-Bloom/justin-coach
-- **Local draft**: backflip homepage bridge, homepage-only Heathrow testimonial, mobile-first PNW river `/start` hero, $79 Intro Call path with a quiet self-guided resource exit, and owned Health & Lifestyle quiz; not deployed
-- **2026-07-23 cohesion pass** (branch `codex/justin-jul19-launch`): every page now shares the sand/Playfair/Source Sans system. Programs ×3, old resource pages ×3, and submit-testimonial ported off the legacy EB Garamond/Inter look; all fake demo alerts removed (program checkouts → Intro Call, email-gated PDFs → honest "in the works" + Circadian PDF, pattern quiz → owned quiz, testimonial form → copy-and-send handoff). Resources library rebuilt: Ready Now (3 working tools incl. both quizzes) / Training Programs / quiet In-the-Works list — no dead Coming Soon buttons. Homepage: dead contact modal removed, focus-visible + reduced-motion + OG tags added, footer Resources link.
+- **Branch `codex/justin-jul19-launch` = the full 2026-07-23 redesign, LIVE-READY, all pushed.** Whole site on the sand/Playfair system with honest CTAs; cinematic hero → backflip landing; icon principle cards; dashed map-route trail lines; paid path at `/intro` (old `/start` redirects) in Justin's first-person voice, order: hero → starting-point map route + Book Intro Call panel → compact how-it-works strip; founding-period flow: Book Intro Call → `checkout.html` ($0 due today, no card fields, test-locked) → check-off animation → Justin's Calendly (Clarity Call event, `start-config.js bookingUrl`); footer QR = tap-to-enlarge lightbox. Heathrow drove and approved the flow 2026-07-23 but session ended **without the explicit "push it" — main is untouched, site not yet deployed.**
 
 ## Stack & Architecture
 - Pure static HTML/CSS/JavaScript — no build tools, no frameworks
@@ -55,9 +54,9 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - Domain properly configured and serving
 
 ## Next Steps
-1. **Launch gate (only blocker): Justin creates a 60-minute "Intro Call" event on his Calendly** (existing account justin-the-practice; current "Clarity Call" event is 30 min — Heathrow chose not to ship against it). Heathrow texts Justin; Stripe email draft also pending send.
-2. When the link arrives: paste it into `start-config.js` `bookingUrl`, run the 3 test suites, merge `codex/justin-jul19-launch` → `main`, push = live (Justin + Heathrow approved going live 2026-07-23; founding-period = free direct booking, no charge).
-3. When Justin's Stripe Payment Link arrives: paste into `paymentUrl` — it automatically supersedes the booking flow and restores "Pay, then book."
+1. **Deploy on Heathrow's "push it": merge `codex/justin-jul19-launch` → `main`, push (GitHub Pages auto-deploys), verify justinthepractice.com live.** Justin approved going live 2026-07-23; Heathrow drove the flow and approved it, but the explicit deploy go was not given before session end — ask, don't assume.
+2. Swap `start-config.js bookingUrl` to Justin's 60-minute "Intro Call" Calendly event when he creates one (currently his 30-min Clarity Call — Heathrow chose ship-now-fix-later). Stripe email draft to Justin still pending send.
+3. When Justin's Stripe Payment Link arrives: paste into `paymentUrl` — it supersedes the booking flow automatically, restores "Pay, then book", and checkout.html retires itself.
 - Verify email capture integration in quiz (may need webhook/Zapier)
 - Launch brief and QA boundary: `docs/2026-07-19-paid-intro-launch-brief.md` (payment-first model amended 2026-07-23 by Heathrow+Justin: founding-period free booking allowed pre-Stripe)
 
