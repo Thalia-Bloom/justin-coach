@@ -55,11 +55,11 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - Domain properly configured and serving
 
 ## Next Steps
+1. **Launch gate (only blocker): Justin creates a 60-minute "Intro Call" event on his Calendly** (existing account justin-the-practice; current "Clarity Call" event is 30 min — Heathrow chose not to ship against it). Heathrow texts Justin; Stripe email draft also pending send.
+2. When the link arrives: paste it into `start-config.js` `bookingUrl`, run the 3 test suites, merge `codex/justin-jul19-launch` → `main`, push = live (Justin + Heathrow approved going live 2026-07-23; founding-period = free direct booking, no charge).
+3. When Justin's Stripe Payment Link arrives: paste into `paymentUrl` — it automatically supersedes the booking flow and restores "Pay, then book."
 - Verify email capture integration in quiz (may need webhook/Zapier)
-- Confirm with Justin before any future changes
-- Publish and verify `/start` with payment before deploying the paid-only homepage draft
-- Replace the public Involve.me quiz only when the owned quiz and `/start` are both deployed and verified
-- Launch brief and QA boundary: `docs/2026-07-19-paid-intro-launch-brief.md`
+- Launch brief and QA boundary: `docs/2026-07-19-paid-intro-launch-brief.md` (payment-first model amended 2026-07-23 by Heathrow+Justin: founding-period free booking allowed pre-Stripe)
 
 ## Handoffs
 _Kyle (frontend) ↔ Atlas (backend) coordination. Add dated entries as work crosses domains. Thalia reads this for status._
