@@ -36,6 +36,8 @@
         .nav-back { font-size: 0.875rem; color: var(--slate); text-decoration: none; transition: color 0.2s; }
         .nav-back:hover { color: var(--deep-forest); }
 
+        .hero-icon { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: var(--space-2); border-radius: 50%; background: rgba(163, 128, 103, 0.12); color: var(--deep-forest); }
+        .hero-icon svg { width: 24px; height: 24px; }
         .hero { padding: var(--space-8) 0 var(--space-6); border-bottom: 1px solid var(--stone-border); animation: rise 600ms ease both; }
         .resource-type { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--clay); margin-bottom: var(--space-2); }
         .hero h1 { font-size: clamp(2rem, 5vw, 2.75rem); margin-bottom: var(--space-2); }
@@ -84,6 +86,7 @@
 
     <div class="container">
         <section class="hero">
+            <span class="hero-icon" aria-hidden="true"><svg><use href="../icons.svg#i-terrain"></use></svg></span>
             <p class="resource-type">8-Week Program</p>
             <h1>HYROX Prep</h1>
             <p class="hero-price">$67</p>

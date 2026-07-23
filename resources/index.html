@@ -193,6 +193,22 @@
             margin-bottom: var(--space-1);
         }
 
+        .resource-icon {
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            margin-bottom: var(--space-2);
+            border-radius: 50%;
+            background: rgba(163, 128, 103, 0.12);
+            color: var(--deep-forest);
+        }
+
+        .resource-icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
         .resource-card h3 {
             font-size: 1.125rem;
             margin-bottom: var(--space-2);
@@ -449,18 +465,21 @@
             </div>
             <div class="resources-grid">
                 <div class="resource-card">
+                    <span class="resource-icon" aria-hidden="true"><svg><use href="../icons.svg#i-sun"></use></svg></span>
                     <span class="resource-type">PDF Guide</span>
                     <h3>Circadian Rhythm Check-in</h3>
                     <p>A simple framework to assess and align your daily rhythms with your body's natural energy patterns.</p>
                     <a href="./circadian-rhythm/circadian-rhythm-checkin.pdf" class="btn" target="_blank" rel="noopener">View / Download PDF</a>
                 </div>
                 <div class="resource-card">
+                    <span class="resource-icon" aria-hidden="true"><svg><use href="../icons.svg#i-leaf"></use></svg></span>
                     <span class="resource-type">Lifestyle Assessment</span>
                     <h3>Health &amp; Lifestyle Quiz</h3>
                     <p>Twelve questions to find the kind of health and lifestyle support that fits the way you actually live.</p>
                     <a href="../health-lifestyle-quiz.html" class="btn">Take the Quiz</a>
                 </div>
                 <div class="resource-card">
+                    <span class="resource-icon" aria-hidden="true"><svg><use href="../icons.svg#i-stopwatch"></use></svg></span>
                     <span class="resource-type">Training Assessment</span>
                     <h3>Hyrox Readiness Quiz</h3>
                     <p>Find out how ready you are for your first (or next) Hyrox race, and exactly where to focus your training.</p>
@@ -478,18 +497,21 @@
             </div>
             <div class="resources-grid">
                 <div class="resource-card">
+                    <span class="resource-icon" aria-hidden="true"><svg><use href="../icons.svg#i-strength"></use></svg></span>
                     <span class="resource-type">12-Week Program</span>
                     <h3>Strength &amp; Structure</h3>
                     <p>Foundational strength through compound movements. Build strength that transfers to everyday life.</p>
                     <a href="../programs/strength-structure.html" class="btn">Learn More</a>
                 </div>
                 <div class="resource-card">
+                    <span class="resource-icon" aria-hidden="true"><svg><use href="../icons.svg#i-terrain"></use></svg></span>
                     <span class="resource-type">8-Week Program</span>
                     <h3>HYROX Prep</h3>
                     <p>Focused conditioning for first-time HYROX competitors. Run, row, push, pull — show up prepared.</p>
                     <a href="../programs/hyrox-prep.html" class="btn">Learn More</a>
                 </div>
                 <div class="resource-card">
+                    <span class="resource-icon" aria-hidden="true"><svg><use href="../icons.svg#i-kettlebell"></use></svg></span>
                     <span class="resource-type">6-Week Program</span>
                     <h3>Minimal Equipment</h3>
                     <p>A complete home training program. Dumbbells, kettlebell, pull-up bar — that's it.</p>

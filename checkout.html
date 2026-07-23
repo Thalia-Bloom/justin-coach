@@ -85,6 +85,59 @@
         .order-due strong { color: var(--forest); font-family: var(--display); font-size: 1.35rem; }
         .founding-note { margin-top: 14px; color: rgba(42, 45, 50, 0.66); font-size: 0.88rem; }
 
+        .intake {
+            margin-top: 24px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+        }
+        .intake-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--slate);
+            font-size: 0.74rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+        .intake-label svg { width: 18px; height: 18px; color: var(--forest); }
+        .intake-hint { margin-top: 10px; color: rgba(42, 45, 50, 0.66); font-size: 0.88rem; }
+        .field-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-top: 18px;
+        }
+        .field { display: block; }
+        .field-wide { grid-column: 1 / -1; }
+        .field span {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--forest);
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+        .field span em { color: rgba(42, 45, 50, 0.55); font-style: normal; font-weight: 400; }
+        .field input,
+        .field textarea {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            background: var(--paper);
+            color: var(--ink);
+            font: 400 0.95rem/1.5 var(--body);
+            transition: border-color 160ms ease;
+        }
+        .field textarea { min-height: 76px; resize: vertical; }
+        .field input:focus-visible,
+        .field textarea:focus-visible {
+            outline: 3px solid var(--clay);
+            outline-offset: 2px;
+            border-color: var(--clay);
+        }
+        .questions { display: grid; gap: 16px; margin-top: 18px; }
+
         .button {
             display: inline-flex;
             align-items: center;
@@ -135,6 +188,7 @@
             nav { padding: 18px 20px; }
             main { padding: 32px 16px 48px; }
             .order-card { padding: 22px; }
+            .field-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -148,7 +202,7 @@
         <div class="checkout">
             <span class="eyebrow">Book Intro Call</span>
             <h1>Almost there.</h1>
-            <p class="checkout-lead">Here's what you're reserving. While I finish setting up online payment, there's nothing to pay today. You book now, and we sort the rest together.</p>
+            <p class="checkout-lead">Here's what you're reserving. Tell me a little about where you're at, then pick your time. While I finish setting up online payment, there's nothing to pay today.</p>
 
             <div class="order-card" id="order-card">
                 <div class="order-details" id="order-details">
@@ -157,12 +211,33 @@
                     <div class="order-row"><span>Regular price</span><strong>$79</strong></div>
                     <div class="order-due"><span>Due today, founding period</span><strong>$0</strong></div>
                     <p class="founding-note">No card needed. Online payment is almost ready; until then your reservation is free and my calendar is open.</p>
-                    <button class="button" id="confirm-button" type="button">Confirm and choose my time</button>
-                    <p class="secure-note" id="checkout-note">Next stop is my scheduling page to pick your time.</p>
+
+                    <form id="intake-form">
+                        <div class="intake">
+                            <span class="intake-label"><svg aria-hidden="true"><use href="icons.svg#i-person"></use></svg>About you</span>
+                            <div class="field-grid">
+                                <label class="field"><span>Name</span><input name="name" type="text" autocomplete="name" required></label>
+                                <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
+                                <label class="field field-wide"><span>Phone <em>(optional)</em></span><input name="phone" type="tel" autocomplete="tel"></label>
+                            </div>
+                        </div>
+                        <div class="intake">
+                            <span class="intake-label"><svg aria-hidden="true"><use href="icons.svg#i-conversation"></use></svg>Three questions before we talk</span>
+                            <p class="intake-hint">Short, honest answers are perfect. They help me make our hour count.</p>
+                            <div class="questions">
+                                <label class="field"><span>What do you most want to change in the next 90 days?</span><textarea name="q1" maxlength="280" required></textarea></label>
+                                <label class="field"><span>What have you already tried, and how did it go?</span><textarea name="q2" maxlength="280" required></textarea></label>
+                                <label class="field"><span>What does a normal day look like right now? Sleep, food, movement, stress.</span><textarea name="q3" maxlength="280" required></textarea></label>
+                            </div>
+                        </div>
+                        <button class="button" id="confirm-button" type="submit">Confirm and choose my time</button>
+                    </form>
+                    <p class="secure-note" id="checkout-note">Your answers come with your booking. Next stop is my scheduling page to pick your time.</p>
                 </div>
                 <ol class="steps" id="steps" aria-live="polite">
                     <li class="step"><span class="tick" aria-hidden="true">&#10003;</span>Reserving your Intro Call</li>
                     <li class="step"><span class="tick" aria-hidden="true">&#10003;</span>Nothing to pay today</li>
+                    <li class="step"><span class="tick" aria-hidden="true">&#10003;</span>Passing your answers along</li>
                     <li class="step"><span class="tick" aria-hidden="true">&#10003;</span>Opening the calendar</li>
                 </ol>
             </div>
@@ -197,15 +272,38 @@
         }
 
         const card = document.getElementById("order-card");
-        const confirmButton = document.getElementById("confirm-button");
+        const intakeForm = document.getElementById("intake-form");
         const steps = document.querySelectorAll(".step");
         const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        confirmButton?.addEventListener("click", () => {
+        // Carries the visitor's details and answers into Calendly's booking form.
+        // name/email prefill the invitee fields; a1 lands in the event's first
+        // custom question ("Please share anything that will help...").
+        function buildBookingUrl(fields) {
+            const url = new URL(bookingUrl);
+            url.searchParams.set("name", fields.name);
+            url.searchParams.set("email", fields.email);
+            url.searchParams.set("a1", [
+                "Phone: " + (fields.phone || "not shared"),
+                "Want to change in the next 90 days: " + fields.q1,
+                "Tried so far: " + fields.q2,
+                "A normal day right now: " + fields.q3
+            ].join("\n"));
+            return url.href;
+        }
+
+        intakeForm?.addEventListener("submit", event => {
+            event.preventDefault();
+            const data = new FormData(intakeForm);
+            const fields = {};
+            for (const [key, value] of data.entries()) fields[key] = String(value).trim();
+            const destination = buildBookingUrl(fields);
+            card.dataset.bookingUrl = destination;
             card.classList.add("processing");
             const delay = reduced ? 0 : 550;
             steps.forEach((step, index) => setTimeout(() => step.classList.add("done"), delay * index));
-            setTimeout(() => window.location.assign(bookingUrl), reduced ? 250 : delay * 3 + 400);
+            if (new URLSearchParams(window.location.search).has("preview")) return;
+            setTimeout(() => window.location.assign(destination), reduced ? 250 : delay * steps.length + 400);
         });
     </script>
 </body>

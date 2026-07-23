@@ -345,11 +345,22 @@
             padding-top: 16px;
             border-top: 1px solid rgba(42, 45, 50, 0.16);
         }
+        .path-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
         .path-number {
             display: block;
             color: var(--clay);
             font: 400 1.3rem/1 var(--display);
             font-style: italic;
+        }
+        .path-icon {
+            width: 20px;
+            height: 20px;
+            color: var(--forest);
+            opacity: 0.85;
         }
         .path-step h3 { margin-top: 8px; margin-bottom: 6px; font-size: 1.05rem; }
         .path-step p { color: rgba(42, 45, 50, 0.66); font-size: 0.89rem; line-height: 1.5; }
@@ -451,7 +462,7 @@
                             <div><strong>We find the useful lever</strong><p>Most people are juggling ten things at once. Together we'll find the one worth your attention first.</p></div>
                         </li>
                         <li>
-                            <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.4-6.5-10a6.5 6.5 0 1 1 13 0c0 4.6-6.5 10-6.5 10z"/><circle cx="12" cy="10.6" r="2.3"/></svg></span>
+                            <span class="pin" aria-hidden="true"><svg><use href="icons.svg#i-pin"></use></svg></span>
                             <div><strong>You leave with a clear next step</strong><p>After the call I'll send you a personalized written recap with my honest recommendation for what to do next.</p></div>
                         </li>
                     </ol>
@@ -480,10 +491,10 @@
                     <h2 id="path-title">Here's how it goes.</h2>
                 </div>
                 <ol class="path-grid">
-                    <li class="path-step"><span class="path-number" aria-hidden="true">1</span><h3>Book your call</h3><p>Lock in your hour above.</p></li>
-                    <li class="path-step"><span class="path-number" aria-hidden="true">2</span><h3>Pick your time</h3><p>My calendar opens right after.</p></li>
-                    <li class="path-step"><span class="path-number" aria-hidden="true">3</span><h3>Tell me where you're at</h3><p>A few honest questions before we meet.</p></li>
-                    <li class="path-step"><span class="path-number" aria-hidden="true">4</span><h3>We talk</h3><p>One real conversation. Your next step in writing.</p></li>
+                    <li class="path-step"><span class="path-top" aria-hidden="true"><span class="path-number">1</span><svg class="path-icon"><use href="icons.svg#i-pin"></use></svg></span><h3>Book your call</h3><p>Lock in your hour above.</p></li>
+                    <li class="path-step"><span class="path-top" aria-hidden="true"><span class="path-number">2</span><svg class="path-icon"><use href="icons.svg#i-conversation"></use></svg></span><h3>Tell me where you're at</h3><p>Your details and three honest questions when you book.</p></li>
+                    <li class="path-step"><span class="path-top" aria-hidden="true"><span class="path-number">3</span><svg class="path-icon"><use href="icons.svg#i-calendar"></use></svg></span><h3>Pick your time</h3><p>My calendar opens right after.</p></li>
+                    <li class="path-step"><span class="path-top" aria-hidden="true"><span class="path-number">4</span><svg class="path-icon"><use href="icons.svg#i-letter"></use></svg></span><h3>We talk</h3><p>One real conversation. Your next step in writing.</p></li>
                 </ol>
             </div>
         </section>
