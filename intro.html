@@ -552,7 +552,7 @@
             checkoutStatus.textContent = "After payment, Stripe will send you straight to my calendar to pick a time.";
         } else if (bookingUrl) {
             paymentButton.removeAttribute("aria-disabled");
-            paymentButton.textContent = "Reserve your spot";
+            paymentButton.textContent = "Book Intro Call";
             paymentButton.href = "checkout.html";
             document.getElementById("fact-next-step").textContent = "Book now, pay later";
             document.getElementById("secure-note").textContent = "No payment is taken on this site. Booking happens on Justin's scheduling page.";
