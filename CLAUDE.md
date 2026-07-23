@@ -34,7 +34,7 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - Sprout bot builds features (quiz, etc.) — commits show "Sprout:" prefix
 - Programs priced at ~$67 range
 - Homepage conversion is one paid path: the $79 Intro Call
-- The bottom of `/start` offers three working self-guided tools plus a link to the full resource library; it does not offer a free coaching path
+- 2026-07-23 Heathrow: the paid page lives at `/intro` (old `/start` redirects); it ends on the payment path with NO free-resource exit — checkout is the last thing a visitor goes through. Free tools live only in the resources library
 - Quizzes remain available as background coaching tools but are not public homepage pathways
 - The `/start` page uses the PNW river loop; personal testimonial stories stay on the homepage testimonial section
 - Health & Lifestyle answers stay in browser memory only; no PII, analytics, or third-party quiz runtime

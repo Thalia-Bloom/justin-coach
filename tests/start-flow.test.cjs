@@ -30,10 +30,8 @@ assert.equal(cleanStart.includes("discovery session"), false, "old Discovery Ses
 assert.equal(cleanStart.includes("baggage unpacking"), false, "old Baggage Unpacking language must be removed");
 assert.equal(cleanStart.includes("45-minute"), false, "old 45-minute duration must be removed");
 assert.equal(cleanStart.includes("free clarity"), false, "free-call language must be removed");
-assert.ok(start.includes('href="resources/circadian-rhythm/circadian-rhythm-checkin.pdf"'), "start page should offer the working Circadian Rhythm PDF as a self-guided option");
-assert.ok(start.includes('href="hyrox-quiz.html"'), "start page should offer the owned Hyrox readiness tool");
-assert.ok(start.includes('href="health-lifestyle-quiz.html"'), "start page should offer the owned lifestyle tool");
-assert.ok(start.includes('href="resources/index.html"'), "start page should link to Justin's full resources page");
+assert.equal(start.includes("resource-exit"), false, "the not-sure resource exit is removed — /intro ends on the paid path (2026-07-23 Heathrow call)");
+assert.equal(cleanStart.includes("if you are not sure yet"), false, "no hedge copy on /intro");
 assert.equal(start.includes("Review the Intro Call"), false, "the bottom of the page should not repeat the Intro Call CTA");
 assert.equal(resources.includes("calendly.com"), false, "the resources page should not restore the old free booking path");
 assert.ok(resources.includes('href="../intro.html#intro-call"'), "the resources page should return personalized visitors to the paid Intro Call");
