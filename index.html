@@ -331,11 +331,22 @@
 
         @media (max-width: 600px) {
             .hero {
-                min-height: 78svh;
+                min-height: 62svh;
+                align-items: center;
+            }
+
+            .hero-bg::after {
+                background: linear-gradient(
+                    to bottom,
+                    rgba(20, 34, 27, 0.55) 0%,
+                    rgba(20, 34, 27, 0.45) 45%,
+                    rgba(20, 34, 27, 0.62) 78%,
+                    var(--deep-forest) 100%
+                );
             }
 
             .hero-content {
-                padding: calc(var(--space-10) + 12px) var(--space-3) var(--space-8);
+                padding: calc(var(--space-8) + 20px) var(--space-3) var(--space-5);
             }
 
             .hero-label {
@@ -404,9 +415,9 @@
 
         @media (max-width: 600px) {
             .video-section {
-                height: 40vh;
-                min-height: 200px;
-                max-height: 350px;
+                height: 48vh;
+                min-height: 260px;
+                max-height: 440px;
             }
         }
 
