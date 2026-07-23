@@ -38,7 +38,12 @@ assert.ok(resources.includes('href="../intro.html#intro-call"'), "the resources 
 assert.equal(circadian.toLowerCase().includes("free clarity"), false, "the Circadian resource should not offer a free call");
 assert.ok(circadian.includes('href="../../intro.html#intro-call"'), "the Circadian resource should return personalized visitors to the paid Intro Call");
 assert.equal(config.includes('paymentUrl: ""'), true, "production payment link must remain visibly unconfigured until Justin supplies it");
+assert.equal(config.includes('bookingUrl: ""'), true, "founding-period booking link stays unconfigured until Justin's 60-minute Calendly event exists");
 assert.ok(start.includes('candidate.hostname === "buy.stripe.com"'), "checkout should accept only Stripe-hosted Payment Links");
+assert.ok(start.includes('candidate.hostname === "calendly.com"'), "founding-period booking should accept only Calendly-hosted links");
+assert.ok(start.includes('id="booking-modal"'), "founding-period booking sheet must exist for the no-payment demo flow");
+assert.equal(start.includes('type="card"') || start.toLowerCase().includes("card number"), false, "the booking sheet must never collect card details");
+assert.ok(start.includes("Book now, pay nothing today"), "the booking sheet states plainly that no payment is taken");
 assert.ok(fs.existsSync(path.join(root, "intro", "index.html")), "the QR-compatible /intro route should exist");
 assert.ok(fs.readFileSync(path.join(root, "start", "index.html"), "utf8").includes("../intro.html"), "old /start route must redirect to /intro");
 assert.ok(fs.readFileSync(path.join(root, "start.html"), "utf8").includes("intro.html"), "old start.html must redirect to intro.html");
