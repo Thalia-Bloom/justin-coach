@@ -427,53 +427,107 @@
             margin-bottom: 0;
         }
 
-        /* Principles - editorial list */
-        .principles-flow {
-            list-style: none;
-            max-width: 760px;
-            border-top: 1px solid var(--stone-border);
+        /* Principles - icon cards */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-3);
         }
 
-        .principles-flow li {
-            padding: var(--space-5) 0;
-            border-bottom: 1px solid var(--stone-border);
+        .principle-card {
+            padding: var(--space-4);
+            background: var(--warm-paper);
+            border: 1px solid var(--stone-border);
+            border-radius: var(--radius-md);
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
         }
 
-        .principles-flow h3 {
-            font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+        .principle-card:hover {
+            box-shadow: 0 6px 20px rgba(32, 53, 43, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .principle-card:last-child {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--space-3) var(--space-4);
+            align-items: start;
+        }
+
+        .principle-icon {
+            display: grid;
+            place-items: center;
+            width: 52px;
+            height: 52px;
+            margin-bottom: var(--space-3);
+            border-radius: 50%;
+            background: var(--sand-surface);
+            border: 1px solid var(--stone-border);
+            color: var(--deep-forest);
+        }
+
+        .principle-card:last-child .principle-icon {
+            margin-bottom: 0;
+        }
+
+        .principle-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .principle-card h3 {
+            font-size: 1.25rem;
             margin-bottom: var(--space-1);
         }
 
         .principle-lead {
             font-family: var(--font-display);
             font-style: italic;
-            font-size: 1.0625rem;
+            font-size: 1rem;
             color: var(--ember);
             margin-bottom: var(--space-2);
         }
 
-        .principles-flow p:not(.principle-lead) {
+        .principle-card p:not(.principle-lead) {
             color: var(--ink);
             opacity: 0.72;
-            max-width: 620px;
-            line-height: 1.7;
+            font-size: 0.9375rem;
+            line-height: 1.65;
+        }
+
+        @media (max-width: 700px) {
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .principle-card:last-child {
+                grid-column: auto;
+                display: block;
+            }
+
+            .principle-card:last-child .principle-icon {
+                margin-bottom: var(--space-3);
+            }
         }
 
         @media (max-width: 600px) {
-            .principles-flow li {
-                padding: var(--space-4) 0;
+            .principle-card {
+                padding: var(--space-3);
             }
 
-            .principles-flow h3 {
-                font-size: 1.25rem;
+            .principle-icon {
+                width: 46px;
+                height: 46px;
+                margin-bottom: var(--space-2);
             }
 
-            .principle-lead {
-                font-size: 1rem;
+            .principle-card h3 {
+                font-size: 1.125rem;
             }
 
-            .principles-flow p:not(.principle-lead) {
-                font-size: 0.9375rem;
+            .principle-card p:not(.principle-lead) {
+                font-size: 0.875rem;
             }
         }
 
@@ -502,14 +556,11 @@
         .process-thread::before {
             content: "";
             position: absolute;
-            left: 14px;
-            top: 6px;
-            bottom: 6px;
-            width: 28px;
-            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDMyIDgwIj48cGF0aCBkPSJNMTYgMCBDMjQgMTAgOCAxMCAxNiAyMCBDMjQgMzAgOCAzMCAxNiA0MCBDMjQgNTAgOCA1MCAxNiA2MCBDMjQgNzAgOCA3MCAxNiA4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjAzNTJCIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBvcGFjaXR5PSIwLjIiLz48L3N2Zz4=");
-            background-repeat: repeat-y;
-            background-size: 28px 80px;
-            background-position: top center;
+            left: 26px;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--sand-tan) 8%, var(--sand-tan) 92%, transparent);
         }
 
         .process-step {
@@ -578,9 +629,7 @@
 
         @media (max-width: 600px) {
             .process-thread::before {
-                left: 12px;
-                width: 22px;
-                background-size: 22px 80px;
+                left: 21px;
             }
 
             .process-step {
@@ -1309,33 +1358,50 @@
                 <p>These principles guide how we train, how decisions are made, and how progress is built — physically and mentally.</p>
                 <p>They're not ideals.<br>They guide each session, adjustment, and conversation.</p>
             </div>
-            <ul class="principles-flow">
-                <li>
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-6 4.5 12 2.5-6H21"/></svg>
+                    </span>
                     <h3>The Body Is the Truth-Teller</h3>
                     <p class="principle-lead">Training begins with attention to real signals.</p>
                     <p>Pain, tension, fatigue, energy, and recovery are feedback, not flaws. Learning how your body responds to load and stress allows decisions to be made with clarity instead of guesswork.</p>
-                </li>
-                <li>
+                </div>
+                <div class="principle-card">
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 19.5 9.5 8l4 7 2.5-4 5 8.5"/><path d="M2.5 19.5h19"/></svg>
+                    </span>
                     <h3>Reality Over Fantasy</h3>
                     <p class="principle-lead">Progress starts with honesty.</p>
                     <p>Training must reflect your current capacity, history, lifestyle, and responsibilities, not ideals driven by comparison, ego, or urgency.</p>
-                </li>
-                <li>
+                </div>
+                <div class="principle-card">
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M5 7.5h14M5 12h10M5 16.5h6"/></svg>
+                    </span>
                     <h3>Simplicity Supports Consistency</h3>
                     <p class="principle-lead">Clear structure and repeatable actions compound over time.</p>
                     <p>If something can't be repeated week after week without force, it isn't sustainable, and it won't last.</p>
-                </li>
-                <li>
+                </div>
+                <div class="principle-card">
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6.5v5c0 4.2-2.8 7.2-7 8.9-4.2-1.7-7-4.7-7-8.9v-5l7-3z"/></svg>
+                    </span>
                     <h3>Integrity Over Intensity</h3>
                     <p class="principle-lead">How you train matters more than how hard you train.</p>
                     <p>Quality movement, appropriate loading, and intelligent pacing build more progress than forcing effort. Intensity has value, but only when applied with intention.</p>
-                </li>
-                <li>
-                    <h3>Strength Builds Capability</h3>
-                    <p class="principle-lead">Strength expands tolerance and preserves independence.</p>
-                    <p>A stronger body absorbs stress more effectively, moves with confidence, and remains capable as demands increase. Strength is developed to support durability, longevity, and real life, not numbers alone.</p>
-                </li>
-            </ul>
+                </div>
+                <div class="principle-card">
+                    <span class="principle-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9.5v5M20.5 9.5v5M6.5 12h11"/></svg>
+                    </span>
+                    <div>
+                        <h3>Strength Builds Capability</h3>
+                        <p class="principle-lead">Strength expands tolerance and preserves independence.</p>
+                        <p>A stronger body absorbs stress more effectively, moves with confidence, and remains capable as demands increase. Strength is developed to support durability, longevity, and real life, not numbers alone.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
