@@ -365,47 +365,11 @@
             );
         }
 
-        .video-control {
-            position: absolute;
-            right: var(--space-3);
-            bottom: var(--space-3);
-            z-index: 2;
-            display: grid;
-            width: 44px;
-            height: 44px;
-            padding: 0;
-            place-items: center;
-            border: 1px solid rgba(248, 246, 243, 0.68);
-            border-radius: 50%;
-            background: rgba(32, 53, 43, 0.38);
-            color: var(--warm-paper);
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            opacity: 0.68;
-            transition: opacity 160ms ease, background 160ms ease, transform 160ms ease;
-        }
-
-        .video-control:hover,
-        .video-control:focus-visible {
-            background: rgba(32, 53, 43, 0.68);
-            opacity: 1;
-            transform: scale(1.04);
-        }
-
-        .video-control-icon {
-            font: 600 0.9rem/1 var(--font-body);
-        }
-
         @media (max-width: 600px) {
             .video-section {
                 height: 40vh;
                 min-height: 200px;
                 max-height: 350px;
-            }
-
-            .video-control {
-                right: 12px;
-                bottom: 12px;
             }
         }
 
@@ -1308,9 +1272,6 @@
             <source src="backflip.mp4" type="video/mp4">
         </video>
         <div class="video-overlay"></div>
-        <button class="video-control" id="video-control" type="button" aria-pressed="false" aria-label="Pause background motion">
-            <span class="video-control-icon" id="video-control-icon" aria-hidden="true">Ⅱ</span>
-        </button>
     </section>
 
     <!-- Core Principles -->
@@ -1634,31 +1595,13 @@
             });
         });
 
-        // Backflip motion control
+        // Backflip video: always playing; pause only for OS-level reduced motion
         const backflipVideo = document.getElementById('backflip-video');
-        const videoControl = document.getElementById('video-control');
-        const videoControlIcon = document.getElementById('video-control-icon');
-
-        function setBackflipPlaying(shouldPlay) {
-            if (shouldPlay) {
-                backflipVideo.play().then(() => {
-                    videoControl.setAttribute('aria-pressed', 'false');
-                    videoControl.setAttribute('aria-label', 'Pause background motion');
-                    videoControlIcon.textContent = 'Ⅱ';
-                }).catch(() => setBackflipPlaying(false));
-            } else {
-                backflipVideo.pause();
-                videoControl.setAttribute('aria-pressed', 'true');
-                videoControl.setAttribute('aria-label', 'Play background motion');
-                videoControlIcon.textContent = '▶';
-            }
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            backflipVideo?.pause();
+        } else {
+            backflipVideo?.play().catch(() => {});
         }
-
-        setBackflipPlaying(!window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-        videoControl?.addEventListener('click', () => {
-            const isMarkedPaused = videoControl.getAttribute('aria-pressed') === 'true';
-            setBackflipPlaying(isMarkedPaused);
-        });
 
         // Testimonial read-more modal
         const tModal = document.getElementById('testimonial-modal');

@@ -190,32 +190,6 @@
             font-size: clamp(1rem, 2vw, 1.18rem);
         }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
-        .motion-control {
-            position: absolute;
-            right: 24px;
-            top: 88px;
-            z-index: 3;
-            display: grid;
-            width: 44px;
-            height: 44px;
-            padding: 0;
-            place-items: center;
-            border: 1px solid rgba(248, 246, 243, 0.62);
-            border-radius: 50%;
-            background: rgba(20, 34, 27, 0.38);
-            color: var(--paper);
-            cursor: pointer;
-            backdrop-filter: blur(8px);
-            opacity: 0.7;
-            transition: opacity 160ms ease, background 160ms ease, transform 160ms ease;
-        }
-        .motion-control:hover,
-        .motion-control:focus-visible {
-            background: rgba(20, 34, 27, 0.7);
-            opacity: 1;
-            transform: scale(1.04);
-        }
-        .motion-control-icon { font: 600 0.9rem/1 var(--body); }
 
         section { padding: var(--s10) 0; }
         .section-alt { background: var(--surface); }
@@ -488,7 +462,6 @@
             .hero-visual { object-position: center; }
             .hero-actions { align-items: stretch; flex-direction: column; }
             .button { width: 100%; }
-            .motion-control { top: auto; right: 16px; bottom: 16px; }
             .checkout-panel { padding: 24px; }
             .included-list::before { left: 11px; width: 20px; background-size: 20px 64px; }
             .included-list li {
@@ -537,9 +510,6 @@
                     </div>
                 </div>
             </div>
-            <button class="motion-control" id="motion-control" type="button" aria-pressed="false" aria-label="Pause background motion">
-                <span class="motion-control-icon" id="motion-control-icon" aria-hidden="true">Ⅱ</span>
-            </button>
         </section>
 
         <section id="intro-call" aria-labelledby="offer-title">
@@ -662,34 +632,12 @@
         }
 
         const heroVisual = document.getElementById("hero-visual");
-        const motionControl = document.getElementById("motion-control");
-        const motionControlIcon = document.getElementById("motion-control-icon");
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
         const revealLists = document.querySelectorAll(".included-list, .path-grid");
 
-        function pauseMotion() {
-            heroVisual.pause();
-            motionControl.setAttribute("aria-pressed", "true");
-            motionControl.setAttribute("aria-label", "Play background motion");
-            motionControlIcon.textContent = "▶";
-        }
-
-        function playMotion() {
-            heroVisual.play().then(() => {
-                motionControl.setAttribute("aria-pressed", "false");
-                motionControl.setAttribute("aria-label", "Pause background motion");
-                motionControlIcon.textContent = "Ⅱ";
-            }).catch(pauseMotion);
-        }
-
-        if (reducedMotion.matches) pauseMotion();
-        else playMotion();
-
-        motionControl.addEventListener("click", () => {
-            const isMarkedPaused = motionControl.getAttribute("aria-pressed") === "true";
-            if (isMarkedPaused) playMotion();
-            else pauseMotion();
-        });
+        // Hero video: always playing; pause only for OS-level reduced motion
+        if (reducedMotion.matches) heroVisual?.pause();
+        else heroVisual?.play().catch(() => {});
 
         if (revealLists.length && !reducedMotion.matches && "IntersectionObserver" in window) {
             revealLists.forEach(list => {

@@ -15,7 +15,9 @@ const cleanStart = start.toLowerCase();
 
 assert.ok(home.includes('href="start/"'), "homepage should route into the owned start path");
 assert.ok(quiz.includes('href="start/"'), "quiz should route into the owned start path");
-assert.ok(home.includes('id="video-control"'), "homepage backflip should have a motion control");
+assert.ok(home.includes('autoplay muted loop playsinline'), "homepage backflip video should autoplay silently in a loop");
+assert.equal(home.includes('id="video-control"'), false, "homepage should have no pause/play control (2026-07-23 Heathrow call)");
+assert.equal(start.includes('id="motion-control"'), false, "/start should have no pause/play control (2026-07-23 Heathrow call)");
 assert.ok(home.includes('aria-hidden="true"'), "testimonial dialog should start outside the accessibility tree");
 assert.ok(start.includes("60-minute Intro Call"), "start page should state the 60-minute offer");
 assert.ok(start.includes("<strong>$79</strong>"), "start page should disclose the price before payment");
