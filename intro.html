@@ -226,11 +226,22 @@
             width: 2px;
             background: repeating-linear-gradient(
                 to bottom,
-                rgba(163, 128, 103, 0.55) 0 5px,
+                rgba(163, 128, 103, 0.65) 0 5px,
                 transparent 5px 12px
             );
-            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
-            mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 96%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 96%, transparent);
+        }
+
+        .included-list > li > span.pin {
+            background: var(--clay);
+            color: var(--cream);
+            font-style: normal;
+        }
+
+        .included-list > li > span.pin svg {
+            width: 20px;
+            height: 20px;
         }
         .included-list li {
             position: relative;
@@ -321,57 +332,27 @@
         .path-head { max-width: 700px; }
         .path-head h2 {
             margin-top: 14px;
-            font-size: clamp(2.2rem, 5vw, 4rem);
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
         }
         .path-grid {
-            position: relative;
-            margin-top: var(--s6);
+            margin-top: var(--s5);
             display: grid;
-            gap: var(--s5);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
             list-style: none;
         }
-        .path-grid::before {
-            content: "";
-            position: absolute;
-            left: 25px;
-            top: 6px;
-            bottom: 6px;
-            width: 2px;
-            background: repeating-linear-gradient(
-                to bottom,
-                rgba(32, 53, 43, 0.3) 0 5px,
-                transparent 5px 12px
-            );
-            -webkit-mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
-            mask-image: linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
-        }
         .path-step {
-            position: relative;
-            isolation: isolate;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: 56px 1fr;
-            gap: 20px;
-            padding-bottom: var(--s5);
-        }
-        .path-step:not(:last-child) {
-            border-bottom: 1px solid rgba(42, 45, 50, 0.1);
+            padding-top: 16px;
+            border-top: 1px solid rgba(42, 45, 50, 0.16);
         }
         .path-number {
-            display: grid;
-            width: 52px;
-            height: 52px;
-            place-items: center;
-            border: 1px solid rgba(163, 128, 103, 0.4);
-            border-radius: 50%;
-            background: var(--cream);
+            display: block;
             color: var(--clay);
-            font: 400 1.5rem/1 var(--display);
+            font: 400 1.3rem/1 var(--display);
             font-style: italic;
-            box-shadow: 0 0 0 6px var(--surface), 0 10px 22px rgba(32, 53, 43, 0.1);
         }
-        .path-step h3 { margin-top: 4px; margin-bottom: 10px; font-size: 1.18rem; }
-        .path-step p { max-width: 460px; color: rgba(42, 45, 50, 0.7); font-size: 0.94rem; }
+        .path-step h3 { margin-top: 8px; margin-bottom: 6px; font-size: 1.05rem; }
+        .path-step p { color: rgba(42, 45, 50, 0.66); font-size: 0.89rem; line-height: 1.5; }
 
         footer {
             display: flex;
@@ -400,6 +381,7 @@
             .hero-content { padding: 130px 0 84px; }
             .offer-grid { grid-template-columns: 1fr; }
             .checkout-panel { position: static; }
+            .path-grid { grid-template-columns: 1fr 1fr; gap: 22px; }
         }
         @media (max-width: 560px) {
             body { font-size: 16px; }
@@ -419,13 +401,6 @@
             }
             .included-list > li > span { width: 38px; height: 38px; font-size: 1rem; }
             .included-list strong { font-size: 1.14rem; }
-            .path-grid::before { left: 20px; }
-            .path-step {
-                grid-template-columns: 44px 1fr;
-                gap: 14px;
-                padding-bottom: var(--s4);
-            }
-            .path-number { width: 42px; height: 42px; font-size: 1.24rem; box-shadow: 0 0 0 5px var(--surface), 0 8px 18px rgba(32, 53, 43, 0.1); }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -460,21 +435,6 @@
             </div>
         </section>
 
-        <section class="section-alt" aria-labelledby="path-title">
-            <div class="container">
-                <div class="path-head">
-                    <span class="section-label">How it works</span>
-                    <h2 id="path-title">Here's how it goes.</h2>
-                </div>
-                <ol class="path-grid">
-                    <li class="path-step"><span class="path-number" aria-hidden="true">1</span><div><h3>Reserve your call</h3><p>You pay once, right here. That hour is yours.</p></div></li>
-                    <li class="path-step"><span class="path-number" aria-hidden="true">2</span><div><h3>Pick your time</h3><p>My calendar opens as soon as you're done. Choose whatever works for your week.</p></div></li>
-                    <li class="path-step"><span class="path-number" aria-hidden="true">3</span><div><h3>Tell me where you're at</h3><p>A few short questions before we meet. Honest answers help me show up ready for you.</p></div></li>
-                    <li class="path-step"><span class="path-number" aria-hidden="true">4</span><div><h3>We talk</h3><p>One real conversation about your training, your life, and what to do next. Then you'll get my recommendation in writing.</p></div></li>
-                </ol>
-            </div>
-        </section>
-
         <section id="intro-call" aria-labelledby="offer-title">
             <div class="container offer-grid">
                 <div class="offer-copy">
@@ -491,7 +451,7 @@
                             <div><strong>We find the useful lever</strong><p>Most people are juggling ten things at once. Together we'll find the one worth your attention first.</p></div>
                         </li>
                         <li>
-                            <span aria-hidden="true">3</span>
+                            <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.4-6.5-10a6.5 6.5 0 1 1 13 0c0 4.6-6.5 10-6.5 10z"/><circle cx="12" cy="10.6" r="2.3"/></svg></span>
                             <div><strong>You leave with a clear next step</strong><p>After the call I'll send you a personalized written recap with my honest recommendation for what to do next.</p></div>
                         </li>
                     </ol>
@@ -510,6 +470,21 @@
                     <p class="secure-note" id="secure-note">Payment will be handled securely by Stripe. Card details never pass through this website.</p>
                     <p class="checkout-status" id="checkout-status" role="status" aria-live="polite">Justin's client-owned payment link is the final launch connection. No payment is being accepted from this preview.</p>
                 </aside>
+            </div>
+        </section>
+
+        <section class="section-alt" aria-labelledby="path-title">
+            <div class="container">
+                <div class="path-head">
+                    <span class="section-label">How it works</span>
+                    <h2 id="path-title">Here's how it goes.</h2>
+                </div>
+                <ol class="path-grid">
+                    <li class="path-step"><span class="path-number" aria-hidden="true">1</span><h3>Book your call</h3><p>Lock in your hour above.</p></li>
+                    <li class="path-step"><span class="path-number" aria-hidden="true">2</span><h3>Pick your time</h3><p>My calendar opens right after.</p></li>
+                    <li class="path-step"><span class="path-number" aria-hidden="true">3</span><h3>Tell me where you're at</h3><p>A few honest questions before we meet.</p></li>
+                    <li class="path-step"><span class="path-number" aria-hidden="true">4</span><h3>We talk</h3><p>One real conversation. Your next step in writing.</p></li>
+                </ol>
             </div>
         </section>
 
