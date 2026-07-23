@@ -3,67 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimal Equipment Program | Justin</title>
-    <meta name="description" content="A 6-week home training program. Dumbbells, kettlebell, pull-up bar—that's it. $47.">
+    <title>Minimal Equipment | Justin the Practice</title>
+    <meta name="description" content="A complete 6-week home training program. No gym required — just a few basics and the will to show up.">
+    <link rel="icon" href="../qr.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-black: #111;
-            --color-dark: #1a1a1a;
-            --color-text: #333;
-            --color-secondary: #666;
-            --color-muted: #888;
-            --color-border: #e0e0e0;
-            --color-light: #f5f5f5;
-            --color-white: #fff;
-            --color-accent: #2d5a47;
-            --color-accent-light: #e8f0ec;
-            --font-serif: 'EB Garamond', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, sans-serif;
+            --warm-paper: #F8F6F3;
+            --sand-surface: #EBE8E3;
+            --stone-border: #D4CFC8;
+            --ink: #2A2D32;
+            --deep-forest: #20352B;
+            --slate: #4A5568;
+            --clay: #A38067;
+            --ember: #8B6B53;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+            --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+            --space-5: 40px; --space-6: 48px; --space-8: 64px;
+            --radius-sm: 2px; --radius-md: 4px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-sans); background: var(--color-white); color: var(--color-text); line-height: 1.7; }
-        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--color-black); }
-        .container { max-width: 720px; margin: 0 auto; padding: 0 2rem; }
+        body { font-family: var(--font-body); background: var(--warm-paper); color: var(--ink); line-height: 1.65; font-size: 17px; }
+        h1, h2, h3 { font-family: var(--font-display); font-weight: 400; color: var(--deep-forest); line-height: 1.25; }
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
+        .container { max-width: 720px; margin: 0 auto; padding: 0 var(--space-3); }
 
-        nav { padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); }
-        .nav-logo { font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-black); text-decoration: none; }
-        .nav-back { font-size: 0.875rem; color: var(--color-secondary); text-decoration: none; }
-        .nav-back:hover { color: var(--color-black); }
+        nav { padding: var(--space-3) var(--space-4); display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); border-bottom: 1px solid var(--stone-border); }
+        .nav-logo { font-family: var(--font-display); font-size: 1.25rem; color: var(--deep-forest); text-decoration: none; }
+        .nav-back { font-size: 0.875rem; color: var(--slate); text-decoration: none; transition: color 0.2s; }
+        .nav-back:hover { color: var(--deep-forest); }
 
-        .hero { padding: 5rem 0 3rem; border-bottom: 1px solid var(--color-border); }
-        .resource-type { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-accent); margin-bottom: 1rem; }
-        .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
-        .hero-price { font-family: var(--font-serif); font-size: 1.5rem; color: var(--color-black); margin-bottom: 1.5rem; }
-        .hero-desc { font-size: 1.125rem; color: var(--color-secondary); max-width: 540px; }
+        .hero { padding: var(--space-8) 0 var(--space-6); border-bottom: 1px solid var(--stone-border); animation: rise 600ms ease both; }
+        .resource-type { font-size: 0.6875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: var(--clay); margin-bottom: var(--space-2); }
+        .hero h1 { font-size: clamp(2rem, 5vw, 2.75rem); margin-bottom: var(--space-2); }
+        .hero-price { font-family: var(--font-display); font-size: 1.375rem; color: var(--ember); margin-bottom: var(--space-3); }
+        .hero-desc { font-size: 1.0625rem; color: var(--ink); opacity: 0.75; max-width: 560px; line-height: 1.7; }
 
-        .content { padding: 3rem 0; }
-        .content h2 { font-size: 1.5rem; margin-bottom: 1rem; margin-top: 2rem; }
+        .content { padding: var(--space-6) 0; }
+        .content h2 { font-size: 1.5rem; margin: var(--space-5) 0 var(--space-2); }
         .content h2:first-child { margin-top: 0; }
-        .content p { margin-bottom: 1rem; color: var(--color-secondary); }
-        .content ul { margin: 1rem 0 1rem 1.5rem; color: var(--color-secondary); }
-        .content li { margin-bottom: 0.5rem; }
+        .content p { margin-bottom: var(--space-2); color: var(--ink); opacity: 0.75; }
+        .content ul { margin: var(--space-2) 0 var(--space-2) var(--space-3); color: var(--ink); opacity: 0.75; }
+        .content li { margin-bottom: var(--space-1); }
 
-        .equipment-list { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 2rem 0; }
-        .equipment-item { background: var(--color-light); padding: 1.25rem 1.5rem; border: 1px solid var(--color-border); font-size: 0.9375rem; color: var(--color-text); }
+        .equipment-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--space-2); margin: var(--space-4) 0 var(--space-3); }
+        .equipment-item { background: var(--sand-surface); padding: var(--space-2); border: 1px solid var(--stone-border); border-radius: var(--radius-md); text-align: center; font-size: 0.875rem; color: var(--slate); }
 
-        .cta-box { background: var(--color-light); border: 1px solid var(--color-border); padding: 2.5rem; margin: 3rem 0; text-align: center; }
-        .cta-box h3 { font-size: 1.5rem; margin-bottom: 0.75rem; }
-        .cta-box p { color: var(--color-secondary); margin-bottom: 1.5rem; }
+        .cta-box { background: linear-gradient(135deg, rgba(163, 128, 103, 0.12) 0%, rgba(163, 128, 103, 0.06) 100%); border: 1px solid var(--clay); border-radius: var(--radius-md); padding: var(--space-5); margin: var(--space-6) 0; text-align: center; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: var(--space-2); }
+        .cta-box p { color: var(--ink); opacity: 0.75; margin-bottom: var(--space-3); max-width: 480px; margin-left: auto; margin-right: auto; }
 
-        .btn { display: inline-block; padding: 1rem 2rem; background: var(--color-dark); color: var(--color-white); border: none; font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 500; cursor: pointer; text-decoration: none; }
-        .btn:hover { background: var(--color-black); }
+        .btn-primary { display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-4); background: var(--clay); color: var(--warm-paper); border: none; border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 0.9375rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .btn-primary:hover { background: var(--ember); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(163, 128, 103, 0.25); }
 
-        footer { padding: 3rem 2rem; border-top: 1px solid var(--color-border); text-align: center; }
-        .footer-tagline { font-family: var(--font-serif); font-style: italic; color: var(--color-muted); }
+        footer { padding: var(--space-5) var(--space-4); border-top: 1px solid var(--stone-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-2); }
+        .footer-tagline { font-family: var(--font-display); font-style: italic; color: var(--ink); opacity: 0.5; }
+        .footer-note { font-size: 0.8125rem; color: var(--ink); opacity: 0.5; }
+
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+        @media (max-width: 600px) {
+            nav { padding: var(--space-2) var(--space-3); }
+            .hero { padding: var(--space-6) 0 var(--space-5); }
+            .cta-box { padding: var(--space-4); }
+            footer { flex-direction: column; text-align: center; }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="../index.html" class="nav-logo">Justin</a>
-        <a href="../index.html#resources" class="nav-back">← Back to programs</a>
+        <a href="../index.html" class="nav-logo">Justin the Practice</a>
+        <a href="../resources/index.html" class="nav-back">← Back to resources</a>
     </nav>
 
     <div class="container">
@@ -71,7 +86,7 @@
             <p class="resource-type">6-Week Program</p>
             <h1>Minimal Equipment</h1>
             <p class="hero-price">$47</p>
-            <p class="hero-desc">A complete home training program. No gym required—just a few basics and the will to show up.</p>
+            <p class="hero-desc">A complete home training program. No gym required — just a few basics and the will to show up.</p>
         </section>
 
         <section class="content">
@@ -102,21 +117,15 @@
         </section>
 
         <div class="cta-box">
-            <h3>Get Minimal Equipment</h3>
-            <p>One payment, lifetime access. Start training at home today.</p>
-            <a href="#" class="btn" id="purchase-btn">Purchase for $47</a>
+            <h3>Interested in Minimal Equipment?</h3>
+            <p>Programs are set up with Justin directly, so the plan matches where you actually are. Start with the Intro Call and leave with a clear next step.</p>
+            <a href="../start/" class="btn-primary">Start with the Intro Call</a>
         </div>
     </div>
 
     <footer>
-        <p class="footer-tagline">Strong body. Clear mind. Wild heart.</p>
+        <span class="footer-tagline">Justin the Practice</span>
+        <span class="footer-note">Strength, clarity, and physical readiness.</span>
     </footer>
-
-    <script>
-        document.getElementById('purchase-btn').addEventListener('click', e => {
-            e.preventDefault();
-            alert('Redirecting to checkout... (Demo - connect to payment processor)');
-        });
-    </script>
 </body>
 </html>

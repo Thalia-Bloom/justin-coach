@@ -5,11 +5,12 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 
 ## Current State
 - **Status**: Live, production
-- **Last worked on**: 2026-07-19
+- **Last worked on**: 2026-07-23
 - **Deploy branch**: main (auto-deploys via GitHub Pages)
 - **Live URL**: justinthepractice.com
-- **Repo**: heathrowandrews/justin-coach
+- **Repo**: Thalia-Bloom/justin-coach
 - **Local draft**: backflip homepage bridge, homepage-only Heathrow testimonial, mobile-first PNW river `/start` hero, $79 Intro Call path with a quiet self-guided resource exit, and owned Health & Lifestyle quiz; not deployed
+- **2026-07-23 cohesion pass** (branch `codex/justin-jul19-launch`): every page now shares the sand/Playfair/Source Sans system. Programs ×3, old resource pages ×3, and submit-testimonial ported off the legacy EB Garamond/Inter look; all fake demo alerts removed (program checkouts → Intro Call, email-gated PDFs → honest "in the works" + Circadian PDF, pattern quiz → owned quiz, testimonial form → copy-and-send handoff). Resources library rebuilt: Ready Now (3 working tools incl. both quizzes) / Training Programs / quiet In-the-Works list — no dead Coming Soon buttons. Homepage: dead contact modal removed, focus-visible + reduced-motion + OG tags added, footer Resources link.
 
 ## Stack & Architecture
 - Pure static HTML/CSS/JavaScript — no build tools, no frameworks
@@ -39,8 +40,8 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - Health & Lifestyle answers stay in browser memory only; no PII, analytics, or third-party quiz runtime
 
 ## Known Issues & Gotchas
-- **DO NOT push carelessly** — this is a live client site, changes go live immediately
-- Email/lead capture is not production-backed yet: Hyrox quiz stores leads in browser `localStorage`, and several resource/contact/program flows still show demo alerts
+- **DO NOT push carelessly** — this is a live client site, changes go live immediately (main only; branches are safe)
+- Email/lead capture is not production-backed yet: Hyrox quiz stores leads in browser `localStorage`. Demo alerts are gone as of 2026-07-23 — every CTA is now an honest link or an explicit "in the works" state
 - Justin manages his own site content — coordinate before making changes
 
 ## Error Log

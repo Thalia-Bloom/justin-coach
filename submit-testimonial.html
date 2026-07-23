@@ -3,98 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Share Your Story | Justin</title>
+    <title>Share Your Story | Justin the Practice</title>
     <meta name="description" content="Share your experience working with Justin. Your story might help someone else take the first step.">
+    <link rel="icon" href="qr.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --color-black: #111;
-            --color-dark: #1a1a1a;
-            --color-text: #333;
-            --color-secondary: #666;
-            --color-muted: #888;
-            --color-border: #e0e0e0;
-            --color-light: #f5f5f5;
-            --color-white: #fff;
-            --color-accent: #2d5a47;
-            --color-accent-light: #e8f0ec;
-            --color-error: #c53030;
-            --font-serif: 'EB Garamond', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, sans-serif;
+            --warm-paper: #F8F6F3;
+            --sand-surface: #EBE8E3;
+            --stone-border: #D4CFC8;
+            --ink: #2A2D32;
+            --deep-forest: #20352B;
+            --slate: #4A5568;
+            --clay: #A38067;
+            --ember: #8B6B53;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+            --space-1: 8px; --space-2: 16px; --space-3: 24px; --space-4: 32px;
+            --space-5: 40px; --space-6: 48px; --space-8: 64px;
+            --radius-sm: 2px; --radius-md: 4px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-sans); background: var(--color-white); color: var(--color-text); line-height: 1.7; }
-        h1, h2, h3 { font-family: var(--font-serif); font-weight: 400; color: var(--color-black); }
-        .container { max-width: 640px; margin: 0 auto; padding: 0 2rem; }
+        body { font-family: var(--font-body); background: var(--warm-paper); color: var(--ink); line-height: 1.65; font-size: 17px; }
+        h1, h2, h3 { font-family: var(--font-display); font-weight: 400; color: var(--deep-forest); line-height: 1.25; }
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
+        .container { max-width: 640px; margin: 0 auto; padding: 0 var(--space-3); }
 
-        nav { padding: 1.5rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); }
-        .nav-logo { font-family: var(--font-serif); font-size: 1.25rem; color: var(--color-black); text-decoration: none; }
-        .nav-back { font-size: 0.875rem; color: var(--color-secondary); text-decoration: none; }
-        .nav-back:hover { color: var(--color-black); }
+        nav { padding: var(--space-3) var(--space-4); display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); border-bottom: 1px solid var(--stone-border); }
+        .nav-logo { font-family: var(--font-display); font-size: 1.25rem; color: var(--deep-forest); text-decoration: none; }
+        .nav-back { font-size: 0.875rem; color: var(--slate); text-decoration: none; transition: color 0.2s; }
+        .nav-back:hover { color: var(--deep-forest); }
 
-        .hero { padding: 4rem 0 3rem; text-align: center; border-bottom: 1px solid var(--color-border); }
-        .hero h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: 1rem; }
-        .hero p { font-size: 1.0625rem; color: var(--color-secondary); max-width: 480px; margin: 0 auto; }
+        .hero { padding: var(--space-8) 0 var(--space-5); text-align: center; border-bottom: 1px solid var(--stone-border); animation: rise 600ms ease both; }
+        .hero h1 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin-bottom: var(--space-2); }
+        .hero p { font-size: 1.0625rem; color: var(--ink); opacity: 0.75; max-width: 480px; margin: 0 auto; }
 
-        .form-section { padding: 3rem 0; }
-
-        .form-group { margin-bottom: 1.75rem; }
-        .form-group label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.625rem; color: var(--color-text); }
-        .form-group .label-optional { font-weight: 400; color: var(--color-muted); text-transform: none; letter-spacing: 0; margin-left: 0.5rem; }
+        .form-section { padding: var(--space-6) 0 var(--space-8); }
+        .form-group { margin-bottom: var(--space-4); }
+        .form-group label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: var(--space-1); color: var(--ink); opacity: 0.7; }
         .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group textarea { width: 100%; padding: 0.875rem 1rem; border: 1px solid var(--color-border); font-family: var(--font-sans); font-size: 0.9375rem; background: var(--color-white); transition: border-color 0.2s; }
+        .form-group textarea { width: 100%; padding: var(--space-2); border: 1px solid var(--stone-border); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 0.9375rem; background: var(--warm-paper); color: var(--ink); transition: border-color 0.2s; }
         .form-group input:focus,
-        .form-group textarea:focus { outline: none; border-color: var(--color-black); }
-        .form-group textarea { min-height: 160px; resize: vertical; }
-        .form-group .help-text { font-size: 0.8125rem; color: var(--color-muted); margin-top: 0.5rem; }
+        .form-group textarea:focus { outline: none; border-color: var(--clay); }
+        .form-group textarea { min-height: 180px; resize: vertical; }
+        .help-text { font-size: 0.8125rem; color: var(--slate); margin-top: var(--space-1); }
 
-        .media-upload { margin-bottom: 2rem; }
-        .media-upload label { display: block; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.625rem; color: var(--color-text); }
+        .media-note { margin: var(--space-4) 0; padding: var(--space-3); background: var(--sand-surface); border: 1px solid var(--stone-border); border-radius: var(--radius-md); font-size: 0.9375rem; color: var(--ink); }
+        .media-note strong { color: var(--deep-forest); }
 
-        .upload-tabs { display: flex; gap: 0; margin-bottom: 1rem; border: 1px solid var(--color-border); }
-        .upload-tab { flex: 1; padding: 0.875rem 1rem; background: var(--color-white); border: none; font-family: var(--font-sans); font-size: 0.875rem; color: var(--color-secondary); cursor: pointer; transition: all 0.2s; border-right: 1px solid var(--color-border); }
-        .upload-tab:last-child { border-right: none; }
-        .upload-tab:hover { background: var(--color-light); }
-        .upload-tab.active { background: var(--color-dark); color: var(--color-white); }
+        .consent-group { margin: var(--space-4) 0; padding: var(--space-3); background: var(--sand-surface); border: 1px solid var(--stone-border); border-radius: var(--radius-md); }
+        .consent-group label { display: flex; gap: var(--space-2); align-items: flex-start; cursor: pointer; font-size: 0.875rem; color: var(--ink); opacity: 0.85; line-height: 1.5; }
+        .consent-group input[type="checkbox"] { margin-top: 4px; width: 18px; height: 18px; flex-shrink: 0; accent-color: var(--clay); }
 
-        .upload-area { border: 2px dashed var(--color-border); padding: 2.5rem 2rem; text-align: center; cursor: pointer; transition: all 0.2s; }
-        .upload-area:hover { border-color: var(--color-muted); background: var(--color-light); }
-        .upload-area.drag-over { border-color: var(--color-accent); background: var(--color-accent-light); }
-        .upload-area.has-file { border-style: solid; border-color: var(--color-accent); background: var(--color-accent-light); }
-        .upload-icon { font-size: 2rem; margin-bottom: 0.75rem; color: var(--color-muted); }
-        .upload-text { font-size: 0.9375rem; color: var(--color-secondary); margin-bottom: 0.25rem; }
-        .upload-hint { font-size: 0.8125rem; color: var(--color-muted); }
-        .upload-filename { font-size: 0.9375rem; color: var(--color-accent); font-weight: 500; word-break: break-all; }
-        .upload-remove { display: inline-block; margin-top: 0.75rem; font-size: 0.8125rem; color: var(--color-error); cursor: pointer; text-decoration: underline; }
+        .btn-primary { display: inline-flex; align-items: center; gap: var(--space-1); padding: var(--space-2) var(--space-5); background: var(--clay); color: var(--warm-paper); border: none; border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 0.9375rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .btn-primary:hover { background: var(--ember); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(163, 128, 103, 0.25); }
+        .btn-secondary { display: inline-flex; align-items: center; gap: var(--space-1); padding: calc(var(--space-2) - 1px) calc(var(--space-4) - 1px); background: transparent; color: var(--deep-forest); border: 1px solid var(--deep-forest); border-radius: var(--radius-sm); font-family: var(--font-body); font-size: 0.9375rem; font-weight: 500; text-decoration: none; cursor: pointer; transition: background 0.2s ease, color 0.2s ease; }
+        .btn-secondary:hover { background: var(--deep-forest); color: var(--warm-paper); }
 
-        input[type="file"] { display: none; }
+        .handoff { display: none; padding: var(--space-5); background: var(--sand-surface); border: 1px solid var(--stone-border); border-radius: var(--radius-md); }
+        .handoff.active { display: block; animation: rise 400ms ease both; }
+        .handoff h2 { font-size: 1.5rem; margin-bottom: var(--space-2); }
+        .handoff p { color: var(--ink); opacity: 0.8; margin-bottom: var(--space-3); font-size: 0.9375rem; }
+        .handoff-story { white-space: pre-wrap; background: var(--warm-paper); border: 1px solid var(--stone-border); border-radius: var(--radius-sm); padding: var(--space-3); font-size: 0.9375rem; margin-bottom: var(--space-3); max-height: 300px; overflow-y: auto; }
+        .handoff-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+        .copy-confirm { font-size: 0.875rem; color: var(--deep-forest); margin-top: var(--space-2); min-height: 1.4em; }
 
-        .preview-container { margin-top: 1rem; }
-        .preview-container img,
-        .preview-container video { max-width: 100%; max-height: 300px; border: 1px solid var(--color-border); }
+        footer { padding: var(--space-5) var(--space-4); border-top: 1px solid var(--stone-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-2); }
+        .footer-tagline { font-family: var(--font-display); font-style: italic; color: var(--ink); opacity: 0.5; }
+        .footer-note { font-size: 0.8125rem; color: var(--ink); opacity: 0.5; }
 
-        .consent-group { margin: 2rem 0; padding: 1.5rem; background: var(--color-light); border: 1px solid var(--color-border); }
-        .consent-group label { display: flex; gap: 0.75rem; align-items: flex-start; cursor: pointer; font-size: 0.875rem; color: var(--color-secondary); line-height: 1.5; }
-        .consent-group input[type="checkbox"] { margin-top: 0.25rem; width: 18px; height: 18px; flex-shrink: 0; }
-
-        .btn { display: inline-block; padding: 1rem 2.5rem; background: var(--color-dark); color: var(--color-white); border: none; font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: background 0.2s; }
-        .btn:hover { background: var(--color-black); }
-        .btn:disabled { background: var(--color-muted); cursor: not-allowed; }
-
-        .success-message { display: none; text-align: center; padding: 4rem 2rem; }
-        .success-message h2 { font-size: 1.75rem; margin-bottom: 1rem; }
-        .success-message p { color: var(--color-secondary); margin-bottom: 2rem; }
-
-        footer { padding: 3rem 2rem; border-top: 1px solid var(--color-border); text-align: center; margin-top: 2rem; }
-        .footer-tagline { font-family: var(--font-serif); font-style: italic; color: var(--color-muted); }
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+        @media (max-width: 600px) {
+            nav { padding: var(--space-2) var(--space-3); }
+            .hero { padding: var(--space-6) 0 var(--space-4); }
+            footer { flex-direction: column; text-align: center; }
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="index.html" class="nav-logo">Justin</a>
+        <a href="index.html" class="nav-logo">Justin the Practice</a>
         <a href="index.html" class="nav-back">← Back to site</a>
     </nav>
 
@@ -109,13 +102,7 @@
                 <div class="form-group">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" required placeholder="How you'd like to be identified">
-                    <p class="help-text">First name only, or full name—your choice.</p>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email <span class="label-optional">(won't be published)</span></label>
-                    <input type="email" id="email" name="email" required placeholder="you@example.com">
-                    <p class="help-text">So I can follow up if needed. Never shared.</p>
+                    <p class="help-text">First name only, or full name — your choice.</p>
                 </div>
 
                 <div class="form-group">
@@ -124,23 +111,8 @@
                     <p class="help-text">Be as detailed or brief as you'd like. Authentic is better than polished.</p>
                 </div>
 
-                <div class="media-upload">
-                    <label>Add a Photo or Video <span class="label-optional">(optional)</span></label>
-
-                    <div class="upload-tabs">
-                        <button type="button" class="upload-tab active" data-type="photo">Photo</button>
-                        <button type="button" class="upload-tab" data-type="video">Video</button>
-                    </div>
-
-                    <div class="upload-area" id="upload-area">
-                        <div class="upload-icon">📷</div>
-                        <p class="upload-text">Drag and drop or click to upload</p>
-                        <p class="upload-hint">JPG, PNG up to 10MB</p>
-                    </div>
-                    <input type="file" id="photo-input" accept="image/*">
-                    <input type="file" id="video-input" accept="video/*">
-
-                    <div class="preview-container" id="preview-container"></div>
+                <div class="media-note">
+                    <strong>Have a photo or video?</strong> Send it to Justin directly when you share your story — whatever way you normally reach him works.
                 </div>
 
                 <div class="consent-group">
@@ -150,141 +122,64 @@
                     </label>
                 </div>
 
-                <button type="submit" class="btn">Submit Testimonial</button>
+                <button type="submit" class="btn-primary">Prepare My Story</button>
+                <p class="help-text" style="margin-top: var(--space-2);">Nothing is sent from this page. The next step puts your story in your hands to send to Justin directly.</p>
             </form>
 
-            <div class="success-message" id="success-message">
-                <h2>Thank You</h2>
-                <p>Your story has been submitted. I appreciate you taking the time to share it.</p>
-                <a href="index.html" class="btn">Back to Home</a>
+            <div class="handoff" id="handoff" aria-live="polite">
+                <h2>Your story is ready</h2>
+                <p>This page doesn't send anything on its own. Copy your story below and send it to Justin the way you normally reach him — text, email, or in person.</p>
+                <div class="handoff-story" id="handoff-story"></div>
+                <div class="handoff-actions">
+                    <button type="button" class="btn-primary" id="copy-btn">Copy my story</button>
+                    <button type="button" class="btn-secondary" id="edit-btn">Keep editing</button>
+                </div>
+                <p class="copy-confirm" id="copy-confirm"></p>
             </div>
         </section>
     </div>
 
     <footer>
-        <p class="footer-tagline">Strong body. Clear mind. Wild heart.</p>
+        <span class="footer-tagline">Justin the Practice</span>
+        <span class="footer-note">Strength, clarity, and physical readiness.</span>
     </footer>
 
     <script>
         const form = document.getElementById('testimonial-form');
-        const successMessage = document.getElementById('success-message');
-        const uploadArea = document.getElementById('upload-area');
-        const photoInput = document.getElementById('photo-input');
-        const videoInput = document.getElementById('video-input');
-        const previewContainer = document.getElementById('preview-container');
-        const tabs = document.querySelectorAll('.upload-tab');
+        const handoff = document.getElementById('handoff');
+        const handoffStory = document.getElementById('handoff-story');
+        const copyBtn = document.getElementById('copy-btn');
+        const editBtn = document.getElementById('edit-btn');
+        const copyConfirm = document.getElementById('copy-confirm');
 
-        let currentType = 'photo';
-        let selectedFile = null;
-
-        // Tab switching
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                currentType = tab.dataset.type;
-
-                // Update upload area
-                if (currentType === 'photo') {
-                    uploadArea.querySelector('.upload-icon').textContent = '📷';
-                    uploadArea.querySelector('.upload-hint').textContent = 'JPG, PNG up to 10MB';
-                } else {
-                    uploadArea.querySelector('.upload-icon').textContent = '🎥';
-                    uploadArea.querySelector('.upload-hint').textContent = 'MP4, MOV up to 100MB';
-                }
-
-                // Clear selection
-                clearFile();
-            });
-        });
-
-        // Click to upload
-        uploadArea.addEventListener('click', () => {
-            if (currentType === 'photo') {
-                photoInput.click();
-            } else {
-                videoInput.click();
-            }
-        });
-
-        // Drag and drop
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('drag-over');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('drag-over');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('drag-over');
-            const file = e.dataTransfer.files[0];
-            if (file) handleFile(file);
-        });
-
-        // File input change
-        photoInput.addEventListener('change', (e) => {
-            if (e.target.files[0]) handleFile(e.target.files[0]);
-        });
-
-        videoInput.addEventListener('change', (e) => {
-            if (e.target.files[0]) handleFile(e.target.files[0]);
-        });
-
-        function handleFile(file) {
-            selectedFile = file;
-            uploadArea.classList.add('has-file');
-            uploadArea.innerHTML = `
-                <p class="upload-filename">${file.name}</p>
-                <span class="upload-remove">Remove</span>
-            `;
-
-            uploadArea.querySelector('.upload-remove').addEventListener('click', (e) => {
-                e.stopPropagation();
-                clearFile();
-            });
-
-            // Show preview
-            previewContainer.innerHTML = '';
-            if (file.type.startsWith('image/')) {
-                const img = document.createElement('img');
-                img.src = URL.createObjectURL(file);
-                previewContainer.appendChild(img);
-            } else if (file.type.startsWith('video/')) {
-                const video = document.createElement('video');
-                video.src = URL.createObjectURL(file);
-                video.controls = true;
-                previewContainer.appendChild(video);
-            }
+        function buildStoryText() {
+            const name = document.getElementById('name').value.trim();
+            const story = document.getElementById('testimonial').value.trim();
+            return name + '\n\n' + story + '\n\nShared with permission to use on justinthepractice.com.';
         }
 
-        function clearFile() {
-            selectedFile = null;
-            photoInput.value = '';
-            videoInput.value = '';
-            uploadArea.classList.remove('has-file');
-            previewContainer.innerHTML = '';
-
-            const icon = currentType === 'photo' ? '📷' : '🎥';
-            const hint = currentType === 'photo' ? 'JPG, PNG up to 10MB' : 'MP4, MOV up to 100MB';
-
-            uploadArea.innerHTML = `
-                <div class="upload-icon">${icon}</div>
-                <p class="upload-text">Drag and drop or click to upload</p>
-                <p class="upload-hint">${hint}</p>
-            `;
-        }
-
-        // Form submission
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', e => {
             e.preventDefault();
-
-            // In production, this would submit to a backend
-            // For demo, we show success message
+            handoffStory.textContent = buildStoryText();
             form.style.display = 'none';
-            successMessage.style.display = 'block';
+            handoff.classList.add('active');
+            copyConfirm.textContent = '';
+            handoff.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        editBtn.addEventListener('click', () => {
+            handoff.classList.remove('active');
+            form.style.display = '';
+            document.getElementById('testimonial').focus();
+        });
+
+        copyBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(handoffStory.textContent);
+                copyConfirm.textContent = 'Copied. Now send it to Justin however you normally reach him.';
+            } catch {
+                copyConfirm.textContent = 'Copy didn\'t work in this browser — select the text above and copy it manually.';
+            }
         });
     </script>
 </body>

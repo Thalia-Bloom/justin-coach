@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guided Practices & Resources | Justin the Practice</title>
     <meta name="description" content="Structured tools to help you build clarity, consistency, and better decision-making around training, food, rest, and daily rhythms.">
+    <link rel="icon" href="../qr.png" type="image/png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,8 +21,6 @@
             --deep-forest: #20352B;
             --slate: #4A5568;
             --blue-gray: #64748B;
-            --sky-light: #94A3B8;
-            --sky-silver: #CBD5E1;
             --clay: #A38067;
             --ember: #8B6B53;
             --font-display: 'Playfair Display', Georgia, serif;
@@ -54,6 +53,8 @@
             color: var(--deep-forest);
             line-height: 1.25;
         }
+
+        a:focus-visible, button:focus-visible { outline: 3px solid var(--clay); outline-offset: 3px; }
 
         .container {
             max-width: 1000px;
@@ -92,6 +93,7 @@
         .hero {
             padding: var(--space-8) 0 var(--space-6);
             border-bottom: 1px solid var(--stone-border);
+            animation: rise 600ms ease both;
         }
 
         .hero-label {
@@ -145,11 +147,8 @@
             text-transform: uppercase;
             letter-spacing: 0.2em;
             margin-bottom: var(--space-1);
+            color: var(--clay);
         }
-
-        .level-label.beginner { color: #4C8263; }
-        .level-label.intermediate { color: var(--clay); }
-        .level-label.advanced { color: var(--deep-forest); }
 
         .level-header h2 {
             font-size: 1.5rem;
@@ -159,7 +158,7 @@
             color: var(--ink);
             opacity: 0.7;
             font-size: 0.9375rem;
-            max-width: 500px;
+            max-width: 540px;
             margin-top: var(--space-1);
         }
 
@@ -175,7 +174,7 @@
             background: var(--warm-paper);
             border: 1px solid var(--stone-border);
             border-radius: var(--radius-md);
-            transition: all 0.2s ease;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
             display: flex;
             flex-direction: column;
         }
@@ -223,7 +222,7 @@
             font-weight: 500;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, color 0.2s ease;
             width: fit-content;
         }
 
@@ -232,10 +231,50 @@
             color: var(--warm-paper);
         }
 
-        .resource-card .btn.coming-soon {
-            opacity: 0.5;
-            cursor: default;
-            pointer-events: none;
+        .resource-meta {
+            font-size: 0.8125rem;
+            color: var(--blue-gray);
+            margin-top: var(--space-2);
+        }
+
+        /* In the works */
+        .upcoming-list {
+            list-style: none;
+            max-width: 640px;
+            border-top: 1px solid var(--stone-border);
+        }
+
+        .upcoming-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: var(--space-3);
+            padding: var(--space-2) 4px;
+            border-bottom: 1px solid var(--stone-border);
+            font-size: 0.9375rem;
+        }
+
+        .upcoming-name {
+            color: var(--ink);
+            opacity: 0.8;
+        }
+
+        .upcoming-name a {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: var(--sand-tan);
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.2s;
+        }
+
+        .upcoming-name a:hover { text-decoration-color: var(--clay); }
+
+        .upcoming-kind {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--blue-gray);
+            white-space: nowrap;
         }
 
         /* CTA Section */
@@ -280,7 +319,7 @@
             font-weight: 500;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
 
         .btn-primary:hover {
@@ -321,6 +360,11 @@
 
         .footer-links a:hover { opacity: 1; }
 
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+        }
+
         /* Mobile */
         @media (max-width: 600px) {
             nav {
@@ -359,6 +403,11 @@
                 padding: var(--space-3);
             }
 
+            .upcoming-list li {
+                flex-direction: column;
+                gap: 2px;
+            }
+
             .cta-section {
                 padding: var(--space-5) 0;
             }
@@ -391,11 +440,12 @@
             </div>
         </section>
 
-        <!-- Free Resources -->
+        <!-- Ready now -->
         <section class="level-section">
             <div class="level-header">
-                <p class="level-label" style="color: var(--clay);">Free Resources</p>
-                <h2>Guides & Practices</h2>
+                <p class="level-label">Ready Now</p>
+                <h2>Start With These</h2>
+                <p class="level-description">Everything here works today — no email, no waiting. Quiz answers stay in your browser.</p>
             </div>
             <div class="resources-grid">
                 <div class="resource-card">
@@ -405,42 +455,66 @@
                     <a href="./circadian-rhythm/circadian-rhythm-checkin.pdf" class="btn" target="_blank" rel="noopener">View / Download PDF</a>
                 </div>
                 <div class="resource-card">
-                    <span class="resource-type">PDF Guide</span>
-                    <h3>Nutrition Myths Debunked</h3>
-                    <p>Clear, evidence-based answers to the most common nutrition misconceptions that derail progress.</p>
-                    <a href="#" class="btn coming-soon">Coming Soon</a>
+                    <span class="resource-type">Lifestyle Assessment</span>
+                    <h3>Health &amp; Lifestyle Quiz</h3>
+                    <p>Twelve questions to find the kind of health and lifestyle support that fits the way you actually live.</p>
+                    <a href="../health-lifestyle-quiz.html" class="btn">Take the Quiz</a>
                 </div>
                 <div class="resource-card">
-                    <span class="resource-type">PDF Guide</span>
-                    <h3>Daily Mobility Practice</h3>
-                    <p>A repeatable movement routine designed to maintain joint health and movement quality with minimal time investment.</p>
-                    <a href="#" class="btn coming-soon">Coming Soon</a>
-                </div>
-                <div class="resource-card">
-                    <span class="resource-type">PDF Guide</span>
-                    <h3>High Protein Foundations Guide</h3>
-                    <p>Practical strategies to build and maintain adequate protein intake without overcomplicating your nutrition.</p>
-                    <a href="#" class="btn coming-soon">Coming Soon</a>
-                </div>
-                <div class="resource-card">
-                    <span class="resource-type">PDF Guide</span>
-                    <h3>Strength Minimus Baseline</h3>
-                    <p>A minimalist strength program designed to establish and maintain baseline strength with sustainable effort.</p>
-                    <a href="#" class="btn coming-soon">Coming Soon</a>
-                </div>
-                <div class="resource-card">
-                    <span class="resource-type">PDF Guide</span>
-                    <h3>8 Week Training Reset</h3>
-                    <p>A structured 8-week program to rebuild training consistency and reestablish a sustainable baseline.</p>
-                    <a href="#" class="btn coming-soon">Coming Soon</a>
-                </div>
-                <div class="resource-card">
-                    <span class="resource-type">Workbook</span>
-                    <h3>Relationship to Food Workbook</h3>
-                    <p>A guided workbook to examine and reshape your relationship with food, eating patterns, and nourishment.</p>
-                    <a href="#" class="btn coming-soon">Coming Soon</a>
+                    <span class="resource-type">Training Assessment</span>
+                    <h3>Hyrox Readiness Quiz</h3>
+                    <p>Find out how ready you are for your first (or next) Hyrox race, and exactly where to focus your training.</p>
+                    <a href="../hyrox-quiz.html" class="btn">Take the Quiz</a>
                 </div>
             </div>
+        </section>
+
+        <!-- Programs -->
+        <section class="level-section">
+            <div class="level-header">
+                <p class="level-label" style="color: var(--deep-forest);">Training Programs</p>
+                <h2>Structured Plans</h2>
+                <p class="level-description">Written programs for specific goals. Each one is set up with Justin directly, starting from the Intro Call.</p>
+            </div>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <span class="resource-type">12-Week Program</span>
+                    <h3>Strength &amp; Structure</h3>
+                    <p>Foundational strength through compound movements. Build strength that transfers to everyday life.</p>
+                    <a href="../programs/strength-structure.html" class="btn">Learn More</a>
+                </div>
+                <div class="resource-card">
+                    <span class="resource-type">8-Week Program</span>
+                    <h3>HYROX Prep</h3>
+                    <p>Focused conditioning for first-time HYROX competitors. Run, row, push, pull — show up prepared.</p>
+                    <a href="../programs/hyrox-prep.html" class="btn">Learn More</a>
+                </div>
+                <div class="resource-card">
+                    <span class="resource-type">6-Week Program</span>
+                    <h3>Minimal Equipment</h3>
+                    <p>A complete home training program. Dumbbells, kettlebell, pull-up bar — that's it.</p>
+                    <a href="../programs/minimal-equipment.html" class="btn">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- In the works -->
+        <section class="level-section">
+            <div class="level-header">
+                <p class="level-label" style="color: var(--blue-gray);">In the Works</p>
+                <h2>Coming to the Library</h2>
+                <p class="level-description">Guides Justin is still finishing. Nothing to click yet — they'll appear above when they're ready.</p>
+            </div>
+            <ul class="upcoming-list">
+                <li><span class="upcoming-name"><a href="5-day-reset.html">5-Day Reset</a></span><span class="upcoming-kind">Free Guide</span></li>
+                <li><span class="upcoming-name"><a href="morning-recentering.html">Morning Re-Centering</a></span><span class="upcoming-kind">Free PDF</span></li>
+                <li><span class="upcoming-name">Nutrition Myths Debunked</span><span class="upcoming-kind">PDF Guide</span></li>
+                <li><span class="upcoming-name">Daily Mobility Practice</span><span class="upcoming-kind">PDF Guide</span></li>
+                <li><span class="upcoming-name">High Protein Foundations Guide</span><span class="upcoming-kind">PDF Guide</span></li>
+                <li><span class="upcoming-name">Strength Minimus Baseline</span><span class="upcoming-kind">PDF Guide</span></li>
+                <li><span class="upcoming-name">8 Week Training Reset</span><span class="upcoming-kind">PDF Guide</span></li>
+                <li><span class="upcoming-name">Relationship to Food Workbook</span><span class="upcoming-kind">Workbook</span></li>
+            </ul>
         </section>
     </div>
 
