@@ -4,13 +4,13 @@
 Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitHub Pages. **This is a live client site — changes deploy immediately on push to main.**
 
 ## Current State
-- **Status**: Live, production
+- **Status**: LIVE — 2026-07-23 redesign deployed (commit 758f1ad on main)
 - **Last worked on**: 2026-07-23
 - **Deploy branch**: main (auto-deploys via GitHub Pages)
 - **Live URL**: justinthepractice.com
 - **Repo**: Thalia-Bloom/justin-coach
 - 2026-07-23 (later, Apollo): **Icon pack + booking intake shipped to the branch.** `icons.svg` = 19-symbol two-tone sprite (ink stroke, clay accent) — implemented on all six resource-library cards, all three program heroes, and the /intro how-it-works strip (steps reordered: questions now come at booking, before the calendar). `checkout.html` is a two-step booking (Heathrow's order call): step 1 about you (name/email/optional phone) + reservation summary + confirm, step 2 the three pointed questions, then the calendar; answers land in Justin's Calendly booking via `name`/`email`/`a1` URL prefill (a1 = the event's first custom question — Calendly's default "share anything" question catches it; when Justin creates the 60-min Intro Call event, tell him to keep at least one invitee question). Tests: `tests/icons-and-intake.test.cjs` + sharpened no-card-fields guard; all 4 suites green; Playwright desktop+mobile verified.
-- **Branch `codex/justin-jul19-launch` = the full 2026-07-23 redesign, LIVE-READY, all pushed.** Whole site on the sand/Playfair system with honest CTAs; cinematic hero → backflip landing; icon principle cards; dashed map-route trail lines; paid path at `/intro` (old `/start` redirects) in Justin's first-person voice, order: hero → starting-point map route + Book Intro Call panel → compact how-it-works strip; founding-period flow: Book Intro Call → `checkout.html` ($0 due today, no card fields, test-locked) → check-off animation → Justin's Calendly (Clarity Call event, `start-config.js bookingUrl`); footer QR = tap-to-enlarge lightbox. Heathrow drove and approved the flow 2026-07-23 but session ended **without the explicit "push it" — main is untouched, site not yet deployed.**
+- **Branch `codex/justin-jul19-launch` = the full 2026-07-23 redesign, LIVE-READY, all pushed.** Whole site on the sand/Playfair system with honest CTAs; cinematic hero → backflip landing; icon principle cards; dashed map-route trail lines; paid path at `/intro` (old `/start` redirects) in Justin's first-person voice, order: hero → starting-point map route + Book Intro Call panel → compact how-it-works strip; founding-period flow: Book Intro Call → `checkout.html` ($0 due today, no card fields, test-locked) → check-off animation → Justin's Calendly (Clarity Call event, `start-config.js bookingUrl`); footer QR = tap-to-enlarge lightbox. Heathrow gave "push it" 2026-07-23 — **deployed to main as a pruned export (758f1ad), verified live: icons render, two-step booking reaches Calendly with answers, /CLAUDE.md + /CLAUDE.html 404.**
 
 ## Stack & Architecture
 - Pure static HTML/CSS/JavaScript — no build tools, no frameworks
@@ -55,17 +55,7 @@ Client website for Justin's coaching business. Static HTML/CSS/JS hosted on GitH
 - Domain properly configured and serving
 
 ## Next Steps
-1. **Deploy on Heathrow's "push it" — PRUNED export, not a plain merge.** `main` is intentionally a pruned tree: no CLAUDE.md, README, .gitignore, docs/, or tests/ (a plain merge would put them live at justinthepractice.com/CLAUDE.md via Jekyll's md→html conversion). Every file on main also exists on the branch, so a checkout overlay is safe:
-   ```
-   git switch main
-   git checkout codex/justin-jul19-launch -- .
-   git rm -rq --cached CLAUDE.md README.md .gitignore docs tests
-   git commit -m "Launch: 2026-07-23 redesign + icon pack + two-step booking intake"
-   git push origin main
-   git switch codex/justin-jul19-launch && git checkout -- .
-   ```
-   (The `rm --cached` untracks without deleting, so the local working files survive.) Then verify live: /icons.svg loads, /intro renders icons, checkout two-step flow reaches Calendly, and /CLAUDE.md + /CLAUDE.html still 404.
-   Pre-flight done 2026-07-23: leak-scan clean on site HTML (only approved prices flagged); Calendly Clarity Call event confirmed to carry one free-text invitee question (id 207115606), which is where the a1 answers land.
+1. DONE 2026-07-23 — launched. **Future deploys: main is a PRUNED tree** (no CLAUDE.md/README/.gitignore/docs/tests — Jekyll would serve them as live pages). Overlay pattern: `git switch main && git checkout <branch> -- . && git rm -rq --cached CLAUDE.md README.md .gitignore docs tests`, commit, push; fast-forward local main first and confirm no main-only files (`comm -23` on ls-tree lists). When switching back, the untracked internals block checkout — verify identical to branch (`cmp`), remove, then switch.
 2. Swap `start-config.js bookingUrl` to Justin's 60-minute "Intro Call" Calendly event when he creates one (currently his 30-min Clarity Call — Heathrow chose ship-now-fix-later). Stripe email draft to Justin still pending send.
 3. When Justin's Stripe Payment Link arrives: paste into `paymentUrl` — it supersedes the booking flow automatically, restores "Pay, then book", and checkout.html retires itself.
 - Verify email capture integration in quiz (may need webhook/Zapier)
