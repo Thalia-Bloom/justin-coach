@@ -41,9 +41,13 @@ assert.equal(config.includes('paymentUrl: ""'), true, "production payment link m
 assert.ok(/bookingUrl: "(|https:\/\/calendly\.com\/justin-the-practice\/[a-z0-9-]+)"/.test(config), "founding-period booking link must be empty or Justin's own Calendly event");
 assert.ok(start.includes('candidate.hostname === "buy.stripe.com"'), "checkout should accept only Stripe-hosted Payment Links");
 assert.ok(start.includes('candidate.hostname === "calendly.com"'), "founding-period booking should accept only Calendly-hosted links");
-assert.ok(start.includes('id="booking-modal"'), "founding-period booking sheet must exist for the no-payment demo flow");
-assert.equal(start.includes('type="card"') || start.toLowerCase().includes("card number"), false, "the booking sheet must never collect card details");
-assert.ok(start.includes("Book now, pay nothing today"), "the booking sheet states plainly that no payment is taken");
+assert.ok(start.includes('paymentButton.href = "checkout.html"'), "founding-period mode routes the reserve button to the demo checkout page");
+const checkout = fs.readFileSync(path.join(root, "checkout.html"), "utf8");
+assert.ok(checkout.includes('candidate.hostname === "calendly.com"'), "checkout accepts only Calendly-hosted booking links");
+assert.ok(checkout.includes("<strong>$0</strong>"), "checkout shows $0 due today during the founding period");
+assert.ok(checkout.includes("No card needed"), "checkout states plainly that no card is needed");
+assert.equal(checkout.includes("<input") || checkout.toLowerCase().includes("card number"), false, "the demo checkout must never collect card details");
+assert.ok(checkout.includes('window.location.replace("intro.html#intro-call")'), "checkout retires itself once Stripe is live or booking is unset");
 assert.ok(fs.existsSync(path.join(root, "intro", "index.html")), "the QR-compatible /intro route should exist");
 assert.ok(fs.readFileSync(path.join(root, "start", "index.html"), "utf8").includes("../intro.html"), "old /start route must redirect to /intro");
 assert.ok(fs.readFileSync(path.join(root, "start.html"), "utf8").includes("intro.html"), "old start.html must redirect to intro.html");

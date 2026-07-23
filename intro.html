@@ -385,89 +385,6 @@
         }
         footer a { text-decoration: none; }
 
-        /* Founding-period booking sheet */
-        .booking-scrim {
-            position: fixed;
-            inset: 0;
-            z-index: 60;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
-            background: rgba(20, 34, 27, 0.6);
-            backdrop-filter: blur(4px);
-        }
-        .booking-scrim.active { display: flex; }
-        .booking-card {
-            position: relative;
-            width: 100%;
-            max-width: 470px;
-            padding: 32px;
-            border: 1px solid var(--border);
-            border-top: 3px solid var(--clay);
-            border-radius: var(--radius);
-            background: var(--cream);
-            box-shadow: 0 24px 60px rgba(32, 53, 43, 0.3);
-            animation: rise 260ms ease both;
-        }
-        .booking-card h3 { margin-top: 10px; font-size: 1.55rem; }
-        .booking-copy {
-            margin-top: 14px;
-            color: rgba(42, 45, 50, 0.76);
-            font-size: 0.98rem;
-        }
-        .booking-card .button { width: 100%; margin-top: 24px; }
-        .booking-note {
-            margin-top: 12px;
-            color: rgba(42, 45, 50, 0.6);
-            font-size: 0.84rem;
-            text-align: center;
-        }
-        .booking-close {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            width: 36px;
-            height: 36px;
-            border: none;
-            border-radius: 50%;
-            background: var(--surface);
-            color: var(--ink);
-            font-size: 1.15rem;
-            line-height: 1;
-            cursor: pointer;
-        }
-        .booking-close:hover { background: var(--border); }
-        .booking-steps { display: none; list-style: none; margin-top: 10px; }
-        .booking-card.processing .booking-intro { display: none; }
-        .booking-card.processing .booking-close { display: none; }
-        .booking-card.processing .booking-steps { display: grid; gap: 16px; }
-        .booking-step {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 0.98rem;
-            color: var(--forest);
-            opacity: 0.35;
-            transition: opacity 300ms ease;
-        }
-        .booking-step.done { opacity: 1; }
-        .booking-step .tick {
-            display: grid;
-            place-items: center;
-            width: 24px;
-            height: 24px;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            font-size: 0.7rem;
-            color: var(--cream);
-            background: transparent;
-            transition: background 300ms ease, border-color 300ms ease;
-        }
-        .booking-step.done .tick {
-            background: var(--forest);
-            border-color: var(--forest);
-        }
 
         @keyframes rise {
             from { opacity: 0; transform: translateY(18px); }
@@ -598,24 +515,6 @@
 
     </main>
 
-    <div class="booking-scrim" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title" aria-hidden="true">
-        <div class="booking-card" id="booking-card">
-            <button class="booking-close" id="booking-close" aria-label="Close">&times;</button>
-            <div class="booking-intro">
-                <span class="section-label">Founding period</span>
-                <h3 id="booking-title">Book now, pay nothing today.</h3>
-                <p class="booking-copy">Online payment is almost ready. Until it's connected, my calendar is open to book directly. No card, no charge. Pick a time that works and we'll take it from there.</p>
-                <button class="button" id="booking-continue" type="button">Take me to the calendar</button>
-                <p class="booking-note">You'll finish booking on my scheduling page.</p>
-            </div>
-            <ol class="booking-steps" id="booking-steps" aria-live="polite">
-                <li class="booking-step"><span class="tick" aria-hidden="true">&#10003;</span>Reserving your Intro Call</li>
-                <li class="booking-step"><span class="tick" aria-hidden="true">&#10003;</span>No payment needed today</li>
-                <li class="booking-step"><span class="tick" aria-hidden="true">&#10003;</span>Opening the calendar</li>
-            </ol>
-        </div>
-    </div>
-
     <footer>
         <a href="index.html">Justin the Practice</a>
         <span>Strength, clarity, and physical readiness.</span>
@@ -652,55 +551,12 @@
             paymentButton.rel = "noopener";
             checkoutStatus.textContent = "After payment, Stripe will send you straight to my calendar to pick a time.";
         } else if (bookingUrl) {
-            const bookingModal = document.getElementById("booking-modal");
-            const bookingCard = document.getElementById("booking-card");
-            const bookingClose = document.getElementById("booking-close");
-            const bookingContinue = document.getElementById("booking-continue");
-            const bookingSteps = document.querySelectorAll(".booking-step");
-            const reducedMotionBooking = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            let bookingLeaving = false;
-
             paymentButton.removeAttribute("aria-disabled");
             paymentButton.textContent = "Reserve your spot";
+            paymentButton.href = "checkout.html";
             document.getElementById("fact-next-step").textContent = "Book now, pay later";
             document.getElementById("secure-note").textContent = "No payment is taken on this site. Booking happens on Justin's scheduling page.";
             checkoutStatus.textContent = "Online payment is still being connected. Until then, booking your Intro Call is open with no charge.";
-
-            function openBooking() {
-                bookingModal.classList.add("active");
-                bookingModal.setAttribute("aria-hidden", "false");
-                document.body.classList.add("locked");
-                bookingContinue.focus();
-            }
-
-            function closeBooking() {
-                if (bookingLeaving) return;
-                bookingModal.classList.remove("active");
-                bookingModal.setAttribute("aria-hidden", "true");
-                document.body.classList.remove("locked");
-                paymentButton.focus();
-            }
-
-            paymentButton.addEventListener("click", event => {
-                event.preventDefault();
-                openBooking();
-            });
-
-            bookingClose.addEventListener("click", closeBooking);
-            bookingModal.addEventListener("click", event => { if (event.target === bookingModal) closeBooking(); });
-            document.addEventListener("keydown", event => {
-                if (event.key === "Escape" && bookingModal.classList.contains("active")) closeBooking();
-            });
-
-            bookingContinue.addEventListener("click", () => {
-                bookingLeaving = true;
-                bookingCard.classList.add("processing");
-                const stepDelay = reducedMotionBooking ? 0 : 550;
-                bookingSteps.forEach((step, index) => {
-                    setTimeout(() => step.classList.add("done"), stepDelay * index);
-                });
-                setTimeout(() => window.location.assign(bookingUrl), reducedMotionBooking ? 250 : stepDelay * 3 + 400);
-            });
         } else {
             paymentButton.addEventListener("click", event => {
                 event.preventDefault();
