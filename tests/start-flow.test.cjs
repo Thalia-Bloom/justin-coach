@@ -38,7 +38,7 @@ assert.ok(resources.includes('href="../intro.html#intro-call"'), "the resources 
 assert.equal(circadian.toLowerCase().includes("free clarity"), false, "the Circadian resource should not offer a free call");
 assert.ok(circadian.includes('href="../../intro.html#intro-call"'), "the Circadian resource should return personalized visitors to the paid Intro Call");
 assert.equal(config.includes('paymentUrl: ""'), true, "production payment link must remain visibly unconfigured until Justin supplies it");
-assert.equal(config.includes('bookingUrl: ""'), true, "founding-period booking link stays unconfigured until Justin's 60-minute Calendly event exists");
+assert.ok(/bookingUrl: "(|https:\/\/calendly\.com\/justin-the-practice\/[a-z0-9-]+)"/.test(config), "founding-period booking link must be empty or Justin's own Calendly event");
 assert.ok(start.includes('candidate.hostname === "buy.stripe.com"'), "checkout should accept only Stripe-hosted Payment Links");
 assert.ok(start.includes('candidate.hostname === "calendly.com"'), "founding-period booking should accept only Calendly-hosted links");
 assert.ok(start.includes('id="booking-modal"'), "founding-period booking sheet must exist for the no-payment demo flow");
