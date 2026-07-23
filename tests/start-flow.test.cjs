@@ -7,14 +7,14 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..");
 const home = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const quiz = fs.readFileSync(path.join(root, "health-lifestyle-quiz.html"), "utf8");
-const start = fs.readFileSync(path.join(root, "start.html"), "utf8");
+const start = fs.readFileSync(path.join(root, "intro.html"), "utf8");
 const config = fs.readFileSync(path.join(root, "start-config.js"), "utf8");
 const resources = fs.readFileSync(path.join(root, "resources", "index.html"), "utf8");
 const circadian = fs.readFileSync(path.join(root, "resources", "circadian-rhythm", "index.html"), "utf8");
 const cleanStart = start.toLowerCase();
 
-assert.ok(home.includes('href="start/"'), "homepage should route into the owned start path");
-assert.ok(quiz.includes('href="start/"'), "quiz should route into the owned start path");
+assert.ok(home.includes('href="intro/"'), "homepage should route into the owned intro path");
+assert.ok(quiz.includes('href="intro/"'), "quiz should route into the owned intro path");
 assert.ok(home.includes('autoplay muted loop playsinline'), "homepage backflip video should autoplay silently in a loop");
 assert.equal(home.includes('id="video-control"'), false, "homepage should have no pause/play control (2026-07-23 Heathrow call)");
 assert.equal(start.includes('id="motion-control"'), false, "/start should have no pause/play control (2026-07-23 Heathrow call)");
@@ -36,11 +36,13 @@ assert.ok(start.includes('href="health-lifestyle-quiz.html"'), "start page shoul
 assert.ok(start.includes('href="resources/index.html"'), "start page should link to Justin's full resources page");
 assert.equal(start.includes("Review the Intro Call"), false, "the bottom of the page should not repeat the Intro Call CTA");
 assert.equal(resources.includes("calendly.com"), false, "the resources page should not restore the old free booking path");
-assert.ok(resources.includes('href="../start.html#intro-call"'), "the resources page should return personalized visitors to the paid Intro Call");
+assert.ok(resources.includes('href="../intro.html#intro-call"'), "the resources page should return personalized visitors to the paid Intro Call");
 assert.equal(circadian.toLowerCase().includes("free clarity"), false, "the Circadian resource should not offer a free call");
-assert.ok(circadian.includes('href="../../start.html#intro-call"'), "the Circadian resource should return personalized visitors to the paid Intro Call");
+assert.ok(circadian.includes('href="../../intro.html#intro-call"'), "the Circadian resource should return personalized visitors to the paid Intro Call");
 assert.equal(config.includes('paymentUrl: ""'), true, "production payment link must remain visibly unconfigured until Justin supplies it");
 assert.ok(start.includes('candidate.hostname === "buy.stripe.com"'), "checkout should accept only Stripe-hosted Payment Links");
-assert.ok(fs.existsSync(path.join(root, "start", "index.html")), "the QR-compatible /start route should exist");
+assert.ok(fs.existsSync(path.join(root, "intro", "index.html")), "the QR-compatible /intro route should exist");
+assert.ok(fs.readFileSync(path.join(root, "start", "index.html"), "utf8").includes("../intro.html"), "old /start route must redirect to /intro");
+assert.ok(fs.readFileSync(path.join(root, "start.html"), "utf8").includes("intro.html"), "old start.html must redirect to intro.html");
 
 process.stdout.write("✓ paid Intro Call path is internally consistent and safely staged\n");

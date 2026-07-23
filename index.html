@@ -1296,6 +1296,12 @@
             gap: var(--space-2);
             opacity: 0.45;
             transition: opacity 0.2s;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
         }
 
         .footer-qr:hover { opacity: 0.75; }
@@ -1305,6 +1311,64 @@
             height: 52px;
             display: block;
         }
+
+        /* QR lightbox */
+        .qr-scrim {
+            position: fixed;
+            inset: 0;
+            background: rgba(32, 53, 43, 0.6);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-3);
+            z-index: 300;
+        }
+
+        .qr-scrim.active { display: flex; }
+
+        .qr-card {
+            position: relative;
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: var(--space-4) var(--space-4) var(--space-3);
+            text-align: center;
+            box-shadow: 0 24px 60px rgba(32, 53, 43, 0.3);
+            animation: rise 260ms ease both;
+        }
+
+        .qr-card img {
+            display: block;
+            width: min(320px, 72vw);
+            height: auto;
+            image-rendering: pixelated;
+        }
+
+        .qr-card p {
+            margin-top: var(--space-2);
+            font-size: 0.9375rem;
+            color: var(--deep-forest);
+            letter-spacing: 0.02em;
+        }
+
+        .qr-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: var(--sand-surface);
+            color: var(--ink);
+            font-size: 1.2rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .qr-close:hover { background: var(--stone-border); }
+
+        @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
         .footer-qr-label {
             font-size: 0.6875rem;
@@ -1391,7 +1455,7 @@
             <h1>Strength is only part of <em>the practice.</em></h1>
             <p class="hero-intro">I help people build strength, clarity, and physical readiness by teaching them how to adjust training, food, and rest based on what their system is actually telling them.</p>
             <div class="hero-cta">
-                <a href="start/" class="btn-primary">
+                <a href="intro/" class="btn-primary">
                     Let’s Get Started
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
@@ -1565,7 +1629,7 @@
                     <h3 style="color: var(--ember);">Intro Call</h3>
                     <p style="color: var(--ink); opacity: 0.85; font-size: 0.9375rem; line-height: 1.6; margin-bottom: var(--space-2);">A focused 60-minute session to understand your current position, clarify what is getting in the way, and identify the most useful next step.</p>
                     <p style="color: var(--ink); opacity: 0.65; font-size: 0.875rem; font-style: italic; margin-bottom: var(--space-3);">This is the starting point for working with Justin.</p>
-                    <a href="start/" class="btn-primary">Let’s Get Started</a>
+                    <a href="intro/" class="btn-primary">Let’s Get Started</a>
                 </div>
             </div>
         </div>
@@ -1626,6 +1690,15 @@
         </div>
     </section>
 
+    <!-- QR lightbox -->
+    <div class="qr-scrim" id="qr-modal" role="dialog" aria-modal="true" aria-label="QR code for justinthepractice.com" aria-hidden="true">
+        <div class="qr-card">
+            <button class="qr-close" id="qr-close" aria-label="Close">&times;</button>
+            <img src="qr.png" alt="QR code for justinthepractice.com">
+            <p>justinthepractice.com</p>
+        </div>
+    </div>
+
     <!-- Testimonial read-more modal -->
     <div class="tm-scrim" id="testimonial-modal" role="dialog" aria-modal="true" aria-labelledby="testimonial-title" aria-hidden="true">
         <div class="tm" tabindex="-1">
@@ -1674,7 +1747,7 @@
             <div class="next-step-options single-path">
                 <div class="next-step-card primary">
                     <p>Start with a focused 60-minute session. Justin will help you understand where you are, what is getting in the way, and the clearest next step for your training.</p>
-                    <a href="start/" class="btn-primary">
+                    <a href="intro/" class="btn-primary">
                         Start Here
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
@@ -1697,10 +1770,10 @@
             <a href="resources/index.html">Resources</a>
             <a href="#next-step">Get Started</a>
         </div>
-        <a href="https://justinthepractice.com" class="footer-qr" title="Scan to visit justinthepractice.com">
+        <button type="button" class="footer-qr" id="qr-open" aria-haspopup="dialog" aria-controls="qr-modal" title="Show the QR code full size">
             <img src="qr.png" alt="QR code for justinthepractice.com" />
-            <span class="footer-qr-label">Scan<br>to visit</span>
-        </a>
+            <span class="footer-qr-label">Tap to<br>enlarge</span>
+        </button>
         <div style="text-align: center; padding: var(--space-2) 0 0; width: 100%;">
             <span style="font-size: 0.75rem; color: var(--ink); opacity: 0.35; letter-spacing: 0.05em;">Powered by Sprout 🌱</span>
         </div>
@@ -1782,6 +1855,32 @@
                 e.preventDefault();
                 tClose.focus();
             }
+        });
+
+        // QR lightbox
+        const qrModal = document.getElementById('qr-modal');
+        const qrOpen = document.getElementById('qr-open');
+        const qrClose = document.getElementById('qr-close');
+
+        function openQr() {
+            qrModal.classList.add('active');
+            qrModal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            qrClose.focus();
+        }
+
+        function closeQr() {
+            qrModal.classList.remove('active');
+            qrModal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            qrOpen.focus();
+        }
+
+        qrOpen?.addEventListener('click', openQr);
+        qrClose?.addEventListener('click', closeQr);
+        qrModal?.addEventListener('click', e => { if (e.target === qrModal) closeQr(); });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && qrModal?.classList.contains('active')) closeQr();
         });
 
         // Initial animation
