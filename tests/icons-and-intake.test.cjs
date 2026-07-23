@@ -64,6 +64,10 @@ assert.ok(checkout.includes("What do you most want to change in the next 90 days
 assert.ok(checkout.includes("What have you already tried, and how did it go?"), "question 2 present");
 assert.ok(checkout.includes("What does a normal day look like right now? Sleep, food, movement, stress."), "question 3 present");
 assert.ok(checkout.includes('type="submit"'), "confirm button submits the form so native validation gates the redirect");
+const aboutIdx = checkout.indexOf("About you");
+const questionsIdx = checkout.indexOf("Three questions before we talk");
+const dueIdx = checkout.indexOf("Due today, founding period");
+assert.ok(aboutIdx > -1 && aboutIdx < questionsIdx && questionsIdx < dueIdx, "card order: about you, then questions, then the reservation summary (2026-07-23 Heathrow call)");
 assert.ok(checkout.includes('searchParams.set("a1"'), "answers ride into Calendly via the a1 custom-question prefill");
 assert.ok(checkout.includes('searchParams.set("name"') && checkout.includes('searchParams.set("email"'), "name and email prefill Calendly");
 assert.equal(checkout.includes("localStorage"), false, "no PII is stored in the browser");

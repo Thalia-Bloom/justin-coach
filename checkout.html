@@ -90,6 +90,8 @@
             padding-top: 22px;
             border-top: 1px solid var(--border);
         }
+        .intake-first { margin-top: 0; padding-top: 4px; border-top: none; }
+        .order-summary { margin-top: 8px; }
         .intake-label {
             display: flex;
             align-items: center;
@@ -202,18 +204,12 @@
         <div class="checkout">
             <span class="eyebrow">Book Intro Call</span>
             <h1>Almost there.</h1>
-            <p class="checkout-lead">Here's what you're reserving. Tell me a little about where you're at, then pick your time. While I finish setting up online payment, there's nothing to pay today.</p>
+            <p class="checkout-lead">Tell me a little about where you're at, look over what you're reserving, then pick your time. While I finish setting up online payment, there's nothing to pay today.</p>
 
             <div class="order-card" id="order-card">
                 <div class="order-details" id="order-details">
-                    <div class="order-row"><span>Session</span><strong>The Intro Call</strong></div>
-                    <div class="order-row"><span>Length</span><strong>60 minutes</strong></div>
-                    <div class="order-row"><span>Regular price</span><strong>$79</strong></div>
-                    <div class="order-due"><span>Due today, founding period</span><strong>$0</strong></div>
-                    <p class="founding-note">No card needed. Online payment is almost ready; until then your reservation is free and my calendar is open.</p>
-
                     <form id="intake-form">
-                        <div class="intake">
+                        <div class="intake intake-first">
                             <span class="intake-label"><svg aria-hidden="true"><use href="icons.svg#i-person"></use></svg>About you</span>
                             <div class="field-grid">
                                 <label class="field"><span>Name</span><input name="name" type="text" autocomplete="name" required></label>
@@ -229,6 +225,16 @@
                                 <label class="field"><span>What have you already tried, and how did it go?</span><textarea name="q2" maxlength="280" required></textarea></label>
                                 <label class="field"><span>What does a normal day look like right now? Sleep, food, movement, stress.</span><textarea name="q3" maxlength="280" required></textarea></label>
                             </div>
+                        </div>
+                        <div class="intake">
+                            <span class="intake-label"><svg aria-hidden="true"><use href="icons.svg#i-pin"></use></svg>Your reservation</span>
+                            <div class="order-summary">
+                                <div class="order-row"><span>Session</span><strong>The Intro Call</strong></div>
+                                <div class="order-row"><span>Length</span><strong>60 minutes</strong></div>
+                                <div class="order-row"><span>Regular price</span><strong>$79</strong></div>
+                                <div class="order-due"><span>Due today, founding period</span><strong>$0</strong></div>
+                            </div>
+                            <p class="founding-note">No card needed. Online payment is almost ready; until then your reservation is free and my calendar is open.</p>
                         </div>
                         <button class="button" id="confirm-button" type="submit">Confirm and choose my time</button>
                     </form>
