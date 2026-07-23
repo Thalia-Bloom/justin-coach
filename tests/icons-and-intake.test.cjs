@@ -54,7 +54,8 @@ assert.ok(bookIdx > -1 && tellIdx > -1 && timeIdx > -1, "all path steps present"
 assert.ok(bookIdx < tellIdx && tellIdx < timeIdx, "questions come at booking, before the calendar");
 
 // --- Booking intake form ---
-assert.ok(checkout.includes('id="intake-form"'), "checkout carries the intake form");
+assert.ok(checkout.includes('id="reserve-form"'), "checkout carries the reservation form");
+assert.ok(checkout.includes('id="questions-form"'), "checkout carries the questions form");
 assert.ok(checkout.includes('name="name" type="text" autocomplete="name" required'), "name is required");
 assert.ok(checkout.includes('name="email" type="email" autocomplete="email" required'), "email is required");
 assert.ok(checkout.includes('name="phone" type="tel"'), "phone field exists");
@@ -67,7 +68,7 @@ assert.ok(checkout.includes('type="submit"'), "confirm button submits the form s
 const aboutIdx = checkout.indexOf("About you");
 const questionsIdx = checkout.indexOf("Three questions before we talk");
 const dueIdx = checkout.indexOf("Due today, founding period");
-assert.ok(aboutIdx > -1 && aboutIdx < questionsIdx && questionsIdx < dueIdx, "card order: about you, then questions, then the reservation summary (2026-07-23 Heathrow call)");
+assert.ok(aboutIdx > -1 && aboutIdx < dueIdx && dueIdx < questionsIdx, "card order: about you + reservation first, questions after, before the calendar (2026-07-23 Heathrow call)");
 assert.ok(checkout.includes('searchParams.set("a1"'), "answers ride into Calendly via the a1 custom-question prefill");
 assert.ok(checkout.includes('searchParams.set("name"') && checkout.includes('searchParams.set("email"'), "name and email prefill Calendly");
 assert.equal(checkout.includes("localStorage"), false, "no PII is stored in the browser");

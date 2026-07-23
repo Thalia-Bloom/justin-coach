@@ -92,6 +92,17 @@
         }
         .intake-first { margin-top: 0; padding-top: 4px; border-top: none; }
         .order-summary { margin-top: 8px; }
+        .back-link {
+            display: block;
+            margin: 14px auto 0;
+            border: none;
+            background: none;
+            color: var(--slate);
+            font: 400 0.85rem/1 var(--body);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .back-link:hover { color: var(--forest); }
         .intake-label {
             display: flex;
             align-items: center;
@@ -204,26 +215,17 @@
         <div class="checkout">
             <span class="eyebrow">Book Intro Call</span>
             <h1>Almost there.</h1>
-            <p class="checkout-lead">Tell me a little about where you're at, look over what you're reserving, then pick your time. While I finish setting up online payment, there's nothing to pay today.</p>
+            <p class="checkout-lead">Lock in your reservation, answer three quick questions, then pick your time. While I finish setting up online payment, there's nothing to pay today.</p>
 
             <div class="order-card" id="order-card">
                 <div class="order-details" id="order-details">
-                    <form id="intake-form">
+                    <form id="reserve-form">
                         <div class="intake intake-first">
                             <span class="intake-label"><svg aria-hidden="true"><use href="icons.svg#i-person"></use></svg>About you</span>
                             <div class="field-grid">
                                 <label class="field"><span>Name</span><input name="name" type="text" autocomplete="name" required></label>
                                 <label class="field"><span>Email</span><input name="email" type="email" autocomplete="email" required></label>
                                 <label class="field field-wide"><span>Phone <em>(optional)</em></span><input name="phone" type="tel" autocomplete="tel"></label>
-                            </div>
-                        </div>
-                        <div class="intake">
-                            <span class="intake-label"><svg aria-hidden="true"><use href="icons.svg#i-conversation"></use></svg>Three questions before we talk</span>
-                            <p class="intake-hint">Short, honest answers are perfect. They help me make our hour count.</p>
-                            <div class="questions">
-                                <label class="field"><span>What do you most want to change in the next 90 days?</span><textarea name="q1" maxlength="280" required></textarea></label>
-                                <label class="field"><span>What have you already tried, and how did it go?</span><textarea name="q2" maxlength="280" required></textarea></label>
-                                <label class="field"><span>What does a normal day look like right now? Sleep, food, movement, stress.</span><textarea name="q3" maxlength="280" required></textarea></label>
                             </div>
                         </div>
                         <div class="intake">
@@ -236,9 +238,23 @@
                             </div>
                             <p class="founding-note">No card needed. Online payment is almost ready; until then your reservation is free and my calendar is open.</p>
                         </div>
-                        <button class="button" id="confirm-button" type="submit">Confirm and choose my time</button>
+                        <button class="button" type="submit">Confirm my reservation</button>
+                        <p class="secure-note">Next: three quick questions, then my calendar.</p>
                     </form>
-                    <p class="secure-note" id="checkout-note">Your answers come with your booking. Next stop is my scheduling page to pick your time.</p>
+                    <form id="questions-form" hidden>
+                        <div class="intake intake-first">
+                            <span class="intake-label"><svg aria-hidden="true"><use href="icons.svg#i-conversation"></use></svg>Three questions before we talk</span>
+                            <p class="intake-hint">Short, honest answers are perfect. They help me make our hour count.</p>
+                            <div class="questions">
+                                <label class="field"><span>What do you most want to change in the next 90 days?</span><textarea name="q1" maxlength="280" required></textarea></label>
+                                <label class="field"><span>What have you already tried, and how did it go?</span><textarea name="q2" maxlength="280" required></textarea></label>
+                                <label class="field"><span>What does a normal day look like right now? Sleep, food, movement, stress.</span><textarea name="q3" maxlength="280" required></textarea></label>
+                            </div>
+                        </div>
+                        <button class="button" id="confirm-button" type="submit">Send and choose my time</button>
+                        <p class="secure-note">Your answers come with your booking. Next stop is my scheduling page to pick your time.</p>
+                        <button class="back-link" id="back-to-details" type="button">Back to your details</button>
+                    </form>
                 </div>
                 <ol class="steps" id="steps" aria-live="polite">
                     <li class="step"><span class="tick" aria-hidden="true">&#10003;</span>Reserving your Intro Call</li>
@@ -278,7 +294,9 @@
         }
 
         const card = document.getElementById("order-card");
-        const intakeForm = document.getElementById("intake-form");
+        const reserveForm = document.getElementById("reserve-form");
+        const questionsForm = document.getElementById("questions-form");
+        const backButton = document.getElementById("back-to-details");
         const steps = document.querySelectorAll(".step");
         const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -298,12 +316,29 @@
             return url.href;
         }
 
-        intakeForm?.addEventListener("submit", event => {
-            event.preventDefault();
-            const data = new FormData(intakeForm);
+        function collectFields() {
             const fields = {};
-            for (const [key, value] of data.entries()) fields[key] = String(value).trim();
-            const destination = buildBookingUrl(fields);
+            for (const form of [reserveForm, questionsForm]) {
+                for (const [key, value] of new FormData(form).entries()) fields[key] = String(value).trim();
+            }
+            return fields;
+        }
+
+        reserveForm?.addEventListener("submit", event => {
+            event.preventDefault();
+            reserveForm.hidden = true;
+            questionsForm.hidden = false;
+            questionsForm.querySelector("textarea")?.focus();
+        });
+
+        backButton?.addEventListener("click", () => {
+            questionsForm.hidden = true;
+            reserveForm.hidden = false;
+        });
+
+        questionsForm?.addEventListener("submit", event => {
+            event.preventDefault();
+            const destination = buildBookingUrl(collectFields());
             card.dataset.bookingUrl = destination;
             card.classList.add("processing");
             const delay = reduced ? 0 : 550;

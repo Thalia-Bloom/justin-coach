@@ -47,7 +47,7 @@ assert.ok(checkout.includes('candidate.hostname === "calendly.com"'), "checkout 
 assert.ok(checkout.includes("<strong>$0</strong>"), "checkout shows $0 due today during the founding period");
 assert.ok(checkout.includes("No card needed"), "checkout states plainly that no card is needed");
 assert.equal(/autocomplete="cc-|card number|name="card|cvc|cvv|expiry|type="password"/i.test(checkout), false, "the demo checkout must never collect card details");
-assert.ok(checkout.includes('id="intake-form"'), "checkout collects contact info and the three intake questions (2026-07-23)");
+assert.ok(checkout.includes('id="reserve-form"') && checkout.includes('id="questions-form"'), "checkout collects contact info, then the three intake questions (2026-07-23)");
 assert.ok(checkout.includes('window.location.replace("intro.html#intro-call")'), "checkout retires itself once Stripe is live or booking is unset");
 assert.ok(fs.existsSync(path.join(root, "intro", "index.html")), "the QR-compatible /intro route should exist");
 assert.ok(fs.readFileSync(path.join(root, "start", "index.html"), "utf8").includes("../intro.html"), "old /start route must redirect to /intro");
